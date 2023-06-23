@@ -25,8 +25,10 @@
     "tailwindcss-fluid-type": "^2.0.3"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.19.0",
+    "@astrojs/mdx": "^0.19.7",
     "@fontsource/inter": "^4.5.14",
+    "@tailwindcss/typography": "^0.5.9",
+    "accessible-astro-components": "^2.1.0",
     "micromodal": "^0.4.10",
     "sharp": "^0.32.1",
     "tailwindcss": "^3.2.4",

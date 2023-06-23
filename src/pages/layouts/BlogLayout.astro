@@ -1,0 +1,32 @@
+---
+import Header from "../../components/header.astro";
+import BaseHead from "../../components/BaseHead.astro";
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <BaseHead
+    title="Blog Page"
+    description="A page to display all our blog posts"
+  />
+  <body>
+    <div class="layout">
+      <h1>{title}</h1>
+      <Header />
+      <main>
+        <slot />
+      </main>
+    </div>
+    <style>
+      body {
+        margin: 0;
+        background-color: #fff;
+        width: 100%;
+      }
+      .layout {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+    </style>
+  </body>
+</html>

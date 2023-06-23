@@ -7,12 +7,17 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   site: "https://astro-moon-landing.netlify.app/",
-  integrations: [tailwind(), image({
-    serviceEntryPoint: "@astrojs/image/sharp"
-  }), mdx()],
+  integrations: [
+    tailwind(),
+    image({
+      serviceEntryPoint: "@astrojs/image/sharp",
+    }),
+    mdx(),
+  ],
   vite: {
     ssr: {
-      external: ["svgo"]
-    }
-  }
+      noExternal: ["accessible-astro-components"],
+      external: ["svgo"],
+    },
+  },
 });

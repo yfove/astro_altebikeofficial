@@ -28,4 +28,5 @@ module.exports = {
     fontSize: false,
   },
   plugins: [require("tailwindcss-fluid-type")],
+  // plugins: [require("@tailwindcss/typography")],
 };
