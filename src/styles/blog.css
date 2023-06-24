@@ -10,3 +10,10 @@ h3 {
 h4 {
   font-size: 1rem;
 }
+
+.container ul {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  list-style-type: none;
+}
