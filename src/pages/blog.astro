@@ -1,13 +1,16 @@
 ---
-import "../styles/blog.css/";
 import BlogLayout from "./layouts/BlogLayout.astro";
 import { Card } from "accessible-astro-components";
+import Footer from  "../components/footer.astro";
+import Header from "../components/header2.astro";
+
 const posts = await Astro.glob("../pages/post/**/*.mdx");
 ---
 
 <html>
   <head>
-    <BlogLayout title="Blog">
+    <Header />
+    <BlogLayout title="Featured Bikes">
       <section>
         <div class="container">
           <ul >
@@ -19,6 +22,9 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
                     img={post.frontmatter.image}
                     title={post.frontmatter.title}
                     footer={post.frontmatter.author}
+                    style={{
+                      background: "white"
+                    }}
                   >
                     {post.frontmatter.description}
                   </Card>
@@ -29,15 +35,36 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
         </div>
       </section>
     </BlogLayout>
-    
+    <Footer/>
+
     <style lang="scss">
+      body {
+        background-color: #000;
+      }
+      .container {
+        // margin: 0 4rem;
+        padding: 0;
+        // background: red;
+      }
+    
       ul {
+        padding: 20px;
         display: grid;
         grid-gap: 2rem;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         list-style-type: none;
       }
+     
+
+      li {
+        background: white;
+        border: 3px solid black;
+        color: #818cf8;
+        border-radius: 0.8rem;
+      }
+
     </style>
     
+
   </head>
 </html>
