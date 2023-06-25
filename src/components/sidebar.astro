@@ -1,0 +1,89 @@
+---
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+---
+
+<aside class="sidebar">
+  <div class="social-media">
+    <h3>Follow Us</h3>
+    <ul>
+      <li><a href="https://twitter.com/example" target="_blank">Twitter</a></li>
+      <li>
+        <a href="https://facebook.com/example" target="_blank">Facebook</a>
+      </li>
+      <li>
+        <a href="https://instagram.com/example" target="_blank">Instagram</a>
+      </li>
+    </ul>
+  </div>
+  <div class="recent-posts">
+    <h3>Recent Posts</h3>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            url={"/post/" + post.frontmatter.slug}
+            img={post.frontmatter.image}
+            title={post.frontmatter.title}
+            footer={post.frontmatter.author}
+          </li>
+        ))
+      }
+      ))}
+    </ul>
+  </div>
+</aside>
+
+<style scoped>
+  .sidebar {
+    flex: 1;
+    padding: 1rem;
+    background-color: purple;
+    @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+  }
+
+  .social-media {
+    margin-bottom: 1rem;
+  }
+
+  .social-media h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .social-media ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-media li {
+    margin-bottom: 0.5rem;
+  }
+
+  .recent-posts h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .recent-posts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .recent-posts li {
+    margin-bottom: 0.5rem;
+  }
+
+  .recent-posts a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  /* Responsive styles for mobile */
+  @media (max-width: 768px) {
+    .sidebar {
+      display: none; /* Hide the sidebar on mobile screens */
+    }
+  }
+</style>

@@ -3,63 +3,83 @@
 // import BaseHead from "../components/BaseHead.astro";
 import Header from "../../components/header2.astro";
 import Footer from "../../components/footer.astro";
+import Sidebar from "../../components/Sidebar.astro";
 
 const {
   frontmatter: { title, description, pubDate, image, author },
 } = Astro.props;
 ---
+
 <html lang="en">
   <Header />
-  <head>
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-    </style>
-    <a href="/blog/" class="back-button">Back to Blog</a>
 
+  <style>
+    .title {
+      font-size: 2em;
+      margin: 0.25em 0 0;
+    }
+    hr {
+      border-top: 1px solid #ddd;
+      margin: 1rem 0;
+    }
+  </style>
+  <a href="/blog/" class="back-button">Back to Blog</a>
 
-  </head>
   <body>
-    <main>
-      <article>
-        <div class="article-head">
-          <h1 class="title">{title}</h1>
-          <em>Written by: {author}</em>
-        </div>
-        <div class="article-body">
-          {image && <img width={720} height={360} src={image} alt="" />}
-          Published on: {pubDate && <time>{pubDate}</time>}
-          <hr />
-          <slot />
-        </div>
-      </article>
-      <br>
-      <a href="/blog/" class="back-button">Back to Blog</a> 
-      <span>|</span>
-      <a href="/index/" class="back-button">Back to Home</a>
+    <div class="blog-container">
+      <main>
+        <article>
+          <div class="article-head">
+            <h1 class="title">{title}</h1>
+            <em>Written by: {author}</em>
+          </div>
+          <div class="article-body">
+            {image && <img width={720} height={360} src={image} alt="" />}
+            Published on: {pubDate && <time>{pubDate}</time>}
+            <hr />
+            <slot />
+          </div>
+        </article>
+        <br />
+        <a href="/blog/" class="back-button">Back to Blog</a>
+        <span>|</span>
+        <a href="/index/" class="back-button">Back to Home</a>
+      </main>
 
+      <div class="sidebar-container">
+        <Sidebar />
+      </div>
+    </div>
 
-
-    </main>
     <div class="footer-container">
       <Footer />
     </div>
-    <style>
+
+    <style lang="scss">
       html {
         min-height: 100vh;
         height: 100%;
       }
       body {
         height: 100%;
-        background: black;
         color: white;
-        padding: 3rem;
+        background: black;
+      }
+      .blog-container {
+        display: flex;
+        min-height: 100vh;
+        margin: 3rem;
+      }
+
+      main {
+        flex: 3;
+        // padding: 4rem;
+      }
+      .sidebar-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
       }
       time {
         display: inline-block;
@@ -70,6 +90,21 @@ const {
         color: #818cf8;
       }
 
+      h1 {
+        font-size: 3rem;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+        main {
+          flex: 4;
+        }
+        .sidebar-container {
+          display: none;
+        }
+      }
     </style>
   </body>
 </html>
