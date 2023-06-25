@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "./layouts/BlogLayout.astro";
 import { Card } from "accessible-astro-components";
-import Footer from  "../components/footer.astro";
+import Footer from "../components/footer.astro";
 import Header from "../components/header2.astro";
 
 const posts = await Astro.glob("../pages/post/**/*.mdx");
@@ -13,7 +13,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
     <BlogLayout title="Featured Bikes">
       <section>
         <div class="container">
-          <ul >
+          <ul>
             {
               posts.map((post) => (
                 <li>
@@ -23,11 +23,17 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
                     title={post.frontmatter.title}
                     footer={post.frontmatter.author}
                     style={{
-                      background: "white"
+                      background: "white",
                     }}
                   >
                     {post.frontmatter.description}
-                  </Card>
+                    <div class="flex gap-x-2">
+                      {post.frontmatter.tags &&
+                        post.frontmatter.tags.map((tag: string) => (
+                          <span>{tag}</span>
+                        ))}
+                    </div>
+                    </Card>
                 </li>
               ))
             }
@@ -35,36 +41,37 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
         </div>
       </section>
     </BlogLayout>
-    <Footer/>
+    <Footer />
 
-    <style lang="scss">
+    <style lang="scss" is:global>
       body {
         background-color: #000;
       }
       .container {
-        // margin: 0 4rem;
         padding: 0;
-        // background: red;
       }
-    
+
       ul {
-        padding: 20px;
         display: grid;
-        grid-gap: 2rem;
+        grid-gap: 3rem;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         list-style-type: none;
       }
-     
 
-      li {
-        background: white;
-        border: 3px solid black;
+      li > .card{
+        background: black;
+        border: 2px solid white;
         color: #818cf8;
-        border-radius: 0.8rem;
+        border-radius: 0.5rem;
       }
 
+      span {
+        background: #818cf8;
+        border-radius: 0.5rem;
+        padding: 4px 2px;
+        margin: 5px 0px;
+        color: white;
+      }
     </style>
-    
-
   </head>
 </html>

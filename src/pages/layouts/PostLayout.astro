@@ -1,5 +1,5 @@
 ---
-// import '../styles/blog.css';
+// import "../../styles/theme.css";
 // import BaseHead from "../components/BaseHead.astro";
 import Header from "../../components/header2.astro";
 import Footer from "../../components/footer.astro";
@@ -9,8 +9,8 @@ const {
 } = Astro.props;
 ---
 <html lang="en">
+  <Header />
   <head>
-    <Header />
     <style>
       .title {
         font-size: 2em;
@@ -21,6 +21,9 @@ const {
         margin: 1rem 0;
       }
     </style>
+    <a href="/blog/" class="back-button">Back to Blog</a>
+
+
   </head>
   <body>
     <main>
@@ -36,6 +39,13 @@ const {
           <slot />
         </div>
       </article>
+      <br>
+      <a href="/blog/" class="back-button">Back to Blog</a> 
+      <span>|</span>
+      <a href="/index/" class="back-button">Back to Home</a>
+
+
+
     </main>
     <div class="footer-container">
       <Footer />
@@ -54,6 +64,10 @@ const {
       time {
         display: inline-block;
         margin-top: 10px;
+      }
+
+      .back-button {
+        color: #818cf8;
       }
 
     </style>
