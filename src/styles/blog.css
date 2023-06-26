@@ -15,9 +15,9 @@ article > {
 }
 
 article p,
-h1,
-h2,
-h3,
-h4 {
+article h1,
+article h2,
+article h3,
+article h4 {
   margin: 16px 0px;
 }

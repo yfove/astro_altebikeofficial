@@ -1,0 +1,22 @@
+---
+import ContentSection from "~/components/content-section.astro";
+import ShowcaseCard from "~/components/showcase-card.astro";
+import { getShowcase } from "~/data/showcase";
+
+const sites = await getShowcase();
+---
+
+<ContentSection title="" id="showcase">
+  <Fragment slot="lead">
+    Explore what's possible and get{" "}
+    inspired.
+  </Fragment>
+  <div class="max-w-6xl space-y-2">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {sites.map((site) => <ShowcaseCard site={site} />)}
+    </div>
+    <p class="text-right text-sm">
+      <a class="text-primary" href=""> &rarr;</a>
+    </p>
+  </div>
+</ContentSection>

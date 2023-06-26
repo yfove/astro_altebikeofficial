@@ -1,32 +1,32 @@
 [
   {
-    "title": "PoliNations",
-    "image": "./images/polinations.png",
-    "url": "https://polinations.com/"
+    "title": "Ride Cake",
+    "image": "./images/2-cake.png",
+    "url": "https://ridecake.com"
   },
   {
-    "title": "Astro Docs",
-    "image": "./images/astro-docs.png",
-    "url": "https://docs.astro.build/"
+    "title": "Raev",
+    "image": "./images/1-raev.png",
+    "url": "https://raevbikes.com"
   },
   {
-    "title": "<div>RIOTS",
-    "image": "./images/divriots.png",
-    "url": "https://divriots.com/"
+    "title": "Super73",
+    "image": "./images/3-super73.png",
+    "url": "https://super73.com"
   },
   {
-    "title": "Designcember",
-    "image": "./images/designcember.png",
-    "url": "https://designcember.com/"
+    "title": "Onyx",
+    "image": "./images/4-onyx.png",
+    "url": "https://onyx.com"
   },
   {
-    "title": "The Firebase Blog",
-    "image": "./images/firebase-blog.png",
-    "url": "https://firebase.blog/"
+    "title": "Brekr",
+    "image": "./images/5-brekr.png",
+    "url": "https://brekr.com"
   },
   {
-    "title": "Corset",
-    "image": "./images/corset.png",
-    "url": "https://corset.dev/"
+    "title": "Huck Cycles",
+    "image": "./images/6-huck.png",
+    "url": "https://huckcycles.com"
   }
 ]
