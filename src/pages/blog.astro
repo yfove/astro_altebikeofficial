@@ -23,9 +23,6 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
                     img={post.frontmatter.image}
                     title={post.frontmatter.title}
                     footer={post.frontmatter.author}
-                    style={{
-                      background: "white",
-                    }}
                   >
                     {post.frontmatter.description}
                     <div class="flex gap-x-2">
@@ -57,7 +54,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
 
     .blog ul {
       display: grid;
-      grid-gap: 3rem;
+      grid-gap: 2rem;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       list-style-type: none;
     }
