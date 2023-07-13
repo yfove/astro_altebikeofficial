@@ -6,27 +6,43 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
   <div class="social-media">
     <h3>Follow Us</h3>
     <ul>
-      <li><a href="https://twitter.com/example" target="_blank">Twitter</a></li>
-      <li>
-        <a href="https://facebook.com/example" target="_blank">Facebook</a>
-      </li>
       <li>
         <a href="https://instagram.com/example" target="_blank">Instagram</a>
+      </li>
+      <li>
+        <a href="https://linktr.ee/ebikeofficial" target="_blank">linktree</a>
       </li>
     </ul>
   </div>
   <div class="recent-posts">
     <h3>Recent Posts</h3>
+    <!-- loop with images -->
     <ul>
       {
-        posts.map((post) => (
-          <li>
-            <a href={"/post/" + post.frontmatter.slug}>
-              <img src={post.frontmatter.image} alt={post.frontmatter.title} />
-              {post.frontmatter.title}
-            </a>
-          </li>
-        ))
+      posts.slice(0, 4).map((post) => (
+      <li key={post.frontmatter.slug}>
+        <a href={"/post/" + post.frontmatter.slug}>
+          <img src={post.frontmatter.image} alt={post.frontmatter.title} />
+        </a>
+        <p>{post.frontmatter.title}</p>
+        <small>{post.frontmatter.pubDate}</small>
+        {/* <p>{post.frontmatter.description}</p> */}
+      </li>
+      ))
+      }
+    </ul>
+    <!-- loop shows all subsequent  posts -->
+    <ul>
+      {
+      posts.slice(4).map((post) => (
+      <li key={post.frontmatter.slug}>
+        <a href={"/post/" + post.frontmatter.slug}>
+          <p>{post.frontmatter.title}</p>
+        </a>
+        <small>{post.frontmatter.pubDate}</small>
+        {/* <p>{post.frontmatter.description}</p> */}
+      </li>
+      ))
       }
     </ul>
   </div>
@@ -59,6 +75,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
     margin-bottom: 0.5rem;
   }
 
+
   .recent-posts h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
@@ -72,16 +89,28 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
 
   .recent-posts li {
     margin-bottom: 0.5rem;
+
+    & img {
+      border-radius: 0.4rem;
+
+    }
   }
 
   .recent-posts a {
     text-decoration: none;
   }
 
+  .recent-posts p {
+    margin-top: 5px;
+
+  }
+
+
   /* Responsive styles for mobile */
   @media (max-width: 768px) {
     .sidebar {
-      display: none; /* Hide the sidebar on mobile screens */
+      display: none;
+      /* Hide the sidebar on mobile screens */
     }
   }
 </style>

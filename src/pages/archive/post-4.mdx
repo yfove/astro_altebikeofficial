@@ -1,14 +1,15 @@
 ---
-title: "My Third Blog Post"
+title: "My Fourth Blog Post"
 layout: ../layouts/PostLayout.astro
 description: "Lorem ipsum dolor sit amet"
 author: "EBIKEOFFICIAL"
 pubDate: "20 Aug, 2022"
-image: "https://source.unsplash.com/kXP41LVdcv0"
-slug: "post-3"
+image: "https://source.unsplash.com/nfBUBGOhhuM"
+slug: "post-4"
+draft: true
 ---
 
-kXP41LVdcv0
+import { Accordion, AccordionItem } from "accessible-astro-components";
 
 Story about Old days
 
@@ -17,3 +18,23 @@ In the olden days, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
 Conclusion
 
 Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+
+<Accordion>
+  <AccordionItem header="First Item">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi
+      nobis optio? Qui in quo accusantium debitis sapiente obcaecati magnam
+      incidunt sit. Molestiae exercitationem quibusdam quod veritatis laboriosam
+      est tenetur.
+    </p>
+    <a href="">Tab to me!</a>
+  </AccordionItem>
+  <AccordionItem header="Second Item">
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto quasi
+      nobis optio? Qui in quo accusantium debitis sapiente obcaecati magnam
+      incidunt sit. Molestiae exercitationem quibusdam quod veritatis laboriosam
+      est tenetur.
+    </p>
+  </AccordionItem>
+</Accordion>
