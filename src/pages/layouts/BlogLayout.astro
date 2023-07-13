@@ -1,48 +1,44 @@
 ---
-import Header from "../../components/header2.astro";
 import BaseHead from "../../components/BaseHead.astro";
-const { title } = Astro.props;
-// import "../../styles/index.css";
-// import "../../styles/blog.css";
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <BaseHead
-    title="Blog Page"
-    description="A page to display all our blog posts"
-  />
-  <body>
-    <div class="layout">
-      <h1 class="gradient-text font-extrabold tracking-tighter">
-        {title}
-      </h1>
-      <!-- <Header /> -->
-      <main>
-        <slot />
-      </main>
-    </div>
-    <style>
-      body {
-        margin: 0;
-        background-color: #fff;
-        width: 100%;
-      }
-      .layout {
-        max-width: 1280px;
-        margin: 0 auto;
-      }
-    </style>
-    <style>
-      .layout h1 {
-        font-size: 6rem;
-        @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
-      }
+<BaseHead title={title} description="{decription}" />
 
-      .layout body {
-        justify-content: center;
-        align-items: center;
-      }
-    </style>
-  </body>
+<body>
+  <div class=" layout">
+    <h1 title="Featured Showcase" class="gradient-text font-extrabold tracking-tighter">
+      {title}
+    </h1>
+    <main>
+      <slot />
+    </main>
+  </div>
+
+  <style>
+    body {
+      margin: 0;
+      background-color: #fff;
+      width: 100%;
+    }
+
+    .layout {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .layout h1 {
+      font-size: 6rem;
+      @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+    }
+
+    .layout body {
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</body>
+
 </html>

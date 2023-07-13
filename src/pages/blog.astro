@@ -3,83 +3,81 @@ import BlogLayout from "./layouts/BlogLayout.astro";
 import { Card } from "accessible-astro-components";
 import Footer from "../components/footer.astro";
 import Header from "../components/header2.astro";
-
 import Showcase from "../components/showcase2.astro";
 
 const posts = await Astro.glob("../pages/post/**/*.mdx");
 ---
 
 <html>
-  <head>
-    <Header />
-  </head><div class="page-container">
-    <BlogLayout title="Featured Showcase">
-      <section>
-        <div class="blog container">
-          <ul>
-            {
-              posts.map((post) => (
-                <li>
-                  <Card
-                    url={"/post/" + post.frontmatter.slug}
-                    img={post.frontmatter.image}
-                    title={post.frontmatter.title}
-                    footer={post.frontmatter.author}
-                  >
-                    {post.frontmatter.description}
-                    <div class="flex gap-x-2">
-                      {post.frontmatter.tags &&
-                        post.frontmatter.tags.map((tag: string) => (
-                          <span>{tag}</span>
-                        ))}
-                    </div>
-                  </Card>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </section>
-    </BlogLayout>
-    <br />
-    <Showcase />
-  </div>
 
-  <Footer />
+<head>
+  <Header />
+</head>
+<div class="page-container">
+  <BlogLayout title="Featured Showcase">
+    <section>
+      <div class="blog container">
+        <ul>
+          {
+          posts.map((post) => (
+          <li>
+            <Card url={"/post/" + post.frontmatter.slug} img={post.frontmatter.image} title={post.frontmatter.title}
+              footer={post.frontmatter.author}>
+              {post.frontmatter.description}
+              <div class="flex gap-x-2">
+                {post.frontmatter.tags &&
+                post.frontmatter.tags.map((tag: string) => (
+                <span>{tag}</span>
+                ))}
+              </div>
+            </Card>
+          </li>
+          ))
+          }
+        </ul>
+      </div>
+    </section>
+  </BlogLayout>
+  <br />
+  <Showcase />
+</div>
 
-  <style lang="scss" is:global>
-    body {
-      background-color: #000;
-    }
+<Footer />
 
-    .page-container {
-      padding: 3rem;
-    }
+<style lang="scss" is:global>
+  body {
+    background-color: #000;
+  }
 
-    .blog ul {
-      display: grid;
-      grid-gap: 2rem;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      list-style-type: none;
-    }
+  .page-container {
+    padding: 3rem;
+  }
 
-    .blog li > .card {
-      background: black;
-      border: 2px solid white;
-      color: #818cf8;
-      border-radius: 0.5rem;
-    }
+  .blog ul {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    list-style-type: none;
+  }
 
-    small {
-      margin-top: 10px;
-    }
+  .blog li>.card {
+    background: black;
+    border: 2px solid white;
+    color: #818cf8;
+    border-radius: 0.5rem;
+  }
 
-    .card span {
-      background: #818cf8;
-      border-radius: 0.5rem;
-      padding: 3px 6px;
-      margin: 5px 0px;
-      color: white;
-    }
-  </style>
+  small {
+    margin-top: 10px;
+  }
+
+  .card span {
+    background: #818cf8;
+    border-radius: 0.5rem;
+    padding: 3px 6px;
+    margin: 5px 0px;
+    color: white;
+  }
+</style>
+
 </html>
