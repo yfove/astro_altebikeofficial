@@ -6,44 +6,53 @@ import type { NavItem } from "~/types";
 const navItems: Array<NavItem> = [
   { title: "Featured Showcase", url: "/blog/" },
   { title: "Guides & Tutorials", url: "" },
+];
+---
 
-  ];
-  ---
-
-  <header id="page-header"
-    class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white">
-    <a class="flex items-center gap-3 hover:!text-default" href="#">
-      <h1 class="sr-only">ebikeofficial</h1>
-      <!-- <Icon name="logomark" class="h-10" /> -->
-      <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
-      <h1 style="font-weight:bold; letter-spacing: 2px">ebikeofficial</h1>
-    </a>
-    <div>
-      <div class="flex items-center gap-6">
-        <nav class="hidden sm:block">
-          <ul class="flex items-center gap-6">
-            {
+<header
+  id="page-header"
+  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
+>
+  <a class="flex items-center gap-3 hover:!text-default" href="#">
+    <h1 class="sr-only">ebikeofficial</h1>
+    <!-- <Icon name="logomark" class="h-10" /> -->
+    <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
+    <h1 style="font-weight:bold; letter-spacing: 2px">ebikeofficial</h1>
+  </a>
+  <div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden sm:block">
+        <ul class="flex items-center gap-6">
+          {
             navItems.map(({ title, url }) => (
-            <li>
-              <a class="text-sm" href={url}>
-                {title}
-              </a>
-            </li>
+              <li>
+                <a class="text-sm" href={url}>
+                  {title}
+                </a>
+              </li>
             ))
-            }
-          </ul>
-        </nav>
-        <button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
-          <!-- <Icon pack="mdi" name="menu" class="h-8" /> -->
-
-        </button>
+          }
+        </ul>
+      </nav>
+      <button
+        id="open-nav-button"
+        type="button"
+        class="btn sm:hidden"
+        aria-label="Navigation"
+      >
+        <Icon pack="mdi" name="menu" class="h-8" < Icon />
         <!-- <ThemeSwitcher /> -->
-      </div>
+      </button>
       <div id="menu-modal" class="modal hidden" aria-hidden="true">
         <div class="fixed inset-0 bg-default px-8 py-4 text-default">
           <div class="space-y-4" role="dialog" aria-modal="true">
             <header class="text-right">
-              <button id="close-nav-button" type="button" class="btn" aria-label="Close navigation">
+              <button
+                id="close-nav-button"
+                type="button"
+                class="btn"
+                aria-label="Close navigation"
+              >
                 <Icon pack="mdi" name="close" class="h-8" />
               </button>
             </header>
@@ -53,13 +62,13 @@ const navItems: Array<NavItem> = [
             <nav>
               <ul class="flex flex-col">
                 {
-                navItems.map(({ title, url }) => (
-                <li>
-                  <a class="block py-4 text-center text-xl" href={url}>
-                    {title}
-                  </a>
-                </li>
-                ))
+                  navItems.map(({ title, url }) => (
+                    <li>
+                      <a class="block py-4 text-center text-xl" href={url}>
+                        {title}
+                      </a>
+                    </li>
+                  ))
                 }
               </ul>
             </nav>
@@ -67,7 +76,7 @@ const navItems: Array<NavItem> = [
         </div>
       </div>
     </div>
-  </header>
+  </div>
 
   <script>
     import MicroModal from "micromodal";
@@ -127,3 +136,4 @@ const navItems: Array<NavItem> = [
       @apply block;
     }
   </style>
+</header>
