@@ -20,7 +20,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
     <ul>
       {
       posts.slice(0, 4).map((post) => (
-      <li key={post.frontmatter.slug}>
+      <li {post.frontmatter.slug}>
         <a href={"/post/" + post.frontmatter.slug}>
           <img src={post.frontmatter.image} alt={post.frontmatter.title} />
         </a>
@@ -35,7 +35,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
     <ul>
       {
       posts.slice(4).map((post) => (
-      <li key={post.frontmatter.slug}>
+      <li {post.frontmatter.slug}>
         <a href={"/post/" + post.frontmatter.slug}>
           <p>{post.frontmatter.title}</p>
         </a>
