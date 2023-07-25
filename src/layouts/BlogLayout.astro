@@ -1,45 +1,60 @@
 ---
 import Header from "../components/header2.astro";
 import BaseHead from "../components/BaseHead.astro";
-const { title  }= Astro.props || {};
-
+const { title } = Astro.props || {};
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-<BaseHead title="Blog Page" description="A page to display all our blog posts" />
+  <BaseHead
+    title="Blog Page"
+    description="A page to display all our blog posts"
+  />
 
-<body>
-  <div class="layout">
-    <h1 class="gradient-text font-extrabold tracking-tighter">
-      {title}
-    </h1>
-    <!-- <Header /> -->
-    <main>
-      <slot />
-    </main>
-  </div>
-  <style>
-    body {
-      margin: 0;
-      background-color: #fff;
-      width: 100%;
-    }
+  <body>
+    <div class="layout">
+      <h1 class="gradient-text base font-extrabold tracking-tighter">
+        {title}
+      </h1>
+      <!-- <Header /> -->
+      <main>
+        <slot />
+      </main>
+    </div>
+    <style>
+      body {
+        margin: 0;
+        background-color: #fff;
+        width: 100%;
+      }
 
-    .layout {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    .layout h1 {
-      font-size: 6rem;
-      @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
-    }
+      .layout {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
 
-    .layout body {
-      justify-content: center;
-      align-items: center;
-    }
-  </style>
-</body>
+      .layout body {
+        justify-content: center;
+        align-items: center;
+        margin: 3rem;
+      }
 
+      .layout h1 {
+        font-size: 6rem;
+        @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+        text-align: center; /* Center align the h1 element */
+      }
+
+      /* Media query for smaller screens */
+      @media (max-width: 768px) {
+        .layout {
+          padding: 1rem; /* Reduce padding for smaller screens */
+        }
+
+        .layout h1 {
+          font-size: 4rem; /* Adjust the font size for smaller screens */
+        }
+      }
+    </style>
+  </body>
 </html>

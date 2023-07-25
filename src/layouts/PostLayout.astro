@@ -178,7 +178,7 @@ const {
       .blog-container {
         display: flex;
         min-height: 100vh;
-        margin: 3rem;
+        margin: 7rem;
       }
 
       .accordian-container {
@@ -207,6 +207,28 @@ const {
 
       h1 {
         font-size: 3rem;
+      }
+      .blog-container {
+        max-width: 1000px;
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for a subtle effect */
+      }
+
+      /* Other existing CSS styles go here */
+      /* ... */
+
+      /* Media Query for Larger Screens */
+      @media (min-width: 769px) {
+      }
+
+      /* Media Query for Smaller Screens (Mobile) */
+      @media (max-width: 768px) {
+        .blog-container {
+          margin: 20px; /* Adjust the margin for mobile screens */
+        }
+        /* Adjust other styles for smaller screens as needed */
       }
 
       @media (max-width: 768px) {

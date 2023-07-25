@@ -9,76 +9,78 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
 ---
 
 <html>
+  <head>
+    <Header />
+  </head>
+  <div class="page-container">
+    <BlogLayout title="Featured Showcase">
+      <br />
+      <section>
+        <div class="blog container">
+          <ul>
+            {
+              posts.map((post) => (
+                <li>
+                  <Card
+                    url={"/post/" + post.frontmatter.slug}
+                    img={post.frontmatter.image}
+                    title={post.frontmatter.title}
+                    footer={post.frontmatter.author}
+                  >
+                    {post.frontmatter.description}
+                    <div class="flex gap-x-2">
+                      {post.frontmatter.tags &&
+                        post.frontmatter.tags.map((tag: string) => (
+                          <span>{tag}</span>
+                        ))}
+                    </div>
+                  </Card>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+    </BlogLayout>
+    <br />
+    <Showcase />
+  </div>
 
-<head>
-  <Header />
-</head>
-<div class="page-container">
-  <BlogLayout title="Featured Showcase">
-    <br>
-    <section>
-      <div class="blog container">
-        <ul>
-          {
-          posts.map((post) => (
-          <li>
-            <Card url={"/post/" + post.frontmatter.slug} img={post.frontmatter.image} title={post.frontmatter.title}
-              footer={post.frontmatter.author}>
-              {post.frontmatter.description}
-              <div class="flex gap-x-2">
-                {post.frontmatter.tags &&
-                post.frontmatter.tags.map((tag: string) => (
-                <span>{tag}</span>
-                ))}
-              </div>
-            </Card>
-          </li>
-          ))
-          }
-        </ul>
-      </div>
-    </section>
-  </BlogLayout>
-  <br />
-  <Showcase />
-</div>
+  <Footer />
 
-<Footer />
+  <style lang="scss" is:global>
+    body {
+      background-color: #000;
+    }
 
-<style lang="scss" is:global>
-  body {
-    background-color: #000;
-  }
+    .page-container {
+      padding: 1rem;
+    }
 
-  .page-container {
-    padding: 3rem;
-  }
+    .blog ul {
+      display: grid;
+      grid-gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      list-style-type: none;
+    }
 
-  .blog ul {
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    list-style-type: none;
-  }
+    .blog li > .card {
+      background: black;
+      border: 2px solid white;
+      color: #818cf8;
+      border-radius: 0.5rem;
+    }
 
-  .blog li>.card {
-    background: black;
-    border: 2px solid white;
-    color: #818cf8;
-    border-radius: 0.5rem;
-  }
+    small {
+      margin-top: 10px;
+    }
 
-  small {
-    margin-top: 10px;
-  }
-
-  .card span {
-    background: #818cf8;
-    border-radius: 0.5rem;
-    padding: 3px 6px;
-    margin: 5px 0px;
-    color: white;
-  }
-</style>
-
+    .card span {
+      background: #818cf8;
+      border-radius: 0.5rem;
+      padding: 3px 6px;
+      margin: 5px 0px;
+      color: white;
+    }
+  </style>
 </html>
