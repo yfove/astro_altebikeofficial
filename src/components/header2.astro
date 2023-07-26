@@ -2,11 +2,11 @@
 import { Icon } from "astro-icon";
 import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
+import "../styles/index.css";
 
 const navItems: Array<NavItem> = [
-  { title: "Featured Showcase", url: "/blog/" },
-  { title: "Guides & Tutorials", url: "#compatibility" },
-  { title: "News", url: "/" },
+  { title: "Featured Showcase", url: "/featured/" },
+  { title: "Guides & Tutorials", url: "" },
 ];
 ---
 
@@ -41,7 +41,7 @@ const navItems: Array<NavItem> = [
         class="btn sm:hidden"
         aria-label="Navigation"
       >
-        <!-- <Icon pack="mdi" name="menu" class="h-8" /> -->
+        <Icon pack="mdi" name="menu" class="h-8" />
       </button>
       <ThemeSwitcher />
     </div>
@@ -55,11 +55,11 @@ const navItems: Array<NavItem> = [
               class="btn"
               aria-label="Close navigation"
             >
-              <!-- <Icon pack="mdi" name="close" class="h-8" /> -->
+              <Icon pack="mdi" name="close" class="h-8" />
             </button>
           </header>
           <div class="flex justify-center">
-            <!-- <Icon name="logomark" class="h-16" /> -->
+            <Icon name="logomark" class="h-16" />
           </div>
           <nav>
             <ul class="flex flex-col">
@@ -80,7 +80,7 @@ const navItems: Array<NavItem> = [
   </div>
 </header>
 
-<!-- <script>
+<script>
   import MicroModal from "micromodal";
   import invariant from "tiny-invariant";
 
@@ -118,7 +118,7 @@ const navItems: Array<NavItem> = [
       closeMenu();
     }
   });
-</script> -->
+</script>
 
 <noscript>
   <style>
