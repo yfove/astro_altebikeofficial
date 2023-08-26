@@ -61,52 +61,6 @@ const navItems: Array<NavItem> = [
   </div>
 </header>
 
-<script>
-  const hamburgerButton = document.getElementById("hamburger-button");
-  const menuItems = document.querySelector(".menu-items");
-
-  hamburgerButton.addEventListener("click", () => {
-    menuItems.classList.toggle("active");
-  });
-  // Other imports and variables here
-
-  // Your navItems array remains the same
-
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   const openNavButton = document.getElementById("open-nav-button");
-  //   const closeNavButton = document.getElementById("close-nav-button");
-  //   const menuModal = document.getElementById("menu-modal");
-
-  //   function openMenu() {
-  //     menuModal.classList.add("is-open");
-  //     document.body.classList.add("overflow-hidden");
-  //   }
-
-  //   function closeMenu() {
-  //     menuModal.classList.remove("is-open");
-  //     document.body.classList.remove("overflow-hidden");
-  //   }
-
-  //   openNavButton.addEventListener("click", openMenu);
-  //   closeNavButton.addEventListener("click", closeMenu);
-
-  //   // Additional close logic when clicking outside the menu modal
-  //   window.addEventListener("click", (event) => {
-  //     if (event.target === menuModal) {
-  //       closeMenu();
-  //     }
-  //   });
-  // });
-</script>
-
-<noscript>
-  <style>
-    #open-nav-button {
-      display: none;
-    }
-  </style>
-</noscript>
-
 <style>
   .fixed-header {
     @apply fixed top-0 bottom-auto;
@@ -173,3 +127,49 @@ const navItems: Array<NavItem> = [
     }
   }
 </style>
+
+<script>
+  const hamburgerButton = document.getElementById("hamburger-button");
+  const menuItems = document.querySelector(".menu-items");
+
+  hamburgerButton.addEventListener("click", () => {
+    menuItems.classList.toggle("active");
+  });
+  // Other imports and variables here
+
+  // Your navItems array remains the same
+
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const openNavButton = document.getElementById("open-nav-button");
+  //   const closeNavButton = document.getElementById("close-nav-button");
+  //   const menuModal = document.getElementById("menu-modal");
+
+  //   function openMenu() {
+  //     menuModal.classList.add("is-open");
+  //     document.body.classList.add("overflow-hidden");
+  //   }
+
+  //   function closeMenu() {
+  //     menuModal.classList.remove("is-open");
+  //     document.body.classList.remove("overflow-hidden");
+  //   }
+
+  //   openNavButton.addEventListener("click", openMenu);
+  //   closeNavButton.addEventListener("click", closeMenu);
+
+  //   // Additional close logic when clicking outside the menu modal
+  //   window.addEventListener("click", (event) => {
+  //     if (event.target === menuModal) {
+  //       closeMenu();
+  //     }
+  //   });
+  // });
+</script>
+
+<noscript>
+  <style>
+    #open-nav-button {
+      display: none;
+    }
+  </style>
+</noscript>
