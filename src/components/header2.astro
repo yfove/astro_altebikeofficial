@@ -126,6 +126,13 @@ const navItems: Array<NavItem> = [
       display: block;
     }
   }
+
+  @media (min-width: 768px) {
+    /* Hide the entire .hamburger-menu on larger screens */
+    .hamburger-menu {
+      display: none;
+    }
+  }
 </style>
 
 <script>
