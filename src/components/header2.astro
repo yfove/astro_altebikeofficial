@@ -9,58 +9,6 @@ const navItems: Array<NavItem> = [
 ];
 ---
 
-<header
-  id="page-header"
-  class="flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
->
-  <a class="flex items-center gap-3 hover:!text-default" href="/">
-    <h1 class="sr-only">ebikeofficial</h1>
-    <!-- <Icon name="logomark" class="h-10" /> -->
-    <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
-    <h1 style="font-weight:bold; letter-spacing: 2px">ebikeofficial</h1>
-  </a>
-  <div>
-    <div class="flex items-center gap-6">
-      <nav class="hidden sm:block">
-        <ul class="flex items-center gap-6">
-          {
-            navItems.map(({ title, url }) => (
-              <li>
-                <a class="text-sm" href={url}>
-                  {title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <nav class="hamburger-menu">
-        <button
-          id="hamburger-button"
-          type="button"
-          class="btn hamburger-button sm:hidden"
-          aria-label="Navigation"
-        >
-          <Icon pack="mdi" name="menu" class="h-8" < Icon />
-          <!-- <ThemeSwitcher /> -->
-        </button>
-        <ul class="menu-items">
-          {
-            navItems.map(({ title, url }) => (
-              <li>
-                <a class="text-xl" href={url}>
-                  {title}
-                </a>
-              </li>
-            ))
-          }
-          <!-- Add more menu items as needed -->
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-
 <style>
   .fixed-header {
     @apply fixed top-0 bottom-auto;
@@ -134,6 +82,58 @@ const navItems: Array<NavItem> = [
     }
   }
 </style>
+
+<header
+  id="page-header"
+  class="flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
+>
+  <a class="flex items-center gap-3 hover:!text-default" href="/">
+    <h1 class="sr-only">ebikeofficial</h1>
+    <!-- <Icon name="logomark" class="h-10" /> -->
+    <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
+    <h1 style="font-weight:bold; letter-spacing: 2px">ebikeofficial</h1>
+  </a>
+  <div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden sm:block">
+        <ul class="flex items-center gap-6">
+          {
+            navItems.map(({ title, url }) => (
+              <li>
+                <a class="text-sm" href={url}>
+                  {title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <nav class="hamburger-menu">
+        <button
+          id="hamburger-button"
+          type="button"
+          class="btn hamburger-button sm:hidden"
+          aria-label="Navigation"
+        >
+          <Icon pack="mdi" name="menu" class="h-8" < Icon />
+          <!-- <ThemeSwitcher /> -->
+        </button>
+        <ul class="menu-items">
+          {
+            navItems.map(({ title, url }) => (
+              <li>
+                <a class="text-xl" href={url}>
+                  {title}
+                </a>
+              </li>
+            ))
+          }
+          <!-- Add more menu items as needed -->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 
 <script>
   const hamburgerButton = document.getElementById("hamburger-button");
