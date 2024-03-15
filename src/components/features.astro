@@ -9,18 +9,21 @@ const features: Array<FeatureItem> = [
     description:
       "Explore a collection of our featured bikes",
     icon: "mdi:motorbike",
+    url: "/featured/",
   },
   {
     title: "Guides and Tutorial",
     description:
       "Your complete guide to maintaining and tuning your ebike",
     icon: "mdi:gear",
+    url: "/guides/"
   },
   {
     title: "News and Updates ",
     description:
       "Stay up to date on the latest ebike news articles curated to fuel your electric lifestyle",
     icon: "mdi:newspaper",
+    url: "/featured/"
   },
  
 ];
@@ -30,18 +33,20 @@ const features: Array<FeatureItem> = [
   <Fragment slot="lead">
    Our planned 
     <span class="text-primary">features</span>
-    expected in <span class="text-primary">2023 year</span>.
+    expected in <span class="text-primary">2024 year</span>.
   </Fragment>
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
-      features.map(({ title, description, icon }) => (
+      features.map(({ title, description, icon, url }) => (
         <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
+          <a href={url}>
           <div class="h-16 w-16 rounded-full border-2 border-current p-3">
             <Icon name={icon} />
-          </div>
-          <p class="text-center font-extrabold text-xl">{title}</p>
-          <p class="text-center text-offset text-sm">{description}</p>
-        </li>
+            </div>
+            </a>
+            <a href={url}><p class="text-center font-extrabold text-xl">{title}</p></a>
+            <p class="text-center text-offset text-sm">{description}</p>
+            </li>
       ))
     }
   </ul>
