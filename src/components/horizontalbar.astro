@@ -1,0 +1,65 @@
+---
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+---
+
+<div class="wrapper">
+  <div class="recent-posts">
+    <div class="heading">
+        <h2>Latest</h2>
+        <hr style="width:100%;">
+    </div>
+    <div class="horizontalbar">
+      <!-- Loop with images -->
+      {
+        posts.reverse().slice(0, 4).map((post) => (
+        //   <li key={post.frontmatter.slug}>
+            <li>
+            <a href={"/post/" + post.frontmatter.slug}>
+                <img src={post.frontmatter.image} alt={post.frontmatter.title} />
+            </a>
+            <p>{post.frontmatter.title}</p>
+            <p class="guide-decription" style="font-size: .8rem;">{post.frontmatter.description}</p>
+            <small>{post.frontmatter.pubDate}</small>
+          </li>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+    .wrapper {
+        /* background-color: black; */
+        margin: 0 auto;
+        max-width: 72rem;
+        margin: auto;
+    }
+    .heading h2 {
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        
+    }
+    .heading hr{
+        border-top: 1px solid #4e59bb;
+        color: var(--color-primary);
+
+    }
+    .horizontalbar {
+        display: grid;
+        grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); ;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        /* background-color: black; */
+        max-width: 1152px;
+        color: var(--color-primary);
+    }
+    .horizontalbar li {
+        margin: 0.7rem;
+        text-decoration: none;
+        list-style: none;
+        /* background-color: #000000;  */
+    }
+    
+</style>

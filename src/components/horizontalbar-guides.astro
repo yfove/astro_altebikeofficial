@@ -1,0 +1,67 @@
+---
+const guides = await Astro.glob("../pages/guides/**/*.mdx");
+---
+
+<div class="wrapper">
+    <div class="recent-posts">
+      <div class="heading">
+          <h2>Guides & Tutorials</h2>
+          <hr style="width:100%;">
+      </div>
+      <div class="horizontalbar">
+        <!-- Loop with images -->
+        {
+          guides.reverse().slice(0, 5).map((guide) => (
+            // <li key={guide.frontmatter.slug}>
+            <li>
+              <a href={"/guides/" + guide.frontmatter.slug}>
+              </a>
+              <p class="guide-title">{guide.frontmatter.title}</p>
+              <p class="guide-decription" style="font-size: .8rem;">{guide.frontmatter.description}</p>
+              <small>{guide.frontmatter.pubDate}</small>
+            </li>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+
+  <style>
+    .wrapper {
+        /* background-color: black; */
+        margin: 0 auto;
+        max-width: 72rem;
+        margin: auto;
+    }
+    .heading h2 {
+        align-items: center;
+        justify-content: center;
+        color: var(--color-primary);
+        
+    }
+    .heading hr{
+        border-top: 1px solid #4e59bb;
+        color: var(--color-primary);
+
+    }
+    .horizontalbar {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));;
+        text-decoration: none;
+     
+        /* background-color: black; */
+        max-width: 1152px;
+        color: var(--color-primary);
+    }
+    .horizontalbar li {
+        margin: 0.7rem;
+        text-decoration: none;
+        list-style: none;
+        font-size: .9rem;
+        /* background-color: #000000;  */
+    }
+    .horizontalbar li img {
+        /* object-fit: cover; */
+    }
+</style>
