@@ -172,8 +172,8 @@ const hamburgerButton = document.getElementById("open-nav-button");
   hamburgerButton.addEventListener("click", () => {
     menuItems.classList.toggle("active");
   });
-//   import MicroModal from "micromodal";
-//   import invariant from "tiny-invariant";
+  import MicroModal from "micromodal";
+  import invariant from "tiny-invariant";
 
   const menuModalId = "menu-modal";
 
@@ -183,10 +183,10 @@ const hamburgerButton = document.getElementById("open-nav-button");
   const openNavButton = document.querySelector("#open-nav-button");
   const closeNavButton = document.querySelector("#close-nav-button");
 
-//   invariant(header, "header should not be null");
-//   invariant(menu, "menu should not be null");
-//   invariant(openNavButton, "openNavButton should not be null");
-//   invariant(closeNavButton, "closeNavButton should not be null");
+  invariant(header, "header should not be null");
+  invariant(menu, "menu should not be null");
+  invariant(openNavButton, "openNavButton should not be null");
+  invariant(closeNavButton, "closeNavButton should not be null");
 
   const openMenu = () => {
     MicroModal.show(menuModalId, { disableScroll: true });
