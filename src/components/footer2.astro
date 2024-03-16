@@ -1,43 +1,77 @@
+---
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+---
+
 <footer>
   <div class="footer-container">
+    <!-- <div class="column logo">
+      <img src="ebikenook.svg" alt="Logo" />
+    </div> -->
     <div class="column">
-      <h3>Column 1</h3>
+      <h3>Explore Articles</h3>
       <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
+        {
+          posts.slice(2).map((post) => (
+            <li key={post.frontmatter.slug}>
+              <a href={"/post/" + post.frontmatter.slug}>
+                <p>{post.frontmatter.title}</p>
+                <small>{post.frontmatter.description}</small>
+                <br />
+                {/* <small>{post.frontmatter.pubDate}</small> */}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
     <div class="column">
-      <h3>Column 2</h3>
+      <h3>Follow</h3>
       <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
+        <li><a href="/featured/">Featured Articles</a></li>
+        <li><a href="/guides/">Guides and Tutorials</a></li>
+        <li><a href="#">Update</a></li>
+        <li><a href="#">Community</a></li>
       </ul>
     </div>
     <div class="column">
-      <h3>Column 3</h3>
+      <h3>Products</h3>
       <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Affiliate</a></li>
       </ul>
     </div>
     <div class="column">
-      <h3>Column 4</h3>
+      <h3>Socials</h3>
       <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-      </ul>
-    </div>
-    <div class="column">
-      <h3>Column 5</h3>
-      <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
+        <a href="
+        ">
+          <li>
+            <small>Instagram</small><svg
+              viewBox="0 0 160 32"
+              class="w-full"
+              astro-icon="mdi:instagram"
+            >
+              <a href="https://instagram.com/ebikenook" target="_blank">
+              </a><path
+                fill="currentColor"
+                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
+              ></path></svg
+            >
+          </li>
+        </a>
+        <li>
+          <a href="https://linktr.ee/ebikeofficial" target="_blank">
+            <small>Linktree</small>
+            <svg viewBox="0 0 160 32" class="h-full" astro-icon="mdi:tree"
+              ><path
+                fill="currentColor"
+                d="M11 21v-4.26c-.47.17-.97.26-1.5.26C7 17 5 15 5 12.5c0-1.27.5-2.41 1.36-3.23C6.13 8.73 6 8.13 6 7.5 6 5 8 3 10.5 3c1.56 0 2.94.8 3.75 2h.25a5.5 5.5 0 0 1 5.5 5.5 5.5 5.5 0 0 1-5.5 5.5c-.5 0-1-.07-1.5-.21V21h-2z"
+              ></path></svg
+            ></a
+          >
+        </li>
       </ul>
     </div>
   </div>
@@ -51,10 +85,11 @@
 
     .footer-container {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       grid-gap: 1.5rem;
-      margin: 2rem;
-      justify-items: stretch;
+      margin: 0 auto;
+      padding: 3rem;
+      max-width: 1150px;
     }
 
     .column {
@@ -74,6 +109,7 @@
 
     li {
       margin-bottom: 0.5rem;
+      font-size: 13px;
     }
 
     a {
@@ -81,10 +117,38 @@
       text-decoration: none;
     }
 
-    @media (max-width: 750px) {
+    .logo {
+      justify-self: center;
+      align-self: center;
+    }
+
+    .recent-posts h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .recent-posts ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .recent-posts li {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 1000px) {
       .footer-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1fr);
+        margin: 0;
+      }
+      .logo {
+        display: none;
       }
     }
   </style>
+  <p class="relative flex justify-center pb-3 text-xs">
+    <br />
+    Site developed and maintained by Ebikenook 2024 &#9829;
+  </p>
 </footer>

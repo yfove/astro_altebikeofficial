@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "../layouts/BlogLayout.astro";
 import { Card } from "accessible-astro-components";
-import Footer from "../components/footer.astro";
+import Footer from "../components/footer2.astro";
 import Header from "../components/header2.astro";
 import Showcase from "../components/showcase2.astro";
 
@@ -14,8 +14,10 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
   </head>
   <div class="page-container">
     <BlogLayout title="Guides & Tutorials">
-        <hr style="border-top: 2.5px solid #4e59bb; width: 70%; margin: 0 auto;">
-        <br />
+      <hr
+        style="border-top: 2.5px solid #4e59bb; width: 70%; margin: 0 auto;"
+      />
+      <br />
       <section>
         <div class="blog container">
           <ul>
@@ -44,7 +46,6 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
       </section>
     </BlogLayout>
     <br />
-    
   </div>
 
   <Footer />
@@ -85,8 +86,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     }
 
     .card .card__image {
-        height: 12rem;
+      height: 12rem;
     }
-
   </style>
 </html>
