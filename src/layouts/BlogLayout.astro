@@ -1,7 +1,6 @@
 ---
 import Header from "../components/header2.astro";
 import BaseHead from "../components/BaseHead.astro";
-import accordian from "../components/accordian.astro";
 const { title } = Astro.props || {};
 ---
 
@@ -30,13 +29,11 @@ const { title } = Astro.props || {};
       }
 
       .layout {
-        max-width: 1280px;
+        max-width: 1152px;
         margin: 0 auto;
       }
 
       .layout body {
-        justify-content: center;
-        align-items: center;
         margin: 3rem;
       }
 
@@ -47,7 +44,7 @@ const { title } = Astro.props || {};
       }
 
       /* Media query for smaller screens */
-      @media (max-width: 1768px) {
+      @media (max-width: 1068px) {
         .layout {
           padding: 1rem; /* Reduce padding for smaller screens */
         }

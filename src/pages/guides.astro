@@ -14,7 +14,8 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
   </head>
   <div class="page-container">
     <BlogLayout title="Guides & Tutorials">
-      <br />
+        <hr style="border-top: 2.5px solid #4e59bb; width: 70%; margin: 0 auto;">
+        <br />
       <section>
         <div class="blog container">
           <ul>
@@ -79,7 +80,13 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
       background: #818cf8;
       border-radius: 0.5rem;
       padding: 3px 6px;
+      margin: 5px 0px;
       color: white;
     }
+
+    .card .card__image {
+        height: 12rem;
+    }
+
   </style>
 </html>
