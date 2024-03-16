@@ -33,11 +33,9 @@ const {
           <br />
           <div class="article-body">
             {image && <img width={720} height={360} src={image} alt="" />}
-            <small>
+            <small class="article-small">
               Published on: {pubTime} •
               {pubDate && <time>{pubDate}</time>}
-            </small>
-            <small>
               {credit}
             </small>
             <hr />
@@ -114,6 +112,11 @@ const {
 
       .back-button {
         color: #818cf8;
+      }
+
+      .article-small {
+        color: #97a1f7;
+        /* color: #f472b6; */
       }
 
       h1 {
