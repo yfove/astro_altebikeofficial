@@ -19,7 +19,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
       />
       <br />
       <section>
-        <div class="blog container">
+        <div class="blog blog-container">
           <ul>
             {
               posts.map((post) => (
@@ -57,6 +57,10 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
     }
 
     .page-container {
+      padding: 1rem;
+    }
+
+    .blog-container {
       padding: 1rem;
     }
 

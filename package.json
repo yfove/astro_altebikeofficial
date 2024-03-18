@@ -29,6 +29,7 @@
     "@fontsource/inter": "^4.5.14",
     "@tailwindcss/typography": "^0.5.9",
     "accessible-astro-components": "^2.1.0",
+    "astro-navbar": "^2.3.1",
     "micromodal": "^0.4.10",
     "sass": "^1.63.6",
     "sharp": "^0.32.1",
