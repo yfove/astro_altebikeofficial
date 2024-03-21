@@ -10,9 +10,9 @@ const navItems: Array<NavItem> = [
 ---
 
 <style>
-  .fixed-header {
-    @apply fixed top-0 bottom-auto;
-    @apply border-default bg-default text-default;
+  header {
+    z-index: 1000;
+    background-color: #000;
   }
   .modal.is-open {
     @apply block;
@@ -48,7 +48,7 @@ const navItems: Array<NavItem> = [
     padding: 50px;
     position: absolute;
     background-color: #000;
-    top: 50px;
+    top: 60px;
     left: 0;
     width: 100%;
     height: 100vh;
@@ -85,11 +85,11 @@ const navItems: Array<NavItem> = [
 
 <header
   id="page-header"
-  class="flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
+  class="fixed flex w-full items-center justify-between border-b border-transparent px-8 py-1.5 text-white"
 >
   <a class="flex items-center gap-3 hover:!text-default" href="/">
     <h1 class="sr-only">ebikenook</h1>
-    <!-- <Icon name="logomark" class="h-10" /> -->
+    <Icon name="ebikenook" class="h-10" />
     <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
     <h1 style="font-weight:bold; letter-spacing: 2px">ebikenook</h1>
   </a>

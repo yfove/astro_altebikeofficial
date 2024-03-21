@@ -1,230 +1,53 @@
 ---
-import { Icon } from "astro-icon";
-// import ThemeSwitcher from "~/components/theme-switcher.astro";
-import type { NavItem } from "~/types";
-import "../styles/index.css";
-
-
-const navItems: Array<NavItem> = [
-  { title: "Featured Articles", url: "/featured/" },
-  { title: "Guides & Tutorials", url: "/guides/" },
-];
+import {
+  Astronav,
+  MenuItems,
+  MenuIcon,
+  Dropdown,
+  DropdownItems,
+  DropdownSubmenu,
+} from "astro-navbar";
 ---
 
-<style>
-    .fixed-header {
-      @apply fixed top-0 bottom-auto;
-      @apply border-default bg-default text-default;
-    }
-    .modal.is-open {
-      @apply block;
-    }
-  
-    .line {
-      display: block;
-      width: 40px;
-      height: 3px;
-      margin-bottom: 10px;
-      background-color: #fff;
-    }
-  
-    .hamburger-button {
-      display: block;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-  
-    .hamburger-icon {
-      display: block;
-      width: 30px;
-      height: 2px;
-      /* background-color: #333; */
-      position: relative;
-      transition: background-color 0.3s ease-in-out;
-    }
-  
-    .menu-items {
-      display: none;
-      list-style: none;
-      padding: 50px;
-      position: absolute;
-      background-color: #000;
-      top: 50px;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: 1000;
-      text-align: center;
-    }
-  
-    .menu-items li {
-      padding: 1rem;
-      font-size: large;
-    }
-  
-    .menu-items.active {
-      display: block;
-    }
-  
-    @media (min-width: 668px) {
-      .menu-items {
-        display: none;
-      }
-  
-      .menu-items.active {
-        display: block;
-      }
-    }
-  
-    @media (min-width: 768px) {
-      /* Hide the entire .hamburger-menu on larger screens */
-      .hamburger-menu {
-        display: none;
-      }
-    }
-  </style>
-
-<header
-  id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
->
-  <a class="flex items-center gap-3 hover:!text-default" href="#">
-    <h1 class="sr-only">ebikenook</h1>
-    <!-- <Icon name="logomark" class="h-10" /> -->
-    <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
-    <h1 style="font-weight:bold; letter-spacing: 2px">ebikenook</h1>
-  </a>
-  <div>
-    <div class="flex items-center gap-6">
-      <nav class="hidden sm:block">
-        <ul class="flex items-center gap-6">
-          {
-            navItems.map(({ title, url }) => (
-              <li>
-                <a class="text-sm" href={url}>
-                  {title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <nav class="hamburger-menu">
-        <button 
-            id="open-nav-button"
-            type="button"
-            class="btn hamburger-button sm:hidden"
-            aria-label="Navigation"
-        >
-        <Icon pack="mdi" name="menu" class="h-8" < Icon />
-
-        </button>
-        <ul class="menu-items">
-            {
-              navItems.map(({ title, url }) => (
-                <li>
-                  <a class="text-xl" href={url}>
-                    {title}
-                  </a>
-                </li>
-              ))
-            }
-            <!-- Add more menu items as needed -->
-          </ul>
-      </nav>
-      <!-- <ThemeSwitcher /> -->
+<div>
+  <Astronav>
+    <div class="flex justify-between">
+      <a>Your Logo</a>
+      <MenuIcon class="w-4 h-4 text-gray-800" />
     </div>
-    <div id="menu-modal" class="modal hidden" aria-hidden="true">
-      <div class="fixed inset-0 bg-default px-8 py-4 text-default">
-        <div class="space-y-4" role="dialog" aria-modal="true">
-          <header class="text-right">
-            <button
-              id="close-nav-button"
-              type="button"
-              class="btn"
-              aria-label="Close navigation"
-            >
-              <!-- <Icon pack="mdi" name="close" class="h-8" /> -->
+    <MenuItems class="hidden lg:flex">
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>
+          <Dropdown class="group">
+            <button>
+              <span> Services</span>
+              <!-- You can style when dropdown is `open` -->
+              <svg class="group-open:rotate-180">...arrow..</svg>
             </button>
-            <ul class="menu-items">
-                {
-                  navItems.map(({ title, url }) => (
-                    <li>
-                      <a class="text-xl" href={url}>
-                        {title}
-                      </a>
-                    </li>
-                  ))
-                }
-                <!-- Add more menu items as needed -->
-              </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<script>
-const hamburgerButton = document.getElementById("open-nav-button");
-  const menuItems = document.querySelector(".menu-items");
-
-  hamburgerButton.addEventListener("click", () => {
-    menuItems.classList.toggle("active");
-  });
-  import MicroModal from "micromodal";
-  import invariant from "tiny-invariant";
-
-  const menuModalId = "menu-modal";
-
-//   const header = document.querySelector("#page-header") as HTMLElement;
-//   const page = document.documentElement;
-//   const menu = document.querySelector(`#${menuModalId} ul`);
-//   const openNavButton = document.querySelector("#open-nav-button");
-//   const closeNavButton = document.querySelector("#close-nav-button");
-
-//   invariant(header, "header should not be null");
-// //   invariant(menu, "menu should not be null");
-// //   invariant(openNavButton, "openNavButton should not be null");
-// //   invariant(closeNavButton, "closeNavButton should not be null");
-
-// //   const openMenu = () => {
-// //     MicroModal.show(menuModalId, { disableScroll: true });
-// //   };
-
-  const closeMenu = () => {
-    MicroModal.close(menuModalId);
-  };
-
-//   openNavButton.addEventListener("click", openMenu);
-//   closeNavButton.addEventListener("click", closeMenu);
-
-  document.addEventListener("scroll", () => {
-    const d = page.clientHeight - page.scrollTop - header.offsetHeight;
-    header.classList.toggle("fixed-header", d < 0);
-  });
-
-  menu.addEventListener("click", (event) => {
-    if ((event.target as HTMLElement).tagName === "A") {
-      closeMenu();
-    }
-  });
-</script>
-
-<noscript>
-  <style>
-    #open-nav-button {
-      display: none;
-    }
-  </style>
-</noscript>
-
-<style>
-  .fixed-header {
-    @apply fixed top-0 bottom-auto;
-    @apply border-default bg-default text-default;
-  }
-  .modal.is-open {
-    @apply block;
-  }
-</style>
+            <DropdownItems>
+              <div class="absolute top-0">
+                <ul>
+                  <li>Menu 1</li>
+                  <li>Menu 2</li>
+                  <li>
+                    <DropdownSubmenu>
+                      <button>Submenu</button>
+                      <DropdownItems>
+                        <ul>
+                          <li>Sub Menu 1</li>
+                          <li>Sub Menu 2</li>
+                        </ul>
+                      </DropdownItems>
+                    </DropdownSubmenu>
+                  </li>
+                </ul>
+              </div>
+            </DropdownItems>
+          </Dropdown>
+        </li>
+      </ul>
+    </MenuItems>
+  </Astronav>
+</div>
