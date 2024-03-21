@@ -1,7 +1,7 @@
 ---
 import "../styles/blog.css";
 import Header from "../components/header2.astro";
-import Footer from "../components/footer.astro";
+import Footer from "../components/footer2.astro";
 // import Footer2 from "../components/footer2.astro";
 import Sidebar from "../components/sidebar.astro";
 import Accordian from "../components/accordian.astro";
@@ -17,9 +17,9 @@ const {
     <meta name="viewport" content="width=device-width" />
     <!-- <title>{pageTitle}</title> -->
   </head>
-  <Header />
 
-  <body>
+  <body class="h-min">
+    <Header />
     <div class="blog-container pt-10">
       <main>
         <a href="javascript:history.back()" class="back-button"
@@ -56,11 +56,6 @@ const {
 
     <!-- accordian component -->
     <Accordian />
-
-    <div class="footer-container">
-      <!-- <Footer2 /> -->
-      <Footer />
-    </div>
 
     <style>
       .title {
@@ -165,6 +160,8 @@ const {
       }
     </style>
   </body>
-
-
+  <div class="footer-container">
+    <!-- <Footer2 /> -->
+    <Footer />
+  </div>
 </html>
