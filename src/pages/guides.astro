@@ -2,22 +2,53 @@
 import BlogLayout from "../layouts/BlogLayout.astro";
 import { Card } from "accessible-astro-components";
 import Footer from "../components/footer2.astro";
-import Header from "../components/header2.astro";
+// import Header from "../components/header2.astro";
 import Showcase from "../components/showcase2.astro";
+import { Pagination } from "accessible-astro-components";
 
 const guides = await Astro.glob("../pages/guides/**/*.mdx");
 ---
 
 <html>
   <head>
-    <Header />
+    <style lang="scss" is:global>
+      .blog-container {
+        padding: 1rem;
+      }
+
+      flex span {
+        background: #818cf8;
+        border-radius: 0.5rem;
+        padding: 3px 6px;
+        margin: 5px 0px;
+        color: white;
+      }
+
+      .blog ul {
+        display: grid;
+        grid-gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        list-style-type: none;
+        align-items: center;
+      }
+
+      .card span {
+        background: #818cf8;
+        border-radius: 0.5rem;
+        padding: 3px 6px;
+        margin: 5px 0px;
+        color: white;
+      }
+      .blog li > .card {
+        background: black;
+        border: 2px solid white;
+        color: #818cf8;
+        /* border-radius: 0.5rem; */
+      }
+    </style>
   </head>
   <div class="page-container">
     <BlogLayout title="Guides & Tutorials">
-      <hr
-        style="border-top: 2.5px solid #4e59bb; width: 70%; margin: 0 auto;"
-      />
-      <br />
       <section>
         <div class="blog blog-container">
           <ul>
@@ -42,6 +73,14 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
               ))
             }
           </ul>
+          <Pagination
+            firstPage="/1"
+            previousPage="/4"
+            nextPage="/6"
+            lastPage="/10"
+            currentPage="/5"
+            totalPages="10"
+          />
         </div>
       </section>
     </BlogLayout>
@@ -50,47 +89,5 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
 
   <Footer />
 
-  <style lang="">
-    body {
-      background-color: #000;
-    }
 
-    .page-container {
-      padding: 1rem;
-    }
-
-    .blog-container {
-      padding: 1rem;
-    }
-
-    .blog ul {
-      display: grid;
-      grid-gap: 2rem;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      list-style-type: none;
-    }
-
-    .blog li > .card {
-      background: black;
-      border: 2px solid white;
-      color: #818cf8;
-      border-radius: 0.5rem;
-    }
-
-    small {
-      margin-top: 10px;
-    }
-
-    .card span {
-      background: #818cf8;
-      border-radius: 0.5rem;
-      padding: 3px 6px;
-      margin: 5px 0px;
-      color: white;
-    }
-
-    .card .card__image {
-      height: 12rem;
-    }
-  </style>
 </html>
