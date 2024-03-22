@@ -5,16 +5,50 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
 
 <aside class="sidebar">
   <div class="social-media">
-    <h3>Follow Us</h3>
+    <!-- <h3>Follow Us</h3> -->
     <ul style="display:list-item;">
-      <li>
+      <a
+        href="https://linktr.ee/ebikeofficial"
+        target="_blank"
+        class="mb-2 inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center font-medium text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      >
+        <svg
+          class="mr-2 -ml-1 h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 23 23"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            fill="mediumslateblue"
+            d="M11 21v-4.26c-.47.17-.97.26-1.5.26C7 17 5 15 5 12.5c0-1.27.5-2.41 1.36-3.23C6.13 8.73 6 8.13 6 7.5 6 5 8 3 10.5 3c1.56 0 2.94.8 3.75 2h.25a5.5 5.5 0 0 1 5.5 5.5 5.5 5.5 0 0 1-5.5 5.5c-.5 0-1-.07-1.5-.21V21h-2z"
+          ></path></svg
+        >
+        Linktree
+      </a>
+      <a
+        href="https://instagram.com/ebikenook"
+        target="_blank"
+        class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center font-medium text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      >
+        <svg
+          class="mr-2 -ml-1 h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 23 23"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            fill="mediumslateblue"
+            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
+          ></path></svg
+        >
+        Instagram
+      </a>
+      <!-- <li>
         <a href="https://instagram.com/ebikenook" target="_blank">
-          <small>Instagram</small><svg
+          <small class="gradient-text">Instagram</small><svg
             viewBox="0 0 160 32"
-            class="h-full"
+            class="gradien h-full"
             astro-icon="mdi:instagram"
             ><path
-              fill="currentColor"
+              fill="mediumslateblue"
               d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
             ></path></svg
           ></a
@@ -22,17 +56,17 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
       </li>
       <li>
         <a href="https://linktr.ee/ebikeofficial" target="_blank"
-          ><small>Linktree</small><svg
+          ><small class="gradient-text">Linktree</small><svg
             viewBox="0 0 160 32"
             class="h-full"
             astro-icon="mdi:tree"
             ><path
-              fill="currentColor"
+              fill="mediumslateblue"
               d="M11 21v-4.26c-.47.17-.97.26-1.5.26C7 17 5 15 5 12.5c0-1.27.5-2.41 1.36-3.23C6.13 8.73 6 8.13 6 7.5 6 5 8 3 10.5 3c1.56 0 2.94.8 3.75 2h.25a5.5 5.5 0 0 1 5.5 5.5 5.5 5.5 0 0 1-5.5 5.5c-.5 0-1-.07-1.5-.21V21h-2z"
             ></path></svg
           ></a
         >
-      </li>
+      </li> -->
     </ul>
   </div>
   <div class="recent-posts">
@@ -79,8 +113,9 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
   .sidebar {
     flex: 1;
     padding: 1rem;
-    background-color: #181828;
     border: 2px solid #4e59bb;
+    background-color: #15181f;
+    /* background-color: #181828; */
     /* background-color: #0f1317; */
     border-radius: 0.4rem;
   }

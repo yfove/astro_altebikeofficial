@@ -3,8 +3,11 @@ import "../styles/blog.css";
 import Header from "../components/header2.astro";
 import Footer from "../components/footer2.astro";
 // import Footer2 from "../components/footer2.astro";
-import Sidebar from "../components/sidebar.astro";
 import Accordian from "../components/accordian.astro";
+import Sidebar from "../components/sidebar.astro";
+import Cta from "../components/cta.astro";
+import Horizontalbar from "~/components/horizontalbar-guides.astro";
+import Horizontalbar2 from "~/components/horizontalbar.astro";
 
 const {
   frontmatter: { title, description, pubDate, pubTime, image, author, credit },
@@ -22,13 +25,17 @@ export const prerender = true;
   <body class="h-min">
     <Header />
     <div class="blog-container pt-10">
-      <main>
+      <main class="text-base/8 font-light tracking-wide">
         <a href="javascript:history.back()" class="back-button"
           >Back to Previous</a
         > | <a class="back-button">{title}</a>
         <article>
           <div class="article-head">
-            <h1 class="title">{title}</h1>
+            <h1
+              class="title gradient-text base font-extrabold tracking-tighter"
+            >
+              {title}
+            </h1>
             <small>Written by: {author}</small>
           </div>
           <br />
@@ -54,13 +61,17 @@ export const prerender = true;
         <Sidebar />
       </div>
     </div>
-
     <!-- accordian component -->
     <Accordian />
 
+    <!-- call to action social media component -->
+    <Cta />
+    <Horizontalbar2 />
+    <Horizontalbar />
+
     <style>
       .title {
-        font-size: 2em;
+        font-size: 2.4em;
         margin: 0.25em 0 0;
       }
 
