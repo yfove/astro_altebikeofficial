@@ -20,4 +20,5 @@ export default defineConfig({
       external: ["svgo"],
     },
   },
+  output: "server",
 });

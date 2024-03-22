@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../post/*.mdx");
+  return [
+    { params: { tag: "ebike" }, props: { posts: allPosts } },
+    { params: { tag: "trending" }, props: { posts: allPosts } },
+    { params: { tag: "offroad" }, props: { posts: allPosts } },
+    { params: { tag: "tutorial" }, props: { posts: allPosts } },
+    { params: { tag: "guides" }, props: { posts: allPosts } },
+  ];
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const filteredPosts = posts.filter((post) =>
+  post.frontmatter.tags?.includes(tag)
+);
+---
+
+<BaseLayout pageTitle={tag}>
+  <p>Posts tagged with {tag}</p>
+  <div class="tag-grid">
+    {
+      filteredPosts.map((post) => (
+        <li>
+          <a href={"/post/" + post.frontmatter.slug}>
+            <p>{post.frontmatter.title}</p>
+            <p class="guide-decription" style="font-size: .8rem;">
+              {post.frontmatter.description}
+            </p>
+            <small>{post.frontmatter.pubDate}</small>
+          </a>
+        </li>
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .tag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    /* background-color: black; */
+    max-width: 1152px;
+    color: var(--color-primary);
+  }
+</style>

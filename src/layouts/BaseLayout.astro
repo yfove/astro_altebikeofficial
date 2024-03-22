@@ -1,0 +1,31 @@
+---
+import Header from "../components/header2.astro";
+import Footer from "../components/footer2.astro";
+
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+  // Define frontmatter props here
+  title: string;
+  author: string;
+  date: string;
+}>;
+
+// Now, `frontmatter`, `url`, and other Markdown layout properties
+// are accessible with type safety
+const { title, author, date, url } = Astro.props;
+---
+
+<html>
+  <head>
+    <link rel="canonical" href={new URL(url, Astro.site).pathname} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <h1>{title} by {author}</h1>
+    <slot />
+    <p>Written on: {date}</p>
+  </body>
+  <Footer />
+</html>

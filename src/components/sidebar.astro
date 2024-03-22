@@ -44,7 +44,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
           .reverse()
           .slice(0, 5)
           .map((post) => (
-            <li key={post.frontmatter.slug}>
+            <li>
               <a href={"/post/" + post.frontmatter.slug}>
                 <img
                   src={post.frontmatter.image}
@@ -62,7 +62,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     <ul>
       {
         posts.slice(5).map((post) => (
-          <li key={post.frontmatter.slug}>
+          <li>
             <a href={"/post/" + post.frontmatter.slug}>
               <p>{post.frontmatter.title}</p>
             </a>
