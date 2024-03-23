@@ -36,9 +36,9 @@ const { page } = Astro.props;
     .card span {
       background: #818cf8;
       border-radius: 0.5rem;
-      padding: 3px 6px;
+      padding: 2.5px 6px;
       margin: 5px 0px;
-      color: white;
+      color: #15181f;
     }
     .blog li > .card {
       background: black;
@@ -46,8 +46,11 @@ const { page } = Astro.props;
       color: #818cf8;
       border-radius: 0.3rem;
     }
-    .paginate a:hover {
-      background-color: #818cf8;
+    body .pagination {
+      a:hover,
+      & a:focus-visible {
+        background-color: #818cf8;
+      }
     }
   </style>
 </head>
