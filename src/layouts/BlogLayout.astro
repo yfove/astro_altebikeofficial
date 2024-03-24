@@ -6,7 +6,6 @@ import Horizontalbar2 from "../components/horizontalbar-guides.astro";
 import Cta from "../components/cta.astro";
 import Footer from "../components/footer2.astro";
 const { title, description } = Astro.props || {};
-import { Breadcrumbs, BreadcrumbsItem } from "accessible-astro-components";
 ---
 
 <html lang="en">
@@ -49,20 +48,25 @@ import { Breadcrumbs, BreadcrumbsItem } from "accessible-astro-components";
       }
 
       /* Media query for smaller screens */
-      @media (max-width: 1068px) {
+      @media (max-width: 1000px) {
         .layout {
           padding: 0.5rem; /* Reduce padding for smaller screens */
         }
 
-        .title-heading h1,
-        hr {
+        .title-heading h1 {
           font-size: 4rem; /* Adjust the font size for smaller screens */
           text-align: center;
           margin: 0 auto;
         }
 
+        .layout hr {
+          margin: 0 auto;
+        }
+
         .title-heading p {
-          display: none;
+          /* text-align: center; */
+          margin: 0 auto;
+          /* display: none; */
         }
       }
     </style>

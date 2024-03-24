@@ -80,7 +80,9 @@ const { page } = Astro.props;
                 <div class="flex gap-x-2">
                   {post.frontmatter.tags &&
                     post.frontmatter.tags.map((tag: string) => (
-                      <span>{tag}</span>
+                      <span>
+                        <a href="./tags/{tag}">{tag}</a>
+                      </span>
                     ))}
                 </div>
               </Card>

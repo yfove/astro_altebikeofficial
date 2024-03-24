@@ -24,9 +24,7 @@ const { title, author, date, url } = Astro.props;
   </head>
   <body>
     <Header />
-    <h1>{title} by {author}</h1>
     <slot />
-    <p>Written on: {date}</p>
   </body>
   <Footer />
 </html>

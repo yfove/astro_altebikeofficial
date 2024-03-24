@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseHead from "../../components/BaseHead.astro";
 
 export async function getStaticPaths() {
   const allPosts = await Astro.glob("../post/*.mdx");
@@ -19,9 +20,16 @@ const filteredPosts = posts.filter((post) =>
 );
 ---
 
+<BaseHead title={tag} description="A page to display all our blog posts" />
 <BaseLayout pageTitle={tag}>
-  <p>Posts tagged with {tag}</p>
-  <div class="tag-grid">
+  <div class="title-heading mx-3">
+    <h1 class="gradient-text text-xlg font-extrabold tracking-tighter">
+      {tag}
+    </h1>
+    <!-- <hr style="border-top: 2.5px solid #4e59bb; width: 72%; " /> -->
+    <!-- <p class="w-3/4 pt-2 text-gray-400">{description}</p> -->
+  </div>
+  <div class="tag-grid grid-container">
     {
       filteredPosts.map((post) => (
         <li>
@@ -41,10 +49,13 @@ const filteredPosts = posts.filter((post) =>
 <style>
   .tag-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     text-decoration: none;
+    grid-gap: 2rem;
+    list-style: none;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
     /* background-color: black; */
     max-width: 1152px;
     color: var(--color-primary);
