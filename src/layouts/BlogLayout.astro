@@ -49,9 +49,9 @@ import Alltags from "~/components/alltags.astro";
       }
 
       .title-heading p {
-        /* text-align: center; */
+        text-align: center;
         margin: 0 auto;
-        /* display: none; */
+        display: none;
       }
     }
   </style>
@@ -68,10 +68,10 @@ import Alltags from "~/components/alltags.astro";
         <p class="w-3/4 pt-2 text-gray-400">{description}</p>
       </div>
       <br />
-      <!-- <Alltags /> -->
       <main>
         <slot />
       </main>
+      <Alltags />
     </div>
 
     <Cta />

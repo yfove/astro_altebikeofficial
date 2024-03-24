@@ -26,7 +26,7 @@ const filteredPosts = posts.filter((post) =>
   <style>
     .tag-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       text-decoration: none;
       grid-gap: 2rem;
       list-style: none;
@@ -41,7 +41,7 @@ const filteredPosts = posts.filter((post) =>
       font-size: 5rem;
     }
     .layout {
-      margin: 2rem;
+      margin: 1rem;
     }
   </style>
 </head>
@@ -57,7 +57,7 @@ const filteredPosts = posts.filter((post) =>
     <div class="tag-grid grid-container">
       {
         filteredPosts.map((post) => (
-          <li>
+          <li class="font-bold text-gray-500 text-base ">
             <a href={"/../post/" + post.frontmatter.slug}>
               <p>{post.frontmatter.title}</p>
               <p class="guide-decription" style="font-size: .8rem;">
