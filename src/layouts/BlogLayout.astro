@@ -5,7 +5,8 @@ import Horizontalbar from "../components/horizontalbar.astro";
 import Horizontalbar2 from "../components/horizontalbar-guides.astro";
 import Cta from "../components/cta.astro";
 import Footer from "../components/footer2.astro";
-const { title } = Astro.props || {};
+const { title, description } = Astro.props || {};
+import { Breadcrumbs, BreadcrumbsItem } from "accessible-astro-components";
 ---
 
 <html lang="en">
@@ -16,13 +17,15 @@ const { title } = Astro.props || {};
 
   <body class="h-min">
     <Header />
+
     <div class="layout">
-      <h1 class="gradient-text base font-extrabold tracking-tighter">
-        {title}
-      </h1>
-      <hr
-        style="border-top: 2.5px solid #4e59bb; width: 70%; margin: 0 auto;"
-      />
+      <div class="title-heading mx-3">
+        <h1 class="gradient-text text-xlg font-extrabold tracking-tighter">
+          {title}
+        </h1>
+        <hr style="border-top: 2.5px solid #4e59bb; width: 72%; " />
+        <p class="w-3/4 pt-2 text-indigo-400">{description}</p>
+      </div>
       <br />
       <main>
         <slot />
@@ -40,9 +43,9 @@ const { title } = Astro.props || {};
       }
 
       .layout h1 {
-        font-size: 6rem;
+        font-size: 3rem;
         @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
-        text-align: center; /* Center align the h1 element */
+        /* text-align: center; */
       }
 
       /* Media query for smaller screens */
@@ -51,8 +54,15 @@ const { title } = Astro.props || {};
           padding: 0.5rem; /* Reduce padding for smaller screens */
         }
 
-        .layout h1 {
+        .title-heading h1,
+        hr {
           font-size: 4rem; /* Adjust the font size for smaller screens */
+          text-align: center;
+          margin: 0 auto;
+        }
+
+        .title-heading p {
+          display: none;
         }
       }
     </style>
