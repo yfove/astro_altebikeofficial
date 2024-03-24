@@ -6,13 +6,55 @@ import Horizontalbar2 from "../components/horizontalbar-guides.astro";
 import Cta from "../components/cta.astro";
 import Footer from "../components/footer2.astro";
 const { title, description } = Astro.props || {};
+import Alltags from "~/components/alltags.astro";
 ---
 
 <html lang="en">
   <BaseHead
-    title="Articles"
+    title={"Articles"}
     description="A page to display all our blog posts"
   />
+
+  <style>
+    body {
+      margin: 0;
+      width: 100%;
+    }
+
+    .layout {
+      max-width: 1152px;
+      margin: 0 auto;
+    }
+
+    .layout h1 {
+      font-size: 3rem;
+      @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+      /* text-align: center; */
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 1000px) {
+      .layout {
+        padding: 0.5rem; /* Reduce padding for smaller screens */
+      }
+
+      .title-heading h1 {
+        font-size: 4rem; /* Adjust the font size for smaller screens */
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .layout hr {
+        margin: 0 auto;
+      }
+
+      .title-heading p {
+        /* text-align: center; */
+        margin: 0 auto;
+        /* display: none; */
+      }
+    }
+  </style>
 
   <body class="h-min">
     <Header />
@@ -26,50 +68,12 @@ const { title, description } = Astro.props || {};
         <p class="w-3/4 pt-2 text-gray-400">{description}</p>
       </div>
       <br />
+      <Alltags />
       <main>
         <slot />
       </main>
     </div>
-    <style>
-      body {
-        margin: 0;
-        width: 100%;
-      }
 
-      .layout {
-        max-width: 1152px;
-        margin: 0 auto;
-      }
-
-      .layout h1 {
-        font-size: 3rem;
-        @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
-        /* text-align: center; */
-      }
-
-      /* Media query for smaller screens */
-      @media (max-width: 1000px) {
-        .layout {
-          padding: 0.5rem; /* Reduce padding for smaller screens */
-        }
-
-        .title-heading h1 {
-          font-size: 4rem; /* Adjust the font size for smaller screens */
-          text-align: center;
-          margin: 0 auto;
-        }
-
-        .layout hr {
-          margin: 0 auto;
-        }
-
-        .title-heading p {
-          /* text-align: center; */
-          margin: 0 auto;
-          /* display: none; */
-        }
-      }
-    </style>
     <Cta />
     <Horizontalbar />
     <Horizontalbar2 />
