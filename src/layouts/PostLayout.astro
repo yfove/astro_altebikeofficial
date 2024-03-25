@@ -1,5 +1,6 @@
 ---
 import "../styles/blog.css";
+import "../styles/global.css";
 import Header from "../components/header2.astro";
 import Footer from "../components/footer2.astro";
 // import Footer2 from "../components/footer2.astro";
@@ -30,7 +31,7 @@ export const prerender = true;
           >Back to Previous</a
         >
         <a style="color: #818cf8">| {title}</a>
-        <article>
+        <article class="mdx">
           <div class="article-head">
             <h1
               class="title gradient-text base font-extrabold tracking-tighter"
@@ -48,7 +49,7 @@ export const prerender = true;
               {credit}
             </small>
             <hr />
-            <slot />
+            <slot class="mdx"/>
           </div>
         </article>
         <br />
@@ -71,7 +72,7 @@ export const prerender = true;
     <Horizontalbar />
 
     <style>
-      article .article-body a  {
+      .mdx a {
         font-weight: bold;
         color: red;
         text-decoration: underline;

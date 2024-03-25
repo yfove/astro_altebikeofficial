@@ -14,4 +14,8 @@ a,
 /* guides */
 /*purple #4e59bb */
 
+.mdx a:not(.tag) {
+  @apply decoration-[1px] decoration-solid underline-offset-[3px] decoration-secondary underline text-indigo-400;
+}
+
 
