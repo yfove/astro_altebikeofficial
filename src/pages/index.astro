@@ -13,6 +13,8 @@ import Splash from "~/components/splash.astro";
 import Cta from "~/components/cta.astro";
 import "~/styles/index.css";
 import Header3 from "~/components/header3.astro";
+import Hero from "~/components/hero.astro";
+import Contentcta from "~/components/contentcta.astro";
 
 const { generator, site } = Astro;
 const image = new URL("social.jpg", site);
@@ -67,14 +69,15 @@ const description = "Welcome to EbikeOfficial";
   >
     <!-- <Header /> -->
     <Header2 />
-    <Splash class="h-min" />
+    <Hero />
+    <Horizontalbar />
+    <Horizontalbar2 />
+    <Contentcta />
+    <!-- <Splash class="h-min" /> -->
+    <!-- <Intro /> -->
+    <Features />
+
     <div class="space-y-24 px-8 py-32">
-      <Intro />
-      <Horizontalbar />
-      <Horizontalbar2 />
-
-      <Features />
-
       <!-- <Cta /> -->
       <!-- <Compatibility /> -->
       <!-- <Showcase /> -->
