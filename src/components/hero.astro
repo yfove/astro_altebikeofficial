@@ -7,7 +7,7 @@ const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
 ---
 
-<section class="hero bg-black">
+<section class="hero w-width">
   <div
     class="mx-auto grid max-w-screen-xl px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:py-16 xl:gap-0"
   >
@@ -75,6 +75,9 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
 </section>
 
 <style>
+  .hero {
+    background-color: #0f1217;
+  }
   @keyframes float {
     0% {
       transform: translate3d(0, 0, 0);
