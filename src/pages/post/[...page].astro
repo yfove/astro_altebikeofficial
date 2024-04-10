@@ -44,8 +44,19 @@ const { page } = Astro.props;
       background: black;
       // border: 1px solid #818cf8;
       color: #818cf8;
-      border-radius: 0.5rem;
+      border-radius: 0.3rem;
     }
+
+    .card__image {
+      height: 13rem;
+    }
+
+    .card__content:last-child {
+      margin-top: auto;
+      padding: 0.2rem;
+      padding-top: 0.5rem;
+    }
+
     body .pagination {
       a:hover,
       & a:focus-visible {
@@ -68,24 +79,32 @@ const { page } = Astro.props;
       </p>
       <ul class="my-3">
         {
-          page.data.map((post) => (
-            <li>
-              <Card
-                url={"/post/" + post.frontmatter.slug}
-                img={post.frontmatter.image}
-                title={post.frontmatter.title}
-                footer={post.frontmatter.author}
-              >
-                {post.frontmatter.description}
-                <div class="flex gap-x-2">
-                  {post.frontmatter.tags &&
-                    post.frontmatter.tags.map((tag: string) => (
-                      <span>{tag}</span>
-                    ))}
-                </div>
-              </Card>
-            </li>
-          ))
+          page.data
+            // .sort(
+            //   (a, b) =>
+            //     new Date(b.frontmatter.pubDate) -
+            //     new Date(a.frontmatter.pubDate)
+            // )
+            .map((post) => (
+              <>
+                <li>
+                  <Card
+                    url={"/post/" + post.frontmatter.slug}
+                    img={post.frontmatter.image}
+                    title={post.frontmatter.title}
+                    footer={post.frontmatter.author}
+                  >
+                    {post.frontmatter.description}
+                    <div class="flex gap-x-2">
+                      {post.frontmatter.tags &&
+                        post.frontmatter.tags.map((tag: string) => (
+                          <span>{tag}</span>
+                        ))}
+                    </div>
+                  </Card>
+                </li>
+              </>
+            ))
         }
       </ul>
       <div class="mt-12 grid place-content-center">
