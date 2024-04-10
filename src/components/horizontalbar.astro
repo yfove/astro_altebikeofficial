@@ -19,6 +19,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
             <li>
               <a href={"/post/" + post.frontmatter.slug}>
                 <img
+                  class="rounded-lg"
                   src={post.frontmatter.image}
                   alt={post.frontmatter.title}
                 />
