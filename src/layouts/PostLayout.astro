@@ -10,9 +10,11 @@ import Cta from "../components/cta.astro";
 import Horizontalbar from "~/components/horizontalbar-guides.astro";
 import Horizontalbar2 from "~/components/horizontalbar.astro";
 
+const { minutesRead } = Astro.props.frontmatter;
 const {
   frontmatter: { title, description, pubDate, pubTime, image, author, credit },
 } = Astro.props;
+
 export const prerender = true;
 ---
 
@@ -49,7 +51,7 @@ export const prerender = true;
               {credit}
             </small>
             <hr />
-            <slot class="mdx"/>
+            <slot class="mdx" />
           </div>
         </article>
         <br />

@@ -97,6 +97,7 @@ const { page } = Astro.props;
                   footer={post.frontmatter.pubDate}
                 >
                   {post.frontmatter.description}
+                  {post.minutesRead}
 
                   <div class="flex gap-x-2">
                     {post.frontmatter.tags &&

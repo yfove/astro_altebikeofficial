@@ -12,10 +12,13 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
       <!-- Loop with images -->
       {
         posts
-          .reverse()
+          .sort((a, b) => {
+            const aDate = new Date(a.frontmatter.pubDate);
+            const bDate = new Date(b.frontmatter.pubDate);
+            return bDate - aDate;
+          })
           .slice(0, 4)
           .map((post) => (
-            //   <li key={post.frontmatter.slug}>
             <li>
               <a href={"/post/" + post.frontmatter.slug}>
                 <img

@@ -1,0 +1,39 @@
+---
+import Header from "~/components/header2.astro";
+import Footer from "~/components/footer2.astro";
+import BaseHead from "../components/BaseHead.astro";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+
+const { title, description } = Astro.props || {};
+---
+
+<BaseLayout
+  title="Affiliate Disclaimer"
+  description="We are part of various affiliate advertising programs, so all links that you see on our site can be assumed to be affiliate links"
+>
+  <div class="mx-3 max-w-4xl">
+    <p>
+      Our website participates in various affiliate marketing programs. When you
+      make a purchase through a link on our site, you will buy directly from the
+      seller and not through our site. We receive a small commission for
+      promoting products on our platform, but this will not affect the price you
+      pay. Whether you purchase via an affiliate link or a non-affiliate link,
+      the cost remains the same for you.
+    </p>
+    <br />
+    <p>
+      By clicking on the link, you will not pay more, but we may receive
+      commissions that will help us grow and improve our site. It is essential
+      to understand that this does not influence our evaluations or
+      recommendations. Our reviews, top picks, and buying guides are designed to
+      provide you with accurate and objective information. We aim to be fair and
+      transparent, listing both the pros and cons of the products we feature.
+    </p>
+    <br />
+    <p>
+      We do not investigate, monitor, or verify external links. We do not
+      guarantee or endorse third-party information. We are not involved in or
+      accountable for transactions with third-party suppliers.
+    </p>
+  </div>
+</BaseLayout>
