@@ -4,8 +4,6 @@
 
 > An Astro + Tailwind CSS example/template for landing pages.
 
-![Screenshots of Astro Landing Page](screenshots.jpg)
-
 ## Features
 
 - 💨 Tailwind CSS for styling
@@ -38,3 +36,22 @@
 - moon image
   - source: https://unsplash.com/@nasa
 - other than that, a lot of material (showcase data, copy) was taken from official Astro sources, in particular https://astro.build/blog/introducing-astro/ and https://github.com/withastro/astro.build
+
+## Hydration
+
+- client:load -> loads immediately
+- client:idle -> wait until browser is chilling
+- client:visible -> wait until component is visible to viewport
+
+## Limitation
+
+no possible to do client side routing
+does not work like single page application
+
+## Responsive Design
+
+sm 640px @media (min-width: 640px) { ... }
+md 768px @media (min-width: 768px) { ... }
+lg 1024px @media (min-width: 1024px) { ... }
+xl 1280px @media (min-width: 1280px) { ... }
+2xl 1536px @media (min-width: 1536px) { ... }

@@ -41,11 +41,11 @@ const { page } = Astro.props;
     }
 
     .card span {
-      background: #818cf8;
+      // background: #818cf8;
       border-radius: 0.5rem;
-      padding: 2.5px 6px;
+      // padding: 2.5px 6px;
       margin: 5px 0px;
-      color: #15181f;
+      // color: #15181f;
     }
 
     .blog li > .card {
@@ -101,11 +101,10 @@ const { page } = Astro.props;
                   }
                 >
                   {post.frontmatter.description}
-
                   <div class="flex gap-x-2">
                     {post.frontmatter.tags &&
                       post.frontmatter.tags.map((tag: string) => (
-                        <span>{tag}</span>
+                        <span class="gradient-text font-bold">{tag}</span>
                       ))}
                   </div>
                 </Card>
