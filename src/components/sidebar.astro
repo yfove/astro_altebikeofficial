@@ -70,12 +70,16 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     </ul>
   </div>
   <div class="recent-posts">
-    <h3>Recent Posts</h3>
+    <h3 class="gradient-text font-bold">Recent Posts</h3>
     <!-- loop with images -->
     <ul>
       {
         posts
-          .reverse()
+          .sort((a, b) => {
+            const aDate = new Date(a.frontmatter.pubDate);
+            const bDate = new Date(b.frontmatter.pubDate);
+            return bDate - aDate;
+          })
           .slice(0, 5)
           .map((post) => (
             <li>
@@ -86,7 +90,10 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
                 />
               </a>
               <p>{post.frontmatter.title}</p>
-              <small>{post.frontmatter.pubDate}</small>
+              <small class="text-gray-400 ">
+                {post.frontmatter.pubDate} {post.frontmatter.pubTime}
+              </small>
+              <small class="gradient-text font-l" />
               {/* <p>{post.frontmatter.description}</p> */}
             </li>
           ))
@@ -95,22 +102,30 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     <!-- loop shows all subsequent  posts -->
     <ul>
       {
-        posts.slice(5).map((post) => (
-          <li>
-            <a href={"/post/" + post.frontmatter.slug}>
-              <p>{post.frontmatter.title}</p>
-            </a>
-            <small>{post.frontmatter.pubDate}</small>
-            {/* <p>{post.frontmatter.description}</p> */}
-          </li>
-        ))
+        posts
+          .sort((a, b) => {
+            const aDate = new Date(a.frontmatter.pubDate);
+            const bDate = new Date(b.frontmatter.pubDate);
+            return bDate - aDate;
+          })
+          .slice(5)
+          .map((post) => (
+            <li>
+              <a href={"/post/" + post.frontmatter.slug}>
+                <p>{post.frontmatter.title}</p>
+              </a>
+              <small>{post.frontmatter.pubDate}</small>
+              {/* <p>{post.frontmatter.description}</p> */}
+            </li>
+          ))
       }
     </ul>
   </div>
 </aside>
 
 <style scoped>
-  .sidebar {
+  .recent-posts,
+  .social-media {
     flex: 1;
     padding: 1rem;
     border: 2px solid #4e59bb;
