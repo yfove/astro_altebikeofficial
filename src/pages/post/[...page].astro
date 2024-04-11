@@ -94,10 +94,13 @@ const { page } = Astro.props;
                   url={"/post/" + post.frontmatter.slug}
                   img={post.frontmatter.image}
                   title={post.frontmatter.title}
-                  footer={post.frontmatter.pubDate}
+                  footer={
+                    post.frontmatter.pubDate +
+                    " | " +
+                    post.frontmatter.minutesRead
+                  }
                 >
                   {post.frontmatter.description}
-                  {post.minutesRead}
 
                   <div class="flex gap-x-2">
                     {post.frontmatter.tags &&
