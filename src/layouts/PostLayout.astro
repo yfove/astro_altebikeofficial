@@ -28,7 +28,7 @@ export const prerender = true;
   <body class="h-min">
     <Header />
     <div class="blog-container pt-10">
-      <main class="text-base/5 font-light tracking-wider text-gray-300">
+      <main class="text-base/5 font-normal tracking-wider text-gray-300">
         <a href="javascript:history.back()" class="back-button"
           >Back to Previous</a
         >
@@ -40,7 +40,10 @@ export const prerender = true;
             >
               {title}
             </h1>
-            <small>Written by: {author}</small>
+            <small class="text-gray-400">Written by: &#x270E; {author}</small>
+            <small class="float-right text-gray-400"
+              >&#10711; {minutesRead}</small
+            >
           </div>
           <br />
           <div class="article-body">
@@ -85,8 +88,8 @@ export const prerender = true;
       }
 
       hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
+        border-top: 1px solid #818cf8;
+        margin: 0.6rem 0;
       }
 
       h1 {
@@ -142,7 +145,7 @@ export const prerender = true;
         max-width: 1000px;
         margin: 0 auto; /* Center the container horizontally */
         padding: 20px;
-        border: 2px solid #818cf8;
+        /* border: 2px solid #818cf8; */
         border-radius: 0.4rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for a subtle effect */
       }
