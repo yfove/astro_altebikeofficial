@@ -12,6 +12,9 @@ const { title, description, author, date, url } = Astro.props;
 
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
     <Header />
   </head>
   <body>
@@ -27,44 +30,45 @@ const { title, description, author, date, url } = Astro.props;
       <slot />
     </div>
     <Footer />
-  </body><style>
-    <style > body {
-      margin: 0;
-      width: 100%;
-    }
+    <style>
+      <style > body {
+        margin: 0;
+        width: 100%;
+      }
 
-    .layout {
-      max-width: 1152px;
-      margin: 0 auto;
-    }
-
-    .layout h1 {
-      font-size: 3rem;
-      @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
-      /* text-align: center; */
-    }
-
-    /* Media query for smaller screens */
-    @media (max-width: 1000px) {
       .layout {
-        padding: 0.5rem; /* Reduce padding for smaller screens */
-      }
-
-      .title-heading h1 {
-        font-size: 4rem; /* Adjust the font size for smaller screens */
-        text-align: center;
+        max-width: 1152px;
         margin: 0 auto;
       }
 
-      .layout hr {
-        margin: 0 auto;
+      .layout h1 {
+        font-size: 3rem;
+        @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+        /* text-align: center; */
       }
 
-      .title-heading p {
-        text-align: center;
-        margin: 0 auto;
-        display: none;
+      /* Media query for smaller screens */
+      @media (max-width: 1000px) {
+        .layout {
+          padding: 0.5rem; /* Reduce padding for smaller screens */
+        }
+
+        .title-heading h1 {
+          font-size: 4rem; /* Adjust the font size for smaller screens */
+          text-align: center;
+          margin: 0 auto;
+        }
+
+        .layout hr {
+          margin: 0 auto;
+        }
+
+        .title-heading p {
+          text-align: center;
+          margin: 0 auto;
+          display: none;
+        }
       }
-    }
-  </style>
+    </style>
+  </body>
 </html>

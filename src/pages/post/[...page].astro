@@ -52,6 +52,7 @@ const { page } = Astro.props;
       background: black;
       // border: 1px solid #818cf8;
       color: #818cf8;
+
       border-radius: 0.3rem;
     }
 
@@ -79,6 +80,42 @@ const { page } = Astro.props;
   description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
 >
   <section>
+    <div
+      class="horizontalbar m-5 grid list-none grid-cols-2 gap-8 text-gray-100"
+      style="color:#818cf8;"
+      "
+    >
+      <!-- Loop with images -->
+      {
+        page.data
+          .filter((post) => post.frontmatter.tags.includes("Trends"))
+          .slice(0, 2)
+          .map((post) => (
+            <li>
+              <a href={"/post/" + post.frontmatter.slug}>
+                <img
+                  class="rounded-lg"
+                  src={post.frontmatter.image}
+                  alt={post.frontmatter.title}
+                />
+                <p>{post.frontmatter.title}</p>
+                <p class="guide-decription" style="font-size: .8rem;">
+                  {post.frontmatter.description}
+                </p>
+                <p class="font-light " style="font-size: .8rem;">
+                  {post.frontmatter.pubDate}
+                </p>
+                <p
+                  class="guide-decription float-right text-gray-500"
+                  style="font-size: .7rem;"
+                >
+                  &#10711; {post.frontmatter.minutesRead}
+                </p>
+              </a>
+            </li>
+          ))
+      }
+    </div>
     <div class="blog blog-container">
       <p class="text-sm">
         <em
@@ -100,7 +137,7 @@ const { page } = Astro.props;
                     post.frontmatter.minutesRead
                   }
                 >
-                  {post.frontmatter.description}
+                  <small>{post.frontmatter.description}</small>
                   <div class="flex gap-x-2">
                     {post.frontmatter.tags &&
                       post.frontmatter.tags.map((tag: string) => (
