@@ -41,32 +41,6 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
         >
         Instagram
       </a>
-      <!-- <li>
-        <a href="https://instagram.com/ebikenook" target="_blank">
-          <small class="gradient-text">Instagram</small><svg
-            viewBox="0 0 160 32"
-            class="gradien h-full"
-            astro-icon="mdi:instagram"
-            ><path
-              fill="mediumslateblue"
-              d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
-            ></path></svg
-          ></a
-        >
-      </li>
-      <li>
-        <a href="https://linktr.ee/ebikeofficial" target="_blank"
-          ><small class="gradient-text">Linktree</small><svg
-            viewBox="0 0 160 32"
-            class="h-full"
-            astro-icon="mdi:tree"
-            ><path
-              fill="mediumslateblue"
-              d="M11 21v-4.26c-.47.17-.97.26-1.5.26C7 17 5 15 5 12.5c0-1.27.5-2.41 1.36-3.23C6.13 8.73 6 8.13 6 7.5 6 5 8 3 10.5 3c1.56 0 2.94.8 3.75 2h.25a5.5 5.5 0 0 1 5.5 5.5 5.5 5.5 0 0 1-5.5 5.5c-.5 0-1-.07-1.5-.21V21h-2z"
-            ></path></svg
-          ></a
-        >
-      </li> -->
     </ul>
   </div>
   <div class="recent-posts">
@@ -89,7 +63,9 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
                   alt={post.frontmatter.title}
                 />
               </a>
-              <p>{post.frontmatter.title}</p>
+              <p>
+                <a>{post.frontmatter.title}</a>
+              </p>
               <small class="text-gray-400 ">
                 {post.frontmatter.pubDate} {post.frontmatter.pubTime}
               </small>
