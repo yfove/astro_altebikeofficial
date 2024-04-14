@@ -3,16 +3,16 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 import { Card, Pagination } from "accessible-astro-components";
 
 export async function getStaticPaths({ paginate }) {
-  const post = await Astro.glob("./*.mdx");
+const post = await Astro.glob("./*.mdx");
 
-  const sortedPosts = post.sort((a, b) => {
-    const aDate = new Date(a.frontmatter.pubDate);
-    const bDate = new Date(b.frontmatter.pubDate);
+const sortedPosts = post.sort((a, b) => {
+const aDate = new Date(a.frontmatter.pubDate);
+const bDate = new Date(b.frontmatter.pubDate);
 
-    return bDate - aDate;
-  });
+return bDate - aDate;
+});
 
-  return paginate(sortedPosts, { pageSize: 6, page: 1 });
+return paginate(sortedPosts, { pageSize: 6, page: 1 });
 }
 
 const { page } = Astro.props;
@@ -48,7 +48,7 @@ const { page } = Astro.props;
       // color: #15181f;
     }
 
-    .blog li > .card {
+    .blog li>.card {
       background: black;
       // border: 1px solid #818cf8;
       color: #818cf8;
@@ -67,6 +67,7 @@ const { page } = Astro.props;
     }
 
     body .pagination {
+
       a:hover,
       & a:focus-visible {
         background-color: #818cf8;
@@ -75,92 +76,62 @@ const { page } = Astro.props;
   </style>
 </head>
 
-<BlogLayout
-  title="Featured Articles"
-  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
->
+<BlogLayout title="Featured Articles"
+  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking.">
   <section>
-    <div
-      class="horizontalbar m-5 grid list-none grid-cols-2 gap-8 text-gray-100"
-      style="color:#818cf8;"
-      "
-    >
+    <div class="horizontalbar m-5 grid list-none grid-cols-2 gap-8 text-gray-100" style="color:#818cf8;">
       <!-- Loop with images -->
       {
-        page.data
-          .filter((post) => post.frontmatter.tags.includes("Trends"))
-          .slice(0, 2)
-          .map((post) => (
-            <li>
-              <a href={"/post/" + post.frontmatter.slug}>
-                <img
-                  class="rounded-lg"
-                  src={post.frontmatter.image}
-                  alt={post.frontmatter.title}
-                />
-                <p>{post.frontmatter.title}</p>
-                <p class="guide-decription" style="font-size: .8rem;">
-                  {post.frontmatter.description}
-                </p>
-                <p class="font-light " style="font-size: .8rem;">
-                  {post.frontmatter.pubDate}
-                </p>
-                <p
-                  class="guide-decription float-right text-gray-500"
-                  style="font-size: .7rem;"
-                >
-                  &#10711; {post.frontmatter.minutesRead}
-                </p>
-              </a>
-            </li>
-          ))
+      page.data
+      .filter((post) => post.frontmatter.tags.includes(" Trends")) .slice(0, 2) .map((post)=> (
+      <li>
+        <a href={"/post/" + post.frontmatter.slug}>
+          <img class="rounded-lg" src={post.frontmatter.image} alt={post.frontmatter.title} />
+          <p>{post.frontmatter.title}</p>
+          <p class="guide-decription" style="font-size: .8rem;">
+            {post.frontmatter.description}
+          </p>
+          <small>{post.frontmatter.excerpt}</small>
+
+          <p class="font-light " style="font-size: .8rem;">
+            {post.frontmatter.pubDate}
+          </p>
+          <p class="guide-decription float-right text-gray-500" style="font-size: .7rem;">
+            &#10711; {post.frontmatter.minutesRead}
+          </p>
+        </a>
+      </li>
+      ))
       }
     </div>
     <div class="blog blog-container">
       <p class="text-sm">
-        <em
-          >Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em
-        >
+        <em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em>
       </p>
       <ul class="my-3">
         {
-          page.data.map((post) => (
-            <>
-              <li>
-                <Card
-                  url={"/post/" + post.frontmatter.slug}
-                  img={post.frontmatter.image}
-                  title={post.frontmatter.title}
-                  footer={
-                    post.frontmatter.pubDate +
-                    " | " +
-                    post.frontmatter.minutesRead
-                  }
-                >
-                  <small>{post.frontmatter.description}</small>
-                  <div class="flex gap-x-2">
-                    {post.frontmatter.tags &&
-                      post.frontmatter.tags.map((tag: string) => (
-                        <span class="gradient-text font-bold">{tag}</span>
-                      ))}
-                  </div>
-                </Card>
-              </li>
-            </>
-          ))
+        page.data.map((post) => (
+        <>
+          <li>
+            <Card url={"/post/" + post.frontmatter.slug} img={post.frontmatter.image} title={post.frontmatter.title}
+              footer={ post.frontmatter.pubDate + " | " + post.frontmatter.minutesRead }>
+              <small>{post.frontmatter.description}</small>
+              <div class="flex gap-x-2">
+                {post.frontmatter.tags &&
+                post.frontmatter.tags.map((tag: string) => (
+                <span class="gradient-text font-bold">{tag}</span>
+                ))}
+              </div>
+            </Card>
+          </li>
+        </>
+        ))
         }
       </ul>
       <div class="mt-12 grid place-content-center">
-        <Pagination
-          firstPage={page.url.prev ? "/post" : null}
-          previousPage={page.url.prev ? page.url.prev : null}
-          nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next
-            ? `/post/${Math.ceil(page.total / page.size)}`
-            : null}
-          currentPage={page.currentPage}
-          totalPages={Math.ceil(page.total / page.size)}
-        />
+        <Pagination firstPage={page.url.prev ? "/post" : null} previousPage={page.url.prev ? page.url.prev : null}
+          nextPage={page.url.next ? page.url.next : null} lastPage={page.url.next ? `/post/${Math.ceil(page.total /
+          page.size)}` : null} currentPage={page.currentPage} totalPages={Math.ceil(page.total / page.size)} />
       </div>
     </div>
   </section>

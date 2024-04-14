@@ -2,7 +2,7 @@ import image from "@astrojs/image";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
-import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
+import { remarkExcerpt, remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 
 import react from "@astrojs/react";
 
@@ -25,7 +25,7 @@ export default defineConfig({
   },
 
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [remarkReadingTime, remarkExcerpt],
     extendDefaultPlugins: true,
   },
 });
