@@ -1,5 +1,5 @@
 import getReadingTime from "reading-time";
-import stripMarkdown from 'strip-markdown';
+import stripMarkdown from "strip-markdown";
 import { toString } from "mdast-util-to-string";
 
 export function remarkReadingTime() {
@@ -14,13 +14,16 @@ export function remarkReadingTime() {
 
 export function remarkExcerpt() {
   return function (tree, { data }) {
-    let value = structuredClone(tree)
-    value = stripMarkdown({ keep: ['blockquote'], remove: ['image', 'imageReference'] })(value)
-    value = toString(value).trim()
+    let value = structuredClone(tree);
+    value = stripMarkdown({
+      keep: ["blockquote"],
+      remove: ["image", "imageReference"],
+    })(value);
+    value = toString(value).trim();
     const trimmedExcerpt =
-      value.at(159) === ' '
-        ? value.substring(0, 159).trim()
-        : value.substring(0, 159).trim().split(' ').slice(0, -1).join(' ')
-    data.astro.frontmatter.excerpt = `${trimmedExcerpt}…`
-  }
+      value.at(199) === " "
+        ? value.substring(0, 199).trim()
+        : value.substring(0, 199).trim().split(" ").slice(0, -1).join(" ");
+    data.astro.frontmatter.excerpt = `${trimmedExcerpt}...`;
+  };
 }
