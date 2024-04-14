@@ -49,6 +49,7 @@ const filteredPosts = posts.filter((post) =>
   <div class="mb-5"><Alltags /></div>
   <div class="layout">
     <div class="title-heading"></div>
+
     <div class="tag-grid grid-container">
       {
         filteredPosts.map((post) => (
@@ -92,7 +93,7 @@ const filteredPosts = posts.filter((post) =>
     padding: 1rem;
   }
 
-  .card__image {
+  .card .card__image {
     height: 13rem;
   }
 

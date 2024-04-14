@@ -41,7 +41,7 @@ const features: Array<FeatureItem> = [
   <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     {
       features.map(({ title, description, icon, url }) => (
-        <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
+        <li class="gradient flex flex-col items-center gap-4 border border-default  p-6">
           <a href={url}>
             <div class="h-16 w-16 rounded-full border-2 border-current p-3">
               <Icon name={icon} />
@@ -56,3 +56,9 @@ const features: Array<FeatureItem> = [
     }
   </ul>
 </ContentSection>
+
+<style>
+  ul {
+    background-color: #0f1217;
+  }
+</style>
