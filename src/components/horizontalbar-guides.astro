@@ -2,7 +2,7 @@
 const guides = await Astro.glob("../pages/guides/**/*.mdx");
 ---
 
-<div class="wrapper">
+<div class="wrapper max-w-6xl">
   <div class="recent-posts p-2">
     <div class="heading">
       <a href="/guides"><h2>Guides & Tutorials</h2></a>
@@ -36,7 +36,6 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
   .wrapper {
     /* background-color: black; */
     margin: 0 auto;
-    max-width: 72rem;
     margin: auto;
   }
   .heading h2 {

@@ -1,0 +1,155 @@
+---
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+---
+
+<div class="wrapper max-w-6xl">
+  <div class="recent-posts p-2 pt-12">
+    <div class="heading">
+      <a href="/post"> <h2>Featured</h2></a>
+      <hr style="width:100%;" />
+    </div>
+    <div class="horizontalbar">
+      <div class="left">
+        {
+          posts
+            .sort((a, b) => {
+              const aDate = new Date(a.frontmatter.pubDate);
+              const bDate = new Date(b.frontmatter.pubDate);
+              return bDate - aDate;
+            })
+            .filter(
+              (post) =>
+                post.frontmatter.tags.includes("Trends") ||
+                post.frontmatter.tags.includes("Exclusive")
+            )
+            .slice(0, 1)
+            .map((post) => (
+              <li>
+                <a href={"/post/" + post.frontmatter.slug}>
+                  <img
+                    class="rounded-lg"
+                    src={post.frontmatter.image}
+                    alt={post.frontmatter.title}
+                  />
+                  <p class="my-2">{post.frontmatter.title}</p>
+                  <p class="guide-decription my-2" style="font-size: .8rem;">
+                    {post.frontmatter.description}
+                  </p>
+                  <p class="text-gray-400 text-xs">
+                    {post.frontmatter.excerpt}
+                  </p>
+                  <p class="my-2 font-light" style="font-size: .8rem;">
+                    {post.frontmatter.pubDate} | Posted
+                    {post.frontmatter.pubTime}
+                  </p>
+                  <p
+                    class="guide-decription float-right my-2 text-gray-500"
+                    style="font-size: .7rem;"
+                  >
+                    &#10711; {post.frontmatter.minutesRead}
+                  </p>
+                </a>
+              </li>
+            ))
+        }
+      </div>
+      <div class="right">
+        {
+          posts
+            .sort((a, b) => {
+              const aDate = new Date(a.frontmatter.pubDate);
+              const bDate = new Date(b.frontmatter.pubDate);
+              return bDate - aDate;
+            })
+            .filter(
+              (post) =>
+                post.frontmatter.tags.includes("Trends") ||
+                post.frontmatter.tags.includes("Exclusive")
+            )
+            .slice(1, 3)
+            .map((post) => (
+              <li>
+                <a href={"/post/" + post.frontmatter.slug}>
+                  <img
+                    class="rounded-lg"
+                    src={post.frontmatter.image}
+                    alt={post.frontmatter.title}
+                  />
+                  <p class="my-2">{post.frontmatter.title}</p>
+                  <p class="guide-decription my-2" style="font-size: .8rem;">
+                    {post.frontmatter.description}
+                  </p>
+                  <p class="text-gray-400 text-xs">
+                    {post.frontmatter.excerpt}
+                  </p>
+                  <p class="my-2 font-light" style="font-size: .8rem;">
+                    {post.frontmatter.pubDate} | Posted
+                    {post.frontmatter.pubTime}
+                  </p>
+                  <p
+                    class="guide-decription float-right my-2 text-gray-500"
+                    style="font-size: .7rem;"
+                  >
+                    &#10711; {post.frontmatter.minutesRead}
+                  </p>
+                </a>
+              </li>
+            ))
+        }
+      </div>
+      <!-- Loop with images -->
+    </div>
+  </div>
+</div>
+
+<style>
+  .wrapper {
+    /* background-color: black; */
+    margin: 0 auto;
+
+    margin: auto;
+  }
+  .heading h2 {
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+  }
+  .heading hr {
+    border-top: 1px solid #4e59bb;
+    color: var(--color-primary);
+  }
+  .horizontalbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    text-decoration: none;
+    /* align-items: center; */
+    justify-content: center;
+    /* background-color: black; */
+    max-width: 1152px;
+    color: var(--color-primary);
+  }
+
+  .right {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+  .horizontalbar li {
+    margin: 0.7rem;
+    text-decoration: none;
+    list-style: none;
+    /* background-color: #000000;  */
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .horizontalbar {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .right {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .left {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+</style>

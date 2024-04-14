@@ -15,6 +15,7 @@ import "~/styles/index.css";
 import Header3 from "~/components/header3.astro";
 import Hero from "~/components/hero.astro";
 import Contentcta from "~/components/contentcta.astro";
+import Topnews from "~/components/topnews.astro";
 
 const { generator, site } = Astro;
 const image = new URL("social.jpg", site);
@@ -72,7 +73,8 @@ const description = "Welcome to EbikeOfficial";
     <div class="space-y-14">
       <Hero />
     </div>
-    <div class="space-y-14 bg-black px-8">
+    <div class="bg-black px-8">
+      <Topnews />
       <Horizontalbar />
       <Horizontalbar2 />
       <Contentcta />
