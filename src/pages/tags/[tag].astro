@@ -3,16 +3,29 @@
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import BaseHead from "../../components/BaseHead.astro";
 import { Pagination } from "accessible-astro-components";
+import { Card } from "accessible-astro-components";
+import Alltags from "~/components/alltags.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../**/*.mdx");
-  return [
-    { params: { tag: "ebike" }, props: { posts: allPosts } },
-    { params: { tag: "trending" }, props: { posts: allPosts } },
-    { params: { tag: "offroad" }, props: { posts: allPosts } },
-    { params: { tag: "tutorial" }, props: { posts: allPosts } },
-    { params: { tag: "guides" }, props: { posts: allPosts } },
-  ];
+  const allPosts = await Astro.glob("../../pages/**/**/*.mdx");
+
+  // Extract unique tags from all posts
+  const allTags = allPosts.reduce((tags, post) => {
+    post.frontmatter.tags.forEach((tag) => {
+      if (!tags.includes(tag)) {
+        tags.push(tag);
+      }
+    });
+    return tags;
+  }, []);
+
+  // Generate paths based on unique tags
+  const paths = allTags.map((tag) => ({
+    params: { tag },
+    props: { posts: allPosts },
+  }));
+
+  return paths;
 }
 
 const { tag } = Astro.params;
@@ -22,52 +35,77 @@ const filteredPosts = posts.filter((post) =>
 );
 ---
 
-<head>
-  <style>
-    .tag-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      text-decoration: none;
-      grid-gap: 2rem;
-      list-style: none;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-      /* background-color: black; */
-      max-width: 1152px;
-      color: var(--color-primary);
-    }
-    h1 {
-      font-size: 5rem;
-    }
-    .layout {
-      margin: 1rem;
-    }
-  </style>
-</head>
+<head> </head>
 
-<BaseHead title={tag} description="A page to display all our blog posts" />
+<BaseHead
+  title={tag}
+  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
+/>
 
-<BlogLayout title={tag}>
+<BlogLayout
+  title={tag}
+  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
+>
+  <div class="mb-5"><Alltags /></div>
   <div class="layout">
-    <div class="title-heading">
-      <!-- <hr style="border-top: 2.5px solid #4e59bb; width: 72%; " /> -->
-      <!-- <p class="w-3/4 pt-2 text-gray-400">{description}</p> -->
-    </div>
+    <div class="title-heading"></div>
     <div class="tag-grid grid-container">
       {
         filteredPosts.map((post) => (
-          <li class="font-bold text-gray-500 text-base ">
-            <a href={"/../post/" + post.frontmatter.slug}>
-              <p>{post.frontmatter.title}</p>
-              <p class="guide-decription" style="font-size: .8rem;">
-                {post.frontmatter.description}
-              </p>
-              <small>{post.frontmatter.pubDate}</small>
-            </a>
+          <li>
+            <Card
+              url={"/post/" + post.frontmatter.slug}
+              img={post.frontmatter.image}
+              title={post.frontmatter.title}
+              footer={
+                post.frontmatter.pubDate + " | " + post.frontmatter.minutesRead
+              }
+            >
+              <small>{post.frontmatter.description}</small>
+              <div class="flex gap-x-2">
+                {post.frontmatter.tags &&
+                  post.frontmatter.tags.map((tag: string) => (
+                    <span class="gradient-text font-bold">{tag}</span>
+                  ))}
+              </div>
+            </Card>
           </li>
         ))
       }
     </div>
   </div>
 </BlogLayout>
+
+<style lang="scss" is:global>
+  .tag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    text-decoration: none;
+    grid-gap: 2rem;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    /* background-color: black; */
+    max-width: 1152px;
+    color: var(--color-primary);
+    padding: 1rem;
+  }
+
+  .card__image {
+    height: 13rem;
+  }
+
+  .card .card__content:last-child {
+    margin-top: auto;
+    padding: 0.2rem;
+    padding-top: 0.5rem;
+  }
+
+  // this changes hover effecet as well
+  li > .card {
+    background: black;
+    color: #818cf8;
+    border-radius: 0.3rem;
+  }
+</style>

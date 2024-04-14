@@ -1,6 +1,7 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { Card, Pagination } from "accessible-astro-components";
+import Alltags from "~/components/alltags.astro";
 
 export async function getStaticPaths({ paginate }) {
   const post = await Astro.glob("./*.mdx");
@@ -80,6 +81,9 @@ const { page } = Astro.props;
   description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
 >
   <section>
+    <div class="tags">
+      <Alltags />
+    </div>
     <div
       class="horizontalbar m-5 grid list-none grid-cols-2 gap-8 text-gray-100"
       style="color:#818cf8;"
