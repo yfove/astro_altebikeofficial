@@ -24,6 +24,7 @@
     "tailwindcss-fluid-type": "^2.0.6"
   },
   "dependencies": {
+    "@astrojs/db": "^0.10.4",
     "@astrojs/mdx": "^2.3.1",
     "@astrojs/react": "^3.3.0",
     "@fontsource/inter": "^4.5.15",
