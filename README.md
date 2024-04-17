@@ -55,3 +55,19 @@ md 768px @media (min-width: 768px) { ... }
 lg 1024px @media (min-width: 1024px) { ... }
 xl 1280px @media (min-width: 1280px) { ... }
 2xl 1536px @media (min-width: 1536px) { ... }
+
+## v.4.6.2
+### image processing 
+import and use Astro's built in <Image /> component for optimized images in webp and svg using astro:assets 
+
+``` js
+---
+// import the Image component and the image
+import { Image } from 'astro:assets';
+import myImage from '../assets/my_image.png'; // Image is 1600x900
+---
+
+<!-- `alt` is mandatory on the Image component -->
+<Image src={myImage} alt="A description of my image." />
+
+```
