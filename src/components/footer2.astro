@@ -13,16 +13,16 @@ import { Icon } from "astro-icon";
       <h3>Explore Articles</h3>
       <ul>
         {
-          posts.slice(2).map((post) => (
-            <li>
-              <a href={"/post/" + post.frontmatter.slug}>
-                <p>{post.frontmatter.title}</p>
-                <small>{post.frontmatter.description}</small>
-                <br />
-                {/* <small>{post.frontmatter.pubDate}</small> */}
-              </a>
-            </li>
-          ))
+        posts.slice(2).map((post) => (
+        <li>
+          <a href={"/post/" + post.frontmatter.slug}>
+            <p>{post.frontmatter.title}</p>
+            <small>{post.frontmatter.description}</small>
+            <br />
+            {/* <small>{post.frontmatter.pubDate}</small> */}
+          </a>
+        </li>
+        ))
         }
       </ul>
     </div>
@@ -50,41 +50,28 @@ import { Icon } from "astro-icon";
         <a href="
         ">
           <li>
-            <a
-              class="flex h-16 w-16 items-center justify-center border-current p-5"
-              href="https://www.instagram.com/ebikenook/"
-            >
+            <a class="flex h-16 w-16 items-center justify-center border-current p-5"
+              href="https://www.instagram.com/ebikenook/">
               <p class="sr-only">instagram</p>
               <Icon class="h-full" name="mdi:instagram" />
             </a>
           </li>
         </a>
         <li>
-          <a
-            class="flex h-16 w-16 items-center justify-center border-current p-5"
-            href="https://linktr.ee/ebikeofficial"
-          >
+          <a class="flex h-16 w-16 items-center justify-center border-current p-5"
+            href="https://linktr.ee/ebikeofficial">
             <p class="sr-only">linktree</p>
             <Icon class="h-full" name="mdi:tree" />
           </a>
         </li>
         <li>
-          <a
-            class="flex h-16 w-16 items-center justify-center border-current p-5"
-            href="https://twitter.com/ebikenook"
-          >
+          <a class="flex h-16 w-16 items-center justify-center border-current p-5" href="https://twitter.com/ebikenook">
             <p class="sr-only">twitterX</p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-twitter-x"
-              viewBox="0 0 16 16"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x"
+              viewBox="0 0 16 16">
               <path
-                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"
-              ></path>
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z">
+              </path>
             </svg>
           </a>
         </li>
@@ -158,6 +145,7 @@ import { Icon } from "astro-icon";
         grid-template-columns: repeat(1fr);
         padding: 2rem 0;
       }
+
       .logo {
         display: none;
       }

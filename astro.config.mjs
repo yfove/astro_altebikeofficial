@@ -20,7 +20,6 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ["accessible-astro-components"],
-      external: ["svgo"],
     },
   },
 
