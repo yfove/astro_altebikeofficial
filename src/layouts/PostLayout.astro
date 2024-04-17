@@ -12,177 +12,175 @@ import Horizontalbar2 from "~/components/horizontalbar.astro";
 
 const { minutesRead } = Astro.props.frontmatter;
 const {
-  frontmatter: { title, description, pubDate, pubTime, image, author, credit },
+frontmatter: { title, description, pubDate, pubTime, image, author, credit },
 } = Astro.props;
 
 export const prerender = true;
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!-- <title>{pageTitle}</title> -->
-  </head>
 
-  <body class="h-min">
-    <Header />
-    <div class="blog-container pt-10">
-      <main class="text-base/5 font-normal tracking-wider text-gray-300">
-        <a href="javascript:history.back()" class="back-button"
-          >Back to Previous</a
-        >
-        <a style="color: #818cf8">| {title}</a>
-        <article class="mdx">
-          <div class="article-head">
-            <h1
-              class="title gradient-text base font-extrabold tracking-tighter"
-            >
-              {title}
-            </h1>
-            <small class="text-gray-400">Written by: &#x270E; {author}</small>
-            <small class="float-right text-gray-400"
-              >&#10711; {minutesRead}</small
-            >
-          </div>
-          <br />
-          <div class="article-body">
-            {image && <img width={720} height={360} src={image} alt="" />}
-            <small class="article-small">
-              Published on: {pubTime} •
-              {pubDate && <time>{pubDate}</time>}
-              {credit}
-            </small>
-            <hr />
-            <slot class="mdx" />
-          </div>
-        </article>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <!-- <title>{pageTitle}</title> -->
+</head>
+
+<body class="h-min">
+  <Header />
+  <div class="blog-container pt-10">
+    <main class=" font-normal tracking-wider text-gray-300">
+      <a href="javascript:history.back()" class="back-button">Back to Previous</a>
+      <a style="color: #818cf8">| {title}</a>
+      <article class="mdx">
+        <div class="article-head">
+          <h1 class="title gradient-text base font-extrabold tracking-tighter">
+            {title}
+          </h1>
+          <small class="text-gray-400">Written by: &#x270E; {author}</small>
+          <small class="float-right text-gray-400">&#10711; {minutesRead}</small>
+        </div>
         <br />
-        <a href="javascript:history.back()" class="back-button"
-          >Back to Previous</a
-        >
-        <span>|</span>
-        <a href="/" class="back-button">Back to Home</a>
-      </main>
-      <div class="sidebar-container">
-        <Sidebar />
-      </div>
+        <div class="article-body">
+          {image && <img width={720} height={360} src={image} alt="" />}
+          <small class="article-small">
+            Published on: {pubTime} •
+            {pubDate && <time>{pubDate}</time>}
+            {credit}
+          </small>
+          <hr />
+          <slot class="mdx" />
+        </div>
+      </article>
+      <br />
+      <a href="javascript:history.back()" class="back-button">Back to Previous</a>
+      <span>|</span>
+      <a href="/" class="back-button">Back to Home</a>
+    </main>
+    <div class="sidebar-container">
+      <Sidebar />
     </div>
-    <!-- accordian component -->
-    <Accordian />
+  </div>
+  <!-- accordian component -->
+  <Accordian />
 
-    <!-- call to action social media component -->
-    <Cta />
-    <Horizontalbar2 />
-    <Horizontalbar />
+  <!-- call to action social media component -->
+  <Cta />
+  <Horizontalbar2 />
+  <Horizontalbar />
 
-    <style>
-      .mdx a {
-        font-weight: bold;
-        color: red;
-        text-decoration: underline;
-      }
-      .title {
-        font-size: 2.4em;
-        margin: 0.25em 0 0;
-      }
+  <style>
+    .mdx a {
+      font-weight: bold;
+      color: red;
+      text-decoration: underline;
+    }
 
-      hr {
-        border-top: 1px solid #818cf8;
-        margin: 0.6rem 0;
-      }
+    .title {
+      font-size: 2.4em;
+      margin: 0.25em 0 0;
+    }
 
-      h1 {
-        font-size: 2rem;
-      }
+    hr {
+      border-top: 1px solid #818cf8;
+      margin: 0.6rem 0;
+    }
 
-      html {
-        min-height: 100vh;
-        height: 100%;
-      }
+    h1 {
+      font-size: 2rem;
+    }
 
-      body {
-        height: 100%;
-        color: white;
-        background: black;
-      }
+    html {
+      min-height: 100vh;
+      height: 100%;
+    }
 
+    body {
+      height: 100%;
+      color: white;
+      background: black;
+    }
+
+    .blog-container {
+      display: flex;
+      min-height: 100vh;
+      margin: 7rem;
+    }
+
+    main {
+      flex: 3;
+    }
+
+    .sidebar-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      /* padding: 0 0 0 2rem; */
+    }
+
+    time {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .back-button {
+      color: #818cf8;
+    }
+
+    .article-small {
+      color: #97a1f7;
+      /* color: #f472b6; */
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+
+    .blog-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      /* Center the container horizontally */
+      padding: 20px;
+      /* border: 2px solid #818cf8; */
+      border-radius: 0.4rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      /* Optional: Add a box shadow for a subtle effect */
+    }
+
+    /* Media Query for Larger Screens */
+    @media (min-width: 769px) {}
+
+    /* Media Query for Smaller Screens (Mobile) */
+    @media (max-width: 1000px) {
       .blog-container {
-        display: flex;
-        min-height: 100vh;
-        margin: 7rem;
+        margin: 20px;
+        /* Adjust the margin for mobile screens */
+      }
+
+      article h1 {
+        font-size: 1.5rem;
+      }
+
+      article {
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .container {
+        flex-direction: column;
       }
 
       main {
-        flex: 3;
+        flex: 4;
       }
 
       .sidebar-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        /* padding: 0 0 0 2rem; */
+        display: none;
       }
+    }
+  </style>
+</body>
+<Footer />
 
-      time {
-        display: inline-block;
-        margin-top: 10px;
-      }
-
-      .back-button {
-        color: #818cf8;
-      }
-
-      .article-small {
-        color: #97a1f7;
-        /* color: #f472b6; */
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-      .blog-container {
-        max-width: 1000px;
-        margin: 0 auto; /* Center the container horizontally */
-        padding: 20px;
-        /* border: 2px solid #818cf8; */
-        border-radius: 0.4rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow for a subtle effect */
-      }
-
-      /* Media Query for Larger Screens */
-      @media (min-width: 769px) {
-      }
-
-      /* Media Query for Smaller Screens (Mobile) */
-      @media (max-width: 1000px) {
-        .blog-container {
-          margin: 20px; /* Adjust the margin for mobile screens */
-        }
-
-        article h1 {
-          font-size: 1.5rem;
-        }
-
-        article {
-          margin: 0;
-        }
-      }
-
-      @media (max-width: 1000px) {
-        .container {
-          flex-direction: column;
-        }
-
-        main {
-          flex: 4;
-        }
-
-        .sidebar-container {
-          display: none;
-        }
-      }
-    </style>
-  </body>
-  <Footer />
 </html>
