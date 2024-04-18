@@ -9,10 +9,11 @@ import Sidebar from "../components/sidebar.astro";
 import Cta from "../components/cta.astro";
 import Horizontalbar from "~/components/horizontalbar-guides.astro";
 import Horizontalbar2 from "~/components/horizontalbar.astro";
+import PostViews from "~/components/PostViews.astro";
 
 const { minutesRead } = Astro.props.frontmatter;
 const {
-frontmatter: { title, description, pubDate, pubTime, image, author, credit },
+frontmatter: { title, description, pubDate, pubTime, image, author, credit, slug },
 } = Astro.props;
 
 export const prerender = true;
@@ -38,6 +39,8 @@ export const prerender = true;
             {title}
           </h1>
           <small class="text-gray-400">Written by: &#x270E; {author}</small>
+          <PostViews slug={slug} />
+
           <small class="float-right text-gray-400">&#10711; {minutesRead}</small>
         </div>
         <br />

@@ -1,6 +1,10 @@
-import { db } from 'astro:db';
+import { db, Views } from "astro:db";
 
-// https://astro.build/db/seed
-export default async function seed() {
-	// TODO
+export default async function () {
+	await db.insert(Views).values([
+		{
+			slug: "sanity",
+			count: 130,
+		},
+	]);
 }

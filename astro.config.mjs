@@ -4,8 +4,10 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import { remarkExcerpt, remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 import react from "@astrojs/react";
-
 import db from "@astrojs/db";
+import svelte from "@astrojs/svelte";
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,7 +16,7 @@ export default defineConfig({
   // image({
   //   serviceEntryPoint: "@astrojs/image/sharp",
   // }),
-  mdx(), react(), db()],
+  mdx(), react(), db(), svelte()],
   vite: {
     ssr: {
       noExternal: ["accessible-astro-components"]
@@ -23,5 +25,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkReadingTime, remarkExcerpt],
     extendDefaultPlugins: true
-  }
+  },
+  output: "hybrid",
+  adapter: netlify()
 });

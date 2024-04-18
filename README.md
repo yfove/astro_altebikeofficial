@@ -71,3 +71,12 @@ import myImage from '../assets/my_image.png'; // Image is 1600x900
 <Image src={myImage} alt="A description of my image." />
 
 ```
+
+## astro db
+astro db login # Follow prompts, login with Github
+
+astro db link # Again, follow prompts, create a new project or link local db to an existing one
+
+astro db push # Tell the remote DB what you want it to look like
+
+astro db execute db/seed.ts --remote # "db/seed.ts" here is just a path to the file where your seed data is. 
