@@ -39,9 +39,11 @@ export const prerender = true;
             {title}
           </h1>
           <small class="text-gray-400">Written by: &#x270E; {author}</small>
-          <PostViews slug={slug} />
 
-          <small class="float-right text-gray-400">&#10711; {minutesRead}</small>
+
+          <small class="float-right text-gray-400">&#10711; {minutesRead}
+            <PostViews slug={slug} />
+          </small>
         </div>
         <br />
         <div class="article-body">

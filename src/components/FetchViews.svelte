@@ -8,6 +8,7 @@
 
 {#await fetchImage then data}
   <span>{data.count}</span>
+  console.log{data.count}
 {:catch}
-  <span>1</span>
+  <span></span>
 {/await}
