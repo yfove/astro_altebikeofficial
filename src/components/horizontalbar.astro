@@ -21,24 +21,27 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
           .map((post) => (
             <li>
               <a href={"/post/" + post.frontmatter.slug}>
-                <img
-                  class="rounded-lg"
-                  src={post.frontmatter.image}
-                  alt={post.frontmatter.title}
-                />
-                <p>{post.frontmatter.title}</p>
-                <p class="guide-decription" style="font-size: .8rem;">
-                  {post.frontmatter.description}
-                </p>
-                <p class="font-light " style="font-size: .8rem;">
-                  {post.frontmatter.pubDate}
-                </p>
-                <p
-                  class="guide-decription float-right text-gray-500"
-                  style="font-size: .7rem;"
-                >
-                  &#10711; {post.frontmatter.minutesRead}
-                </p>
+                <div class="post-container">
+                  <div class="image-container">
+                    <img
+                      class="rounded-lg"
+                      src={post.frontmatter.image}
+                      alt={post.frontmatter.title}
+                    />
+                  </div>
+                  <div class="text-container">
+                    <p class="text-sm pt-3">{post.frontmatter.title}</p>
+                    <p class="guide-decription" style="font-size: .8rem;">
+                      {post.frontmatter.description}
+                    </p>
+                    <p class="font-light" style="font-size: .8rem;">
+                      {post.frontmatter.pubDate}
+                    </p>
+                    <p class="guide-decription float-right text-gray-500" style="font-size: .7rem;">
+                      &#10711; {post.frontmatter.minutesRead}
+                    </p>
+                  </div>
+                </div>
               </a>
             </li>
           ))
@@ -65,17 +68,32 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
   .horizontalbar {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; /* Adjust the gap between items */
     text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    /* background-color: black; */
     max-width: 1152px;
     color: var(--color-primary);
   }
   .horizontalbar li {
-    margin: 0.7rem;
     text-decoration: none;
     list-style: none;
-    /* background-color: #000000;  */
+    display: grid;
+    grid-template-rows: auto 1fr auto auto auto;
+  }
+  .post-container {
+    display: grid;
+    grid-template-rows: 1fr auto auto auto;
+    height: 100%;
+  }
+
+  .image-container img {
+    padding-top: 1rem;
+    height: 190px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .text-container {
+    /* text-align: center; */
+    /* padding: 1rem; */
   }
 </style>

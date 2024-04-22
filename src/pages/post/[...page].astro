@@ -14,7 +14,7 @@ const bDate = new Date(b.frontmatter.pubDate);
 return bDate - aDate;
 });
 
-return paginate(sortedPosts, { pageSize: 6, page: 1 });
+return paginate(sortedPosts, { pageSize: 9, page: 1 });
 }
 
 const { page } = Astro.props;
@@ -84,7 +84,7 @@ const { page } = Astro.props;
       <!-- Loop with images -->
       {
       page.data
-      .filter((post) => post.frontmatter.tags.includes("Trends"))
+      .filter((post) => post.frontmatter.tags.includes("Trends") || post.frontmatter.tags.includes(""))
       .slice(0, 2)
       .map((post) => (
       <li>
