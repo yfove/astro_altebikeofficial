@@ -59,7 +59,7 @@ function Search({ searchList }) {
           id="search"
           value={query}
           onChange={handleOnSearch}
-          className="block w-5/6 p-2 m-4 pl-10 text-sm 
+          className="block w-3/4 p-2 m-4 pl-10 text-sm 
                                 text-gray-400 
                                border border-gray-800
                                rounded-lg bg-black

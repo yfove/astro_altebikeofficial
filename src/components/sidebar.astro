@@ -43,10 +43,10 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
       </a>
     </ul>
   </div>
-  <div class="recent-posts">
-    <h3 class="gradient-text font-bold">Recent Posts</h3>
+  <div class="recent-posts ">
+    <h3 class="gradient-text text-lg font-bold pb-3">Recent Posts</h3>
     <!-- loop with images -->
-    <ul>
+    <ul class="">
       {
         posts
           .sort((a, b) => {
@@ -56,21 +56,24 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
           })
           .slice(0, 5)
           .map((post) => (
-            <li>
+            <li class="py-2">
               <a href={"/post/" + post.frontmatter.slug}>
                 <img
                   src={post.frontmatter.image}
                   alt={post.frontmatter.title}
                 />
+                <small>
+                  {post.frontmatter.title}
+                </small>
+                <br>
+                <small class="text-gray-400">
+                  {post.frontmatter.pubDate} {post.frontmatter.pubTime}
+                </small>
+                <small class="gradient-text " >
+                  {post.frontmatter.author}
+                </small>
               </a>
-              <p>
-                <a>{post.frontmatter.title}</a>
-              </p>
-              <small class="text-gray-400 ">
-                {post.frontmatter.pubDate} {post.frontmatter.pubTime}
-              </small>
-              <small class="gradient-text font-l" />
-              {/* <p>{post.frontmatter.description}</p> */}
+              
             </li>
           ))
       }
@@ -86,12 +89,16 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
           })
           .slice(5)
           .map((post) => (
-            <li>
+            <li class="pb-3">
               <a href={"/post/" + post.frontmatter.slug}>
                 <p>{post.frontmatter.title}</p>
               </a>
-              <small>{post.frontmatter.pubDate}</small>
-              {/* <p>{post.frontmatter.description}</p> */}
+              <p class="font-light">
+                {post.frontmatter.description}
+              </p>
+              <small class="text-gray-400">
+                {post.frontmatter.pubDate} {post.frontmatter.pubTime}
+              </small>              {/* <p>{post.frontmatter.description}</p> */}
             </li>
           ))
       }
@@ -131,31 +138,12 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     display: flex;
   }
 
-  .recent-posts h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .recent-posts ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .recent-posts li {
-    margin-bottom: 0.5rem;
-  }
-
   .recent-post img {
     border-radius: 0.4rem;
   }
 
   .recent-posts a {
     text-decoration: none;
-  }
-
-  .recent-posts p {
-    margin-top: 5px;
   }
 
   /* Responsive styles for mobile */

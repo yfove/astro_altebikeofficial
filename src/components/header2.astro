@@ -2,6 +2,8 @@
 import { Icon } from "astro-icon";
 import type { NavItem } from "~/types";
 import "../styles/index.css";
+import SearchBar from "~/components/SearchBar.astro";
+
 
 const navItems: Array<NavItem> = [
   { title: "Featured Articles", url: "/post/" },
@@ -9,7 +11,7 @@ const navItems: Array<NavItem> = [
   { title: "GearCove", url: "/gearcove/" },
 
   ];
-  ---
+---
 
   <header id="page-header"
     class="z-10000 sticky top-0 flex w-full items-center justify-between overflow-visible border-b border-transparent px-7 py-1.5 text-white">
