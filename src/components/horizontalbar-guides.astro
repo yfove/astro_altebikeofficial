@@ -3,30 +3,32 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
 ---
 
 <div class="wrapper max-w-6xl">
-  <div class="recent-posts p-2">
-    <div class="heading">
-      <a href="/guides"><h2>Guides & Tutorials</h2></a>
+  <div class="recent-posts max-sm:m-3">
+    <div class="heading mx-3">
+      <a href="/guides">
+        <h2>Guides & Tutorials</h2>
+      </a>
 
       <hr style="width:100%;" />
     </div>
     <div class="horizontalbar">
       <!-- Loop with images -->
       {
-        guides
-          .reverse()
-          .slice(0, 5)
-          .map((guide) => (
-            // <li key={guide.frontmatter.slug}>
-            <li>
-              <a href={"/guides/" + guide.frontmatter.slug}>
-                <p class="guide-title">{guide.frontmatter.title}</p>
-                <p class="guide-decription" style="font-size: .8rem;">
-                  {guide.frontmatter.description}
-                </p>
-                <small>{guide.frontmatter.pubDate}</small>
-              </a>
-            </li>
-          ))
+      guides
+      .reverse()
+      .slice(0, 5)
+      .map((guide) => (
+      // <li key={guide.frontmatter.slug}>
+      <li>
+        <a href={"/guides/" + guide.frontmatter.slug}>
+          <p class="guide-title">{guide.frontmatter.title}</p>
+          <p class="guide-decription" style="font-size: .8rem;">
+            {guide.frontmatter.description}
+          </p>
+          <small>{guide.frontmatter.pubDate}</small>
+        </a>
+      </li>
+      ))
       }
     </div>
   </div>
@@ -38,15 +40,18 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     margin: 0 auto;
     margin: auto;
   }
+
   .heading h2 {
     align-items: center;
     justify-content: center;
     color: var(--color-primary);
   }
+
   .heading hr {
     border-top: 1px solid #4e59bb;
     color: var(--color-primary);
   }
+
   .horizontalbar {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -56,6 +61,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     max-width: 1152px;
     color: var(--color-primary);
   }
+
   .horizontalbar li {
     margin: 0.7rem;
     text-decoration: none;
@@ -63,6 +69,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     font-size: 0.9rem;
     /* background-color: #000000;  */
   }
+
   .horizontalbar li img {
     /* object-fit: cover; */
   }

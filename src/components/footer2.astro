@@ -13,7 +13,7 @@ import { Icon } from "astro-icon";
       <h3>Explore Articles</h3>
       <ul>
         {
-        posts.slice(2).map((post) => (
+        posts.slice(0, 4).map((post) => (
         <li>
           <a href={"/post/" + post.frontmatter.slug}>
             <p>{post.frontmatter.title}</p>
