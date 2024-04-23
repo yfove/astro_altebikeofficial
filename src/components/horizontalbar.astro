@@ -30,8 +30,8 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
                     />
                   </div>
                   <div class="text-container">
-                    <p class="text-sm pt-3">{post.frontmatter.title}</p>
-                    <p class="guide-decription" style="font-size: .8rem;">
+                    <p class="text-sm my-2 font-bold">{post.frontmatter.title}</p>
+                    <p class="guide-decription my-2" style="font-size: .8rem;">
                       {post.frontmatter.description}
                     </p>
                     <p class="font-light" style="font-size: .8rem;">

@@ -63,6 +63,24 @@ const { page } = Astro.props;
       padding: 0.2rem;
       padding-top: 0.5rem;
     }
+    
+    .post-container {
+    display: grid;
+    grid-template-rows: 1fr auto auto auto;
+    height: 100%;
+  }
+
+  .image-container img {
+    padding-top: 1rem;
+    height: 210px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .text-container {
+    /* text-align: center; */
+    /* padding: 1rem; */
+  }
 
     body .pagination {
 
@@ -80,6 +98,10 @@ const { page } = Astro.props;
     <div class="tags">
       <Alltags />
     </div>
+    <div class="heading mx-4 text-gray-400">
+      <a href="/post"> <h2>Latest</h2></a>
+      <hr style="width:100%;" />
+    </div>
     <div class="horizontalbar m-5 grid list-none grid-cols-2 gap-8 text-gray-100" style="color:#818cf8;">
       <!-- Loop with images -->
       {
@@ -90,7 +112,7 @@ const { page } = Astro.props;
       <li>
         <a href={"/post/" + post.frontmatter.slug}>
           <img class="rounded-lg" src={post.frontmatter.image} alt={post.frontmatter.title} />
-          <p class="my-2">{post.frontmatter.title}</p>
+          <p class="my-2 text-xl font-bold">{post.frontmatter.title}</p>
           <p class="guide-decription my-2" style="font-size: .8rem;">
             {post.frontmatter.description}
           </p>
@@ -108,27 +130,96 @@ const { page } = Astro.props;
       ))
       }
     </div>
-    <div class="blog blog-container">
+    <div class="heading mx-4 text-gray-400">
+      <a href="/post"> <h2>Explore</h2></a>
+      <hr style="width:100%;" />
+    </div>
+    <div class="m-5 grid list-none grid-cols-4 gap-8 text-gray-400" style="color:#818cf8;">
+      <!-- Loop with images -->
+      {
+      page.data
+      .filter((post) => post.frontmatter.tags.includes("Exploration") || post.frontmatter.tags.includes("Urbanism"))
+      .slice(0, 4)
+      .map((post) => (
+      <li>
+        <a href={"/post/" + post.frontmatter.slug}>
+          <p class="my-2 text-lg font-bold">{post.frontmatter.title}</p>
+          <p class="guide-decription my-2" style="font-size: .8rem;">
+            {post.frontmatter.description}
+          </p>
+          <p class="text-gray-400">{post.frontmatter.excerpt}</p>
+          <p class="my-2 font-light" style="font-size: .8rem;">
+            {post.frontmatter.pubDate} | Posted
+            {post.frontmatter.pubTime}
+          </p>
+          <p class="guide-decription float-right my-2 text-gray-500" style="font-size: .7rem;">
+            &#10711; {post.frontmatter.minutesRead}
+          </p>
+        </a>
+      </li>
+      ))
+      }
+    </div>
+    <div class="heading mx-4 text-gray-400">
+      <a href="/post"> <h2>All</h2></a>
+      <hr style="width:100%;" />
+    </div>
+    <div class="blog blog-container" style="color:#818cf8;">
       <p class="text-sm">
         <em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em>
       </p>
       <ul class="my-3">
         {
         page.data.map((post) => (
-        <>
-          <li>
-            <Card url={"/post/" + post.frontmatter.slug} img={post.frontmatter.image} title={post.frontmatter.title}
-              footer={ post.frontmatter.pubDate + " | " + post.frontmatter.minutesRead }>
-              <small>{post.frontmatter.description}</small>
-              <div class="flex gap-x-2">
-                {post.frontmatter.tags &&
+        <li>
+              <a href={"/post/" + post.frontmatter.slug}>
+                <div class="post-container">
+               
+                  <div class="image-container">
+                    <img
+                      class="rounded-lg"
+                      src={post.frontmatter.image}
+                      alt={post.frontmatter.title}
+                    />
+                  </div>
+                  <div class="text-container">
+                    <p class="text-md font-bold pt-3">{post.frontmatter.title}</p>
+                    <p class="guide-decription my-2" style="font-size: .8rem;">
+                      {post.frontmatter.description}
+                    </p>
+
+                    <p class="my-2 font-light text-gray-400" style="font-size: .8rem;">
+                    {post.frontmatter.pubDate} | Posted
+                    {post.frontmatter.pubTime}
+                    </p>
+                  
+                    <p class="guide-decription float-right text-gray-500" style="font-size: .7rem;">
+                      &#10711; {post.frontmatter.minutesRead}
+                    </p>
+                    <div class="flex gap-x-2">
+                 {post.frontmatter.tags &&
                 post.frontmatter.tags.map((tag: string) => (
                 <span class="gradient-text font-bold">{tag}</span>
                 ))}
               </div>
-            </Card>
-          </li>
-        </>
+                  </div>
+                </div>
+              </a>
+            </li>
+        // <>
+        //   <li>
+        //     <Card url={"/post/" + post.frontmatter.slug} img={post.frontmatter.image} title={post.frontmatter.title}
+        //       footer={ post.frontmatter.pubDate + " | " + post.frontmatter.minutesRead }>
+        //       <small>{post.frontmatter.description}</small>
+        //       <div class="flex gap-x-2">
+        //         {post.frontmatter.tags &&
+        //         post.frontmatter.tags.map((tag: string) => (
+        //         <span class="gradient-text font-bold">{tag}</span>
+        //         ))}
+        //       </div>
+        //     </Card>
+        //   </li>
+        // </>
         ))
         }
       </ul>

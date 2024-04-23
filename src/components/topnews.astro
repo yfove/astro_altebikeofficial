@@ -31,7 +31,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
                     src={post.frontmatter.image}
                     alt={post.frontmatter.title}
                   />
-                  <p class="my-2">{post.frontmatter.title}</p>
+                  <p class="my-2 font-bold">{post.frontmatter.title}</p>
                   <p class="guide-decription my-2" style="font-size: .8rem;">
                     {post.frontmatter.description}
                   </p>
@@ -75,7 +75,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
                     src={post.frontmatter.image}
                     alt={post.frontmatter.title}
                   />
-                  <p class="my-2">{post.frontmatter.title}</p>
+                  <p class="my-2 font-bold">{post.frontmatter.title}</p>
                   <p class="guide-decription my-2" style="font-size: .8rem;">
                     {post.frontmatter.description}
                   </p>
