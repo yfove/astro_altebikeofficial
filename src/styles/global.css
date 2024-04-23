@@ -18,8 +18,12 @@ a,
   @apply decoration-[1px] decoration-solid underline-offset-[3px] decoration-secondary underline text-indigo-400;
 }
 
-.mdx .article-body h1, h2, h3 {
+.mdx .article-body h1,
+h2,
+h3 {
   @apply tracking-tight
 }
 
-
+.mdx .article-body h1 {
+  @apply tracking-tight text-3xl
+}

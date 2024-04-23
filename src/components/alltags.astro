@@ -3,13 +3,13 @@ const allPosts = await Astro.glob("../pages/post/**/*.mdx");
 const tags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
 ---
 
-<div class="wrapper">
+<div class="wrapper pt-2 ">
   <div class="alltags p-2">
     <div class="heading">
       <!-- <a href="/featured"> <h2>Categories</h2></a> -->
       <!-- <hr style="width:100%;" /> -->
     </div>
-    <div class="tags">
+    <div class="tags max-md:items-center max-md:justify-center flex">
       <p class="tag ">
         <a href={`/post/`} class="gradient-text font-bold">
           All
@@ -34,13 +34,12 @@ const tags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
   }
 
   .tags {
-    display: flex;
     flex-wrap: wrap;
   }
 
   .tag {
     margin: 0.25em;
-    /* border: solid 2px #818cf8; */
+    border: solid 2px #2a2a2d;
     border-radius: 0.5em;
     padding: 0.1rem 0.5em;
     font-size: 1.15em;

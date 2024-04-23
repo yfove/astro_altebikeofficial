@@ -3,7 +3,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
 const guides = await Astro.glob("../pages/guides/**/*.mdx");
 ---
 
-<aside class="sidebar">
+<aside class="sidebar ml-8">
   <div class="social-media">
     <!-- <h3>Follow Us</h3> -->
     <ul style="display:list-item;">
@@ -46,7 +46,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
   <div class="recent-posts ">
     <h3 class="gradient-text text-lg font-bold pb-3">Recent Posts</h3>
     <!-- loop with images -->
-    <ul class="">
+    <ul class="pb-6">
       {
         posts
           .sort((a, b) => {
@@ -62,7 +62,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
                   src={post.frontmatter.image}
                   alt={post.frontmatter.title}
                 />
-                <small>
+                <small class="font-bold">
                   {post.frontmatter.title}
                 </small>
                 <br>
@@ -79,6 +79,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
       }
     </ul>
     <!-- loop shows all subsequent  posts -->
+
     <ul>
       {
         posts
@@ -91,14 +92,14 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
           .map((post) => (
             <li class="pb-3">
               <a href={"/post/" + post.frontmatter.slug}>
-                <p>{post.frontmatter.title}</p>
+                <small class="font-bold">{post.frontmatter.title}</small>
+                <p class="font-light">
+                  {post.frontmatter.description}
+                </p>
+                <small class="text-gray-400">
+                  {post.frontmatter.pubDate}
+                </small>              {/* <p>{post.frontmatter.description}</p> */}
               </a>
-              <p class="font-light">
-                {post.frontmatter.description}
-              </p>
-              <small class="text-gray-400">
-                {post.frontmatter.pubDate} {post.frontmatter.pubTime}
-              </small>              {/* <p>{post.frontmatter.description}</p> */}
             </li>
           ))
       }
