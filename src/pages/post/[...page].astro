@@ -3,6 +3,7 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 import { Card, Pagination } from "accessible-astro-components";
 import Alltags from "~/components/alltags.astro";
 import PostViews from "~/components/PostViews.astro";
+import SearchBar from "~/components/SearchBar.astro";
 
 export async function getStaticPaths({ paginate }) {
 const post = await Astro.glob("./*.mdx");
@@ -97,6 +98,7 @@ const { page } = Astro.props;
   <section>
     <div class="tags">
       <Alltags />
+      <SearchBar />
     </div>
     <div class="heading mx-4 text-gray-400">
       <a href="/post">

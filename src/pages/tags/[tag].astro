@@ -5,6 +5,8 @@ import BaseHead from "../../components/BaseHead.astro";
 import { Pagination } from "accessible-astro-components";
 import { Card } from "accessible-astro-components";
 import Alltags from "~/components/alltags.astro";
+import SearchBar from "~/components/SearchBar.astro";
+
 
 export async function getStaticPaths() {
   const allPosts = await Astro.glob("../../pages/**/**/*.mdx");
@@ -46,7 +48,8 @@ const filteredPosts = posts.filter((post) =>
   title={tag}
   description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
 >
-  <div class="mb-5"><Alltags /></div>
+  <div class=""><Alltags /></div>
+  <div><SearchBar/></div>
   <div class="layout">
     <div class="title-heading"></div>
 
