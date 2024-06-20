@@ -12,7 +12,7 @@ import { Icon } from "astro-icon";
     <div class="flex w-full items-center justify-between md:w-auto">
       <Icon name="ebikenook" class="h-10" />
 
-      <a href="#" class="flex-1 px-2 py-3 font-bold text-white">ebikenook</a>
+      <a href="/" class="flex-1 px-2 py-3 font-bold text-white">ebikenook</a>
 
       <!-- mobile menu icon -->
       <div class="flex items-center md:hidden">
@@ -62,7 +62,7 @@ import { Icon } from "astro-icon";
           </svg>
         </button>
         <div
-          class="dropdown-menu absolute hidden w-48 rounded-b-lg bg-zinc-700 pb-2 text-white"
+          class="dropdown-menu absolute hidden w-48 rounded-b-lg bg-zinc-950 pb-2 text-white"
         >
           <a href="/tags/Trends" class="block px-6 py-2 hover:bg-zinc-800"
             >Trends</a
@@ -88,6 +88,25 @@ import { Icon } from "astro-icon";
     </div>
   </div>
 </nav>
+
+<style>
+  .navigation-menu a {
+    text-decoration: none;
+    background-image: linear-gradient(#6366f1, #d946ef);
+    background-size: 0% 0.1em;
+    background-position-y: 100%;
+    background-position-x: 0%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s ease-in-out;
+  }
+
+  .navigation-menu a:hover,
+  .navigation-menu a:focus,
+  .navigation-menu a:active {
+    background-size: 100% 0.1em;
+    color: #818cf8;
+  }
+</style>
 
 <script>
   // Select all dropdown toggle buttons
