@@ -1,0 +1,103 @@
+---
+const posts = await Astro.glob("../pages/guides/**/*.mdx");
+---
+
+<div class="wrapper max-w-6xl">
+  <div class="recent-posts p-2 pt-12">
+    <div class="heading">
+      <a href="/guides"> <h2>Guides & Tutorials</h2></a>
+      <hr style="width:100%;" />
+    </div>
+    <div class="horizontalbar">
+      <div
+        class="right my-3 grid gap-5 sm:grid-cols-[repeat(auto-fill,minmax(380px,1fr))]"
+      >
+        {
+          posts.slice(0, 4).map((post) => (
+            <div
+              key={post.frontmatter.slug}
+              class="flex rounded-lg bg-zinc-950 p-4"
+            >
+              <a href={"/guides/" + post.frontmatter.slug} class="sm:flex">
+                <img
+                  class="mr-4 rounded-lg object-cover sm:size-24"
+                  src={post.frontmatter.image}
+                  alt={post.frontmatter.title}
+                />
+                <div class="flex flex-col justify-between">
+                  <div>
+                    <p class="font-bold text-lg">{post.frontmatter.title}</p>
+                    <p class="guide-decription text-sm">
+                      {post.frontmatter.description}
+                    </p>
+                    <p class="text-sm/[9px] text-gray-400">
+                      {post.frontmatter.excerpt}
+                    </p>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <p class="guide-decription text-gray-500 text-xs">
+                      &#10711; {post.frontmatter.minutesRead}{" "}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))
+        }
+      </div>
+      <!-- Loop with images -->
+    </div>
+  </div>
+</div>
+
+<style>
+  .wrapper {
+    /* background-color: black; */
+    margin: 0 auto;
+
+    margin: auto;
+  }
+  .heading h2 {
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+  }
+  .heading hr {
+    border-top: 1px solid #4e59bb;
+    color: var(--color-primary);
+  }
+  .horizontalbar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    text-decoration: none;
+    /* align-items: center; */
+    justify-content: center;
+    /* background-color: black; */
+    max-width: 1152px;
+    color: var(--color-primary);
+  }
+
+  .right {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+  }
+  .horizontalbar li {
+    margin: 0.7rem;
+    text-decoration: none;
+    list-style: none;
+    /* background-color: #000000;  */
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .horizontalbar {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .right {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .left {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+</style>

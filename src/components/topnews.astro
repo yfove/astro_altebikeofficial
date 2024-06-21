@@ -27,7 +27,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
               <li>
                 <a href={"/post/" + post.frontmatter.slug}>
                   <img
-                    class="rounded-lg"
+                    class="rounded-lg "
                     src={post.frontmatter.image}
                     alt={post.frontmatter.title}
                   />
@@ -63,15 +63,15 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
             })
             .filter(
               (post) =>
-                post.frontmatter.tags.includes("Trends") ||
-                post.frontmatter.tags.includes("Exclusive")
+                post.frontmatter.tags.includes("Exploration") ||
+                post.frontmatter.tags.includes("Micromobility")
             )
-            .slice(1, 3)
+            .slice(0, 2)
             .map((post) => (
               <li>
                 <a href={"/post/" + post.frontmatter.slug}>
                   <img
-                    class="rounded-lg"
+                    class="h-40 w-full rounded-lg object-cover"
                     src={post.frontmatter.image}
                     alt={post.frontmatter.title}
                   />

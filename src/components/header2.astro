@@ -4,194 +4,198 @@ import type { NavItem } from "~/types";
 import "../styles/index.css";
 import SearchBar from "~/components/SearchBar.astro";
 
-
 const navItems: Array<NavItem> = [
   { title: "Featured Articles", url: "/post/" },
   { title: "Guides & Tutorials", url: "/guides/" },
   { title: "GearCove", url: "/gearcove/" },
-
-  ];
+];
 ---
 
-  <header id="page-header"
-    class="z-10000 sticky top-0 flex w-full items-center justify-between overflow-visible border-b border-transparent px-7 py-1.5 text-white">
-    <a class="flex items-center gap-3 hover:!text-default" href="/">
-      <h1 class="sr-only">ebikenook</h1>
-      <Icon name="ebikenook" class="h-10" />
-      <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
-      <h1 style="font-weight:bold; letter-spacing: 2px">ebikenook</h1>
-    </a>
-    <div>
-      <div class="flex items-center gap-6">
-        <nav class="hidden sm:block">
-          <ul class="flex items-center gap-6">
-            {
+<header
+  id="page-header"
+  class="z-10000 sticky top-0 flex w-full items-center justify-between overflow-visible border-b border-transparent px-7 py-1.5 text-white"
+>
+  <a class="flex items-center gap-3 hover:!text-default" href="/">
+    <h1 class="sr-only">ebikenook</h1>
+    <Icon name="ebikenook" class="h-10" />
+    <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
+    <h1 style="font-weight:bold; letter-spacing: 2px">ebikenook</h1>
+  </a>
+  <div>
+    <div class="flex items-center gap-6">
+      <nav class="hidden sm:block">
+        <ul class="flex items-center gap-6">
+          {
             navItems.map(({ title, url }) => (
-            <li>
-              <a class="text-sm" href={url}>
-                {title}
-              </a>
-            </li>
+              <li>
+                <a class="text-sm" href={url}>
+                  {title}
+                </a>
+              </li>
             ))
-            }
-          </ul>
-        </nav>
-        <nav class="hamburger-menu">
-          <button id="hamburger-button" type="button" class="btn hamburger-button sm:hidden" aria-label="Navigation">
-            <Icon pack="mdi" name="menu" class="h-8" < Icon />
-            <!-- <ThemeSwitcher /> -->
-          </button>
-          <ul class="menu-items">
-            {
+          }
+        </ul>
+      </nav>
+      <nav class="hamburger-menu">
+        <button
+          id="hamburger-button"
+          type="button"
+          class="btn hamburger-button sm:hidden"
+          aria-label="Navigation"
+        >
+          <Icon pack="mdi" name="menu" class="h-8" < Icon />
+          <!-- <ThemeSwitcher /> -->
+        </button>
+        <ul class="menu-items">
+          {
             navItems.map(({ title, url }) => (
-            <li>
-              <a class="text-xl" href={url}>
-                {title}
-              </a>
-            </li>
+              <li>
+                <a class="text-xl" href={url}>
+                  {title}
+                </a>
+              </li>
             ))
-            }
-            <!-- Add more menu items as needed -->
-          </ul>
-        </nav>
-      </div>
+          }
+          <!-- Add more menu items as needed -->
+        </ul>
+      </nav>
     </div>
-  </header>
+  </div>
+</header>
 
-  <script>
-    const hamburgerButton = document.getElementById("hamburger-button");
-    const menuItems = document.querySelector(".menu-items");
+<script>
+  const hamburgerButton = document.getElementById("hamburger-button");
+  const menuItems = document.querySelector(".menu-items");
 
-    hamburgerButton.addEventListener("click", () => {
-      menuItems.classList.toggle("active");
-    });
-    // Other imports and variables here
+  hamburgerButton.addEventListener("click", () => {
+    menuItems.classList.toggle("active");
+  });
+  // Other imports and variables here
 
-    // Your navItems array remains the same
+  // Your navItems array remains the same
 
-    // document.addEventListener("DOMContentLoaded", () => {
-    //   const openNavButton = document.getElementById("open-nav-button");
-    //   const closeNavButton = document.getElementById("close-nav-button");
-    //   const menuModal = document.getElementById("menu-modal");
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const openNavButton = document.getElementById("open-nav-button");
+  //   const closeNavButton = document.getElementById("close-nav-button");
+  //   const menuModal = document.getElementById("menu-modal");
 
-    //   function openMenu() {
-    //     menuModal.classList.add("is-open");
-    //     document.body.classList.add("overflow-hidden");
-    //   }
+  //   function openMenu() {
+  //     menuModal.classList.add("is-open");
+  //     document.body.classList.add("overflow-hidden");
+  //   }
 
-    //   function closeMenu() {
-    //     menuModal.classList.remove("is-open");
-    //     document.body.classList.remove("overflow-hidden");
-    //   }
+  //   function closeMenu() {
+  //     menuModal.classList.remove("is-open");
+  //     document.body.classList.remove("overflow-hidden");
+  //   }
 
-    //   openNavButton.addEventListener("click", openMenu);
-    //   closeNavButton.addEventListener("click", closeMenu);
+  //   openNavButton.addEventListener("click", openMenu);
+  //   closeNavButton.addEventListener("click", closeMenu);
 
-    //   // Additional close logic when clicking outside the menu modal
-    //   window.addEventListener("click", (event) => {
-    //     if (event.target === menuModal) {
-    //       closeMenu();
-    //     }
-    //   });
-    // });
-  </script>
+  //   // Additional close logic when clicking outside the menu modal
+  //   window.addEventListener("click", (event) => {
+  //     if (event.target === menuModal) {
+  //       closeMenu();
+  //     }
+  //   });
+  // });
+</script>
 
-  <noscript>
-    <style>
-      #open-nav-button {
-        display: none;
-      }
-    </style>
-  </noscript>
-
+<noscript>
   <style>
-    header {
-      z-index: 10000;
-      background-color: #000;
+    #open-nav-button {
+      display: none;
     }
+  </style>
+</noscript>
 
-    .modal.is-open {
-      @apply block;
-    }
+<style>
+  header {
+    z-index: 10000;
+    background-color: #000;
+  }
 
-    .line {
-      display: block;
-      width: 40px;
-      height: 3px;
-      background-color: #fff;
-    }
+  .modal.is-open {
+    @apply block;
+  }
 
-    .hamburger-button {
-      display: block;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
+  .line {
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #fff;
+  }
 
-    .hamburger-icon {
-      display: block;
-      width: 30px;
-      height: 2px;
-      /* background-color: #333; */
-      position: relative;
-      transition: background-color 0.3s ease-in-out;
-    }
+  .hamburger-button {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
+  .hamburger-icon {
+    display: block;
+    width: 30px;
+    height: 2px;
+    /* background-color: #333; */
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .menu-items {
+    display: none;
+    list-style: none;
+    padding: 50px;
+    position: absolute;
+    background-color: #000;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1000;
+    text-align: center;
+  }
+
+  .menu-items li {
+    padding: 1rem;
+    font-size: large;
+  }
+
+  .menu-items.active {
+    display: block;
+  }
+
+  .flex li a {
+    text-decoration: none;
+    background-image: linear-gradient(#6366f1, #d946ef);
+    background-size: 0% 0.1em;
+    background-position-y: 100%;
+    background-position-x: 0%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s ease-in-out;
+  }
+
+  .flex li a:hover,
+  .flex li a:focus,
+  .flex li a:active {
+    background-size: 100% 0.1em;
+    color: #818cf8;
+  }
+
+  @media (min-width: 668px) {
     .menu-items {
       display: none;
-      list-style: none;
-      padding: 50px;
-      position: absolute;
-      background-color: #000;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: 1000;
-      text-align: center;
-    }
-
-    .menu-items li {
-      padding: 1rem;
-      font-size: large;
     }
 
     .menu-items.active {
       display: block;
     }
+  }
 
-    .flex li a {
-      text-decoration: none;
-      background-image: linear-gradient(#6366f1, #d946ef);
-      background-size: 0% 0.1em;
-      background-position-y: 100%;
-      background-position-x: 0%;
-      background-repeat: no-repeat;
-      transition: background-size 0.5s ease-in-out;
+  @media (min-width: 768px) {
+    /* Hide the entire .hamburger-menu on larger screens */
+    .hamburger-menu {
+      display: none;
     }
-
-    .flex li a:hover,
-    .flex li a:focus,
-    .flex li a:active {
-      background-size: 100% 0.1em;
-      color: #818cf8;
-    }
-
-    @media (min-width: 668px) {
-      .menu-items {
-        display: none;
-      }
-
-      .menu-items.active {
-        display: block;
-      }
-    }
-
-    @media (min-width: 768px) {
-
-      /* Hide the entire .hamburger-menu on larger screens */
-      .hamburger-menu {
-        display: none;
-      }
-    }
-  </style>
+  }
+</style>
