@@ -1,0 +1,158 @@
+---
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+import { Icon } from "astro-icon";
+---
+
+<footer>
+  <div class="footer-container botton-0">
+    <div class="column logo">
+      <Icon name="ebikenook" class="h-19" />
+      <i>All Electric Lifestyle</i>
+    </div>
+    <div class="column">
+      <h3>Explore Articles</h3>
+      <ul>
+        {
+        posts.slice(0, 4).map((post) => (
+        <li>
+          <a href={"/post/" + post.frontmatter.slug}>
+            <p>{post.frontmatter.title}</p>
+            <small>{post.frontmatter.description}</small>
+            <br />
+            {/* <small>{post.frontmatter.pubDate}</small> */}
+          </a>
+        </li>
+        ))
+        }
+      </ul>
+    </div>
+    <div class="column">
+      <h3>Follow</h3>
+      <ul>
+        <li><a href="/post/">Featured Articles</a></li>
+        <li><a href="/guides/">Guides and Tutorials</a></li>
+        <li><a href="#">Update</a></li>
+        <li><a href="#">Community</a></li>
+      </ul>
+    </div>
+    <div class="column">
+      <h3>Products</h3>
+      <ul>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="/affiliate">Affiliate</a></li>
+      </ul>
+    </div>
+    <div class="column">
+      <h3>Socials</h3>
+      <ul>
+        <a href="
+        ">
+          <li>
+            <a class="flex h-16 w-16 items-center justify-center border-current p-5"
+              href="https://www.instagram.com/ebikenook/">
+              <p class="sr-only">instagram</p>
+              <Icon class="h-full" name="mdi:instagram" />
+            </a>
+          </li>
+        </a>
+        <li>
+          <a class="flex h-16 w-16 items-center justify-center border-current p-5"
+            href="https://linktr.ee/ebikeofficial">
+            <p class="sr-only">linktree</p>
+            <Icon class="h-full" name="mdi:tree" />
+          </a>
+        </li>
+        <li>
+          <a class="flex h-16 w-16 items-center justify-center border-current p-5" href="https://twitter.com/ebikenook">
+            <p class="sr-only">twitterX</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x"
+              viewBox="0 0 16 16">
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z">
+              </path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <style lang="scss">
+    footer {
+      background: black;
+      color: white;
+      padding: 0 2rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-gap: 1.5rem;
+      margin: 0 auto;
+      padding: 3rem;
+      max-width: 1150px;
+    }
+
+    .column {
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 13px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo {
+      justify-self: center;
+      align-self: center;
+    }
+
+    .recent-posts h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .recent-posts ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .recent-posts li {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 1000px) {
+      .footer-container {
+        grid-template-columns: repeat(1fr);
+        padding: 2rem 0;
+      }
+
+      .logo {
+        display: none;
+      }
+    }
+  </style>
+  <p class="relative flex justify-center pb-3 text-xs">
+    <br />
+    Site developed and maintained by Ebikenook 2024 &#9829;
+  </p>
+</footer>
