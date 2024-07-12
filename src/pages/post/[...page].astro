@@ -6,16 +6,16 @@ import PostViews from "~/components/PostViews.astro";
 import SearchBar from "~/components/SearchBar.astro";
 
 export async function getStaticPaths({ paginate }) {
-  const post = await Astro.glob("./*.mdx");
+const post = await Astro.glob("./*.mdx");
 
-  const sortedPosts = post.sort((a, b) => {
-    const aDate = new Date(a.frontmatter.pubDate);
-    const bDate = new Date(b.frontmatter.pubDate);
+const sortedPosts = post.sort((a, b) => {
+const aDate = new Date(a.frontmatter.pubDate);
+const bDate = new Date(b.frontmatter.pubDate);
 
-    return bDate - aDate;
-  });
+return bDate - aDate;
+});
 
-  return paginate(sortedPosts, { pageSize: 9, page: 1 });
+return paginate(sortedPosts, { pageSize: 9, page: 1 });
 }
 
 const { page } = Astro.props;
@@ -48,7 +48,7 @@ const { page } = Astro.props;
       margin: 5px 0px;
     }
 
-    .blog li > .card {
+    .blog li>.card {
       background: black;
       color: #818cf8;
 
@@ -84,6 +84,7 @@ const { page } = Astro.props;
     }
 
     body .pagination {
+
       a:hover,
       & a:focus-visible {
         background-color: #818cf8;
@@ -92,10 +93,8 @@ const { page } = Astro.props;
   </style>
 </head>
 
-<BlogLayout
-  title="Featured Articles"
-  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
->
+<BlogLayout title="Featured Articles"
+  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking.">
   <section>
     <div class="tags">
       <Alltags />
@@ -109,39 +108,35 @@ const { page } = Astro.props;
           <!-- Content for Block #1 -->
           <!-- Loop with images for Block #1 -->
           {
-            page.data
-              .filter(
-                (post) =>
-                  post.frontmatter.tags &&
-                  post.frontmatter.tags.includes("Trends")
-              )
-              .slice(0, 1)
-              .map((post) => (
-                <div key={post.frontmatter.slug} class="mb-8">
-                  <a href={"/post/" + post.frontmatter.slug}>
-                    <img
-                      class="rounded-lg"
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                    />
-                    <p class="my-2 font-bold text-xl">
-                      {post.frontmatter.title}
-                    </p>
-                    <p class="guide-decription my-2 text-sm">
-                      {post.frontmatter.description}
-                    </p>
-                    <p class="text-gray-400">{post.frontmatter.excerpt}</p>
-                    <p class="my-2 font-light text-sm">
-                      {post.frontmatter.pubDate} | Posted
-                      {post.frontmatter.pubTime}
-                    </p>
-                    <p class="guide-decription float-right my-2 text-gray-500 text-xs">
-                      &#10711; {post.frontmatter.minutesRead}
-                      <PostViews slug={post.frontmatter.slug} />
-                    </p>
-                  </a>
-                </div>
-              ))
+          page.data
+          .filter(
+          (post) =>
+          post.frontmatter.tags &&
+          post.frontmatter.tags.includes("Trends")
+          )
+          .slice(0, 1)
+          .map((post) => (
+          <div key={post.frontmatter.slug} class="mb-8">
+            <a href={"/post/" + post.frontmatter.slug}>
+              <img class="rounded-lg" src={post.frontmatter.image} alt={post.frontmatter.title} />
+              <p class="my-2 font-bold text-xl">
+                {post.frontmatter.title}
+              </p>
+              <p class="guide-decription my-2 text-sm">
+                {post.frontmatter.description}
+              </p>
+              <p class="text-gray-400">{post.frontmatter.excerpt}</p>
+              <p class="my-2 font-light text-sm">
+                {post.frontmatter.pubDate} | Posted
+                {post.frontmatter.pubTime}
+              </p>
+              <p class="guide-decription float-right my-2 text-gray-500 text-xs">
+                &#10711; {post.frontmatter.minutesRead}
+                <PostViews slug={post.frontmatter.slug} />
+              </p>
+            </a>
+          </div>
+          ))
           }
         </div>
 
@@ -149,92 +144,117 @@ const { page } = Astro.props;
         <div class="grid grid-rows-3 gap-4 p-5">
           <!-- Loop with images for Block #2 -->
           {
-            page.data
-              .filter(
-                (post) =>
-                  post.frontmatter.tags.includes("Trends") ||
-                  post.frontmatter.tags.includes("Urbanism")
-              )
-              .slice(0, 3)
-              .map((post) => (
-                <div
-                  key={post.frontmatter.slug}
-                  class="flex rounded-lg bg-zinc-950 p-4"
-                >
-                  <a href={"/post/" + post.frontmatter.slug} class="flex">
-                    <img
-                      class="mr-4 size-24 rounded-lg object-cover"
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                    />
-                    <div class="flex flex-col justify-between">
-                      <div>
-                        <p class="text-md font-bold">
-                          {post.frontmatter.title}
-                        </p>
-                        {/* <p class="guide-decription text-sm">
-                          {post.frontmatter.description}
-                        </p> */}
-                        <p class="text-sm/[9px] text-gray-400">
-                          {post.frontmatter.excerpt}
-                        </p>
-                      </div>
-                      <div class="flex items-center justify-between">
-                        <p class="font-light text-xs">
-                          {post.frontmatter.pubDate} | Posted{" "}
-                          {post.frontmatter.pubTime}
-                        </p>
-                        <p class="guide-decription text-gray-500 text-xs">
-                          &#10711; {post.frontmatter.minutesRead}{" "}
-                          <PostViews slug={post.frontmatter.slug} />
-                        </p>
-                      </div>
-                    </div>
-                  </a>
+          page.data
+          .filter(
+          (post) =>
+          post.frontmatter.tags.includes("Trends") ||
+          post.frontmatter.tags.includes("Urbanism")
+          )
+          .slice(0, 3)
+          .map((post) => (
+          <div key={post.frontmatter.slug} class="flex rounded-lg bg-zinc-950 p-4">
+            <a href={"/post/" + post.frontmatter.slug} class="flex">
+              <img class="mr-4 size-24 rounded-lg object-cover" src={post.frontmatter.image}
+                alt={post.frontmatter.title} />
+              <div class="flex flex-col justify-between">
+                <div>
+                  <p class="text-md font-bold">
+                    {post.frontmatter.title}
+                  </p>
+                  {/* <p class="guide-decription text-sm">
+                    {post.frontmatter.description}
+                  </p> */}
+                  <p class="text-sm/[9px] text-gray-400">
+                    {post.frontmatter.excerpt}
+                  </p>
                 </div>
-              ))
+                <div class="flex items-center justify-between">
+                  <p class="font-light text-xs">
+                    {post.frontmatter.pubDate} | Posted{" "}
+                    {post.frontmatter.pubTime}
+                  </p>
+                  <p class="guide-decription text-gray-500 text-xs">
+                    &#10711; {post.frontmatter.minutesRead}{" "}
+                    <PostViews slug={post.frontmatter.slug} />
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+          ))
           }
         </div>
       </div>
     </div>
+
     <div class="heading mx-4 text-gray-400">
       <a href="/post">
         <h2>Explore</h2>
       </a>
       <hr style="width:100%;" />
     </div>
-    <div
-      class="m-5 grid list-none grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8 text-gray-400"
-      style="color:#818cf8;"
-    >
-      <!-- Loop with images -->
-      {
-        page.data
-          .filter((post) => post.frontmatter.tags.includes("Exploration"))
-          .slice(0, 4)
-          .map((post) => (
-            <li>
-              <a href={"/post/" + post.frontmatter.slug}>
-                <p class="my-2 font-bold text-lg">{post.frontmatter.title}</p>
-                <p class="guide-decription my-2" style="font-size: .8rem;">
-                  {post.frontmatter.description}
-                </p>
-                <p class="text-gray-400">{post.frontmatter.excerpt}</p>
-                <p class="my-2 font-light" style="font-size: .8rem;">
-                  {post.frontmatter.pubDate} | Posted
-                  {post.frontmatter.pubTime}
-                </p>
-                <p
-                  class="guide-decription float-right my-2 text-gray-500"
-                  style="font-size: .7rem;"
-                >
-                  &#10711; {post.frontmatter.minutesRead}
-                </p>
-              </a>
-            </li>
-          ))
-      }
+
+    <div class="m-5 grid list-none sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8 text-gray-400"
+      style="color:#818cf8;">
+      {page.data
+      .filter((post) => post.frontmatter.tags.includes("Exploration"))
+      .slice(0, 4)
+      .map((post, index) => (
+      <div key={index} class="col-span-1">
+        <a href={"/post/" + post.frontmatter.slug}>
+          <p class="my-2 font-bold text-lg">{post.frontmatter.title}</p>
+          <p class="guide-description my-2" style={{ fontSize: '0.8rem' }}>
+            {post.frontmatter.description}
+          </p>
+          <p class="text-gray-400">{post.frontmatter.excerpt}</p>
+          <p class="my-2 font-light" style={{ fontSize: '0.8rem' }}>
+            {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
+          </p>
+          <p class="guide-description float-right my-2 text-gray-500" style={{ fontSize: '0.7rem' }}>
+            &#10711; {post.frontmatter.minutesRead}
+          </p>
+        </a>
+      </div>
+      ))}
+
+      {/* Advertisement spanning 2 columns */}
+      <a href="/gearcove" class="col-span-2 flex items-center justify-center bg-zinc-950 text-center text-white p-4">
+        {/* Advertisement content here */}
+        <div>
+          <h2 class="text-xl font-bold">GEAR COVE</h2>
+          <p>Where Passion Meets Precision in Our Accessories Digest</p>
+        </div>
+      </a>
     </div>
+
+
+
+    <!-- <div class="m-5 grid list-none grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8 text-gray-400"
+      style="color:#818cf8;">
+      {
+      page.data
+      .filter((post) => post.frontmatter.tags.includes("Exploration"))
+      .slice(0, 4)
+      .map((post) => (
+      <li>
+        <a href={"/post/" + post.frontmatter.slug}>
+          <p class="my-2 font-bold text-lg">{post.frontmatter.title}</p>
+          <p class="guide-decription my-2" style="font-size: .8rem;">
+            {post.frontmatter.description}
+          </p>
+          <p class="text-gray-400">{post.frontmatter.excerpt}</p>
+          <p class="my-2 font-light" style="font-size: .8rem;">
+            {post.frontmatter.pubDate} | Posted
+            {post.frontmatter.pubTime}
+          </p>
+          <p class="guide-decription float-right my-2 text-gray-500" style="font-size: .7rem;">
+            &#10711; {post.frontmatter.minutesRead}
+          </p>
+        </a>
+      </li>
+      ))
+      }
+    </div> -->
 
     <!-- latest -->
     <!-- title -->
@@ -245,46 +265,31 @@ const { page } = Astro.props;
       <hr style="width:100%;" />
     </div>
     <!-- block -->
-    <div
-      class="horizontalbar m-5 grid list-none grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-8 text-gray-100"
-      style="color:#818cf8;"
-    >
+    <div class="horizontalbar m-5 grid list-none grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-8 text-gray-100"
+      style="color:#818cf8;">
       <!-- Loop with images -->
       {
-        page.data
-          .filter(
-            (post) =>
-              post.frontmatter.tags.includes("Trends") ||
-              post.frontmatter.tags.includes("")
-          )
-          .slice(0, 2)
-          .map((post) => (
-            <li>
-              <a href={"/post/" + post.frontmatter.slug}>
-                <img
-                  class="rounded-lg"
-                  src={post.frontmatter.image}
-                  alt={post.frontmatter.title}
-                />
-                <p class="my-2 font-bold text-xl">{post.frontmatter.title}</p>
-                <p class="guide-decription my-2" style="font-size: .8rem;">
-                  {post.frontmatter.description}
-                </p>
-                <p class="text-gray-400">{post.frontmatter.excerpt}</p>
-                <p class="my-2 font-light" style="font-size: .8rem;">
-                  {post.frontmatter.pubDate} | Posted
-                  {post.frontmatter.pubTime}
-                </p>
-                <p
-                  class="guide-decription float-right my-2 text-gray-500"
-                  style="font-size: .7rem;"
-                >
-                  &#10711; {post.frontmatter.minutesRead}
-                  <PostViews slug={post.frontmatter.slug} />
-                </p>
-              </a>
-            </li>
-          ))
+      page.data.slice(0, 2)
+      .map((post) => (
+      <li>
+        <a href={"/post/" + post.frontmatter.slug}>
+          <img class="rounded-lg" src={post.frontmatter.image} alt={post.frontmatter.title} />
+          <p class="my-2 font-bold text-xl">{post.frontmatter.title}</p>
+          <p class="guide-decription my-2" style="font-size: .8rem;">
+            {post.frontmatter.description}
+          </p>
+          <p class="text-gray-400">{post.frontmatter.excerpt}</p>
+          <p class="my-2 font-light" style="font-size: .8rem;">
+            {post.frontmatter.pubDate} | Posted
+            {post.frontmatter.pubTime}
+          </p>
+          <p class="guide-decription float-right my-2 text-gray-500" style="font-size: .7rem;">
+            &#10711; {post.frontmatter.minutesRead}
+            <PostViews slug={post.frontmatter.slug} />
+          </p>
+        </a>
+      </li>
+      ))
       }
     </div>
 
@@ -296,41 +301,35 @@ const { page } = Astro.props;
       <hr style="width:100%;" />
     </div>
 
-    <div
-      class="horizontalbar m-5 grid list-none grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8 text-gray-100"
-    >
+    <div class="horizontalbar m-5 grid list-none grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8 text-gray-100">
       <!-- Loop with images -->
       {
-        page.data
-          .filter(
-            (post) =>
-              post.frontmatter.tags.includes("Trends") ||
-              post.frontmatter.tags.includes("Exploration")
-          )
-          .slice(0, 4)
-          .map((post) => (
-            <li key={post.frontmatter.slug} class="w-full">
-              <a href={"/post/" + post.frontmatter.slug} class="block">
-                <img
-                  class="h-40 w-full rounded-lg object-cover"
-                  src={post.frontmatter.image}
-                  alt={post.frontmatter.title}
-                />
-                <p class="my-2 font-bold text-xl">{post.frontmatter.title}</p>
-                <p class="guide-decription my-2 text-sm">
-                  {post.frontmatter.description}
-                </p>
-                <p class="text-gray-400">{post.frontmatter.excerpt}</p>
-                <p class="my-2 font-light text-sm">
-                  {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
-                </p>
-                <p class="guide-decription float-right my-2 text-gray-500 text-xs">
-                  &#10711; {post.frontmatter.minutesRead}
-                  <PostViews slug={post.frontmatter.slug} />
-                </p>
-              </a>
-            </li>
-          ))
+      page.data
+      .filter(
+      (post) =>
+      post.frontmatter.tags.includes("Trends") ||
+      post.frontmatter.tags.includes("Exploration")
+      )
+      .slice(0, 4)
+      .map((post) => (
+      <li key={post.frontmatter.slug} class="w-full">
+        <a href={"/post/" + post.frontmatter.slug} class="block">
+          <img class="h-40 w-full rounded-lg object-cover" src={post.frontmatter.image} alt={post.frontmatter.title} />
+          <p class="my-2 font-bold text-xl">{post.frontmatter.title}</p>
+          <p class="guide-decription my-2 text-sm">
+            {post.frontmatter.description}
+          </p>
+          <p class="text-gray-400">{post.frontmatter.excerpt}</p>
+          <p class="my-2 font-light text-sm">
+            {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
+          </p>
+          <p class="guide-decription float-right my-2 text-gray-500 text-xs">
+            &#10711; {post.frontmatter.minutesRead}
+            <PostViews slug={post.frontmatter.slug} />
+          </p>
+        </a>
+      </li>
+      ))
       }
     </div>
 
@@ -342,83 +341,64 @@ const { page } = Astro.props;
     </div>
     <div class="blog blog-container" style="color:#818cf8;">
       <p class="text-sm">
-        <em
-          >Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em
-        >
+        <em>Post {page.start + 1} through {page.end + 1} of {page.total} total posts</em>
       </p>
       <ul class="my-3">
         {
-          page.data.map((post) => (
-            <li>
-              <a href={"/post/" + post.frontmatter.slug}>
-                <div class="post-container">
-                  <div class="image-container">
-                    <img
-                      class="rounded-lg"
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                    />
-                  </div>
-                  <div class="text-container">
-                    <p class="text-md pt-3 font-bold">
-                      {post.frontmatter.title}
-                    </p>
-                    <p class="guide-decription my-2" style="font-size: .8rem;">
-                      {post.frontmatter.description}
-                    </p>
+        page.data.map((post) => (
+        <li>
+          <a href={"/post/" + post.frontmatter.slug}>
+            <div class="post-container">
+              <div class="image-container">
+                <img class="rounded-lg" src={post.frontmatter.image} alt={post.frontmatter.title} />
+              </div>
+              <div class="text-container">
+                <p class="text-md pt-3 font-bold">
+                  {post.frontmatter.title}
+                </p>
+                <p class="guide-decription my-2" style="font-size: .8rem;">
+                  {post.frontmatter.description}
+                </p>
 
-                    <p
-                      class="my-2 font-light text-gray-400"
-                      style="font-size: .8rem;"
-                    >
-                      {post.frontmatter.pubDate} | Posted
-                      {post.frontmatter.pubTime}
-                    </p>
+                <p class="my-2 font-light text-gray-400" style="font-size: .8rem;">
+                  {post.frontmatter.pubDate} | Posted
+                  {post.frontmatter.pubTime}
+                </p>
 
-                    <p
-                      class="guide-decription float-right text-gray-500"
-                      style="font-size: .7rem;"
-                    >
-                      &#10711; {post.frontmatter.minutesRead}
-                    </p>
-                    <div class="flex gap-x-2">
-                      {post.frontmatter.tags &&
-                        post.frontmatter.tags.map((tag: string) => (
-                          <span class="gradient-text font-bold">{tag}</span>
-                        ))}
-                    </div>
-                  </div>
+                <p class="guide-decription float-right text-gray-500" style="font-size: .7rem;">
+                  &#10711; {post.frontmatter.minutesRead}
+                </p>
+                <div class="flex gap-x-2">
+                  {post.frontmatter.tags &&
+                  post.frontmatter.tags.map((tag: string) => (
+                  <span class="gradient-text font-bold">{tag}</span>
+                  ))}
                 </div>
-              </a>
-            </li>
-            // <>
-            // <li>
+              </div>
+            </div>
+          </a>
+        </li>
+        // <>
+          // <li>
             // <Card url={"/post/" + post.frontmatter.slug} img={post.frontmatter.image} title={post.frontmatter.title}
-            // footer={ post.frontmatter.pubDate + " | " + post.frontmatter.minutesRead }>
-            // <small>{post.frontmatter.description}</small>
-            // <div class="flex gap-x-2">
-            // {post.frontmatter.tags &&
-            // post.frontmatter.tags.map((tag: string) => (
-            // <span class="gradient-text font-bold">{tag}</span>
-            // ))}
-            // </div>
-            // </Card>
+              // footer={ post.frontmatter.pubDate + " | " + post.frontmatter.minutesRead }>
+              // <small>{post.frontmatter.description}</small>
+              // <div class="flex gap-x-2">
+                // {post.frontmatter.tags &&
+                // post.frontmatter.tags.map((tag: string) => (
+                // <span class="gradient-text font-bold">{tag}</span>
+                // ))}
+                // </div>
+              // </Card>
             // </li>
-            // </>
-          ))
+          // </>
+        ))
         }
       </ul>
       <div class="mt-12 grid place-content-center">
-        <Pagination
-          firstPage={page.url.prev ? "/post" : null}
-          previousPage={page.url.prev ? page.url.prev : null}
-          nextPage={page.url.next ? page.url.next : null}
-          lastPage={page.url.next
-            ? `/post/${Math.ceil(page.total / page.size)}`
-            : null}
-          currentPage={page.currentPage}
-          totalPages={Math.ceil(page.total / page.size)}
-        />
+        <Pagination firstPage={page.url.prev ? "/post" : null} previousPage={page.url.prev ? page.url.prev : null}
+          nextPage={page.url.next ? page.url.next : null} lastPage={page.url.next ? `/post/${Math.ceil(page.total /
+          page.size)}` : null} currentPage={page.currentPage} totalPages={Math.ceil(page.total / page.size)} />
       </div>
     </div>
   </section>
