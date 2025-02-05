@@ -5,7 +5,7 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
 <div class="wrapper max-w-6xl">
   <div class="recent-posts p-2 pt-12">
     <div class="heading">
-      <a href="/post"> <h2>Featured</h2></a>
+      <a href="/post"> <h2>Top News</h2></a>
       <hr style="width:100%;" />
     </div>
     <div class="horizontalbar">
@@ -17,11 +17,11 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
               const bDate = new Date(b.frontmatter.pubDate);
               return bDate - aDate;
             })
-            .filter(
-              (post) =>
-                post.frontmatter.tags.includes("Trends") ||
-                post.frontmatter.tags.includes("Exclusive")
-            )
+            // .filter(
+            //   (post) =>
+            //     post.frontmatter.tags.includes("Exclusive") ||
+            //     post.frontmatter.tags.includes("")
+            // )
             .slice(0, 1)
             .map((post) => (
               <li>
@@ -61,12 +61,12 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
               const bDate = new Date(b.frontmatter.pubDate);
               return bDate - aDate;
             })
-            .filter(
-              (post) =>
-                post.frontmatter.tags.includes("Exploration") ||
-                post.frontmatter.tags.includes("Micromobility")
-            )
-            .slice(0, 2)
+            // .filter(
+            //   (post) =>
+            //     post.frontmatter.tags.includes("Trends") ||
+            //     post.frontmatter.tags.includes("Exclusive")
+            // )
+            .slice(1, 3)
             .map((post) => (
               <li>
                 <a href={"/post/" + post.frontmatter.slug}>
