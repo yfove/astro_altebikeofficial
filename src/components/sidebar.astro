@@ -13,7 +13,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
         class="mb-2 inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center font-medium text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <svg
-          class="mr-2 -ml-1 h-5 w-5"
+          class="-ml-1 mr-2 h-5 w-5"
           fill="currentColor"
           viewBox="0 0 23 23"
           xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
         class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center font-medium text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <svg
-          class="mr-2 -ml-1 h-5 w-5"
+          class="-ml-1 mr-2 h-5 w-5"
           fill="currentColor"
           viewBox="0 0 23 23"
           xmlns="http://www.w3.org/2000/svg"
@@ -43,8 +43,8 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
       </a>
     </ul>
   </div>
-  <div class="recent-posts ">
-    <h3 class="gradient-text text-lg font-bold pb-3">Recent Posts</h3>
+  <div class="recent-posts">
+    <h3 class="gradient-text pb-3 font-bold text-lg">Recent Posts</h3>
     <!-- loop with images -->
     <ul class="pb-6">
       {
@@ -62,18 +62,13 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
                   src={post.frontmatter.image}
                   alt={post.frontmatter.title}
                 />
-                <small class="font-bold">
-                  {post.frontmatter.title}
-                </small>
-                <br>
+                <small class="font-bold">{post.frontmatter.title}</small>
+                <br />
                 <small class="text-gray-400">
                   {post.frontmatter.pubDate} {post.frontmatter.pubTime}
                 </small>
-                <small class="gradient-text " >
-                  {post.frontmatter.author}
-                </small>
+                <small class="gradient-text ">{post.frontmatter.author}</small>
               </a>
-              
             </li>
           ))
       }
@@ -93,12 +88,11 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
             <li class="pb-3">
               <a href={"/post/" + post.frontmatter.slug}>
                 <small class="font-bold">{post.frontmatter.title}</small>
-                <p class="font-light">
-                  {post.frontmatter.description}
-                </p>
+                <p class="font-light">{post.frontmatter.description}</p>
                 <small class="text-gray-400">
                   {post.frontmatter.pubDate}
-                </small>              {/* <p>{post.frontmatter.description}</p> */}
+                </small>{" "}
+                {/* <p>{post.frontmatter.description}</p> */}
               </a>
             </li>
           ))

@@ -27,3 +27,19 @@ h3 {
 .mdx .article-body h1 {
   @apply tracking-tight text-3xl
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background-color: black;
+}
+

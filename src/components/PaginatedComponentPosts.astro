@@ -3,23 +3,23 @@ import { Pagination } from "accessible-astro-components";
 
 export interface Props {
   page: any;
-  products: any;
+  posts: any;
 }
 
 const { page } = Astro.props;
 
 const totalPages = Math.ceil(page.total / page.size);
-const firstPage = page.url.prev ? "/products" : null;
+const firstPage = page.url.prev ? "/posts" : null;
 const previousPage = page.url.prev || null;
 const nextPage = page.url.next || null;
-const lastPage = page.url.next ? `/products/${totalPages}` : null;
+const lastPage = page.url.next ? `/posts/${totalPages}` : null;
 ---
 
 <section class="py-12 text-gray-400">
   <div class="blog m-0">
     <p class="text-sm">
       <em>
-        Product {page.start + 1} through {page.end + 1} of {page.total} total products
+        post {page.start + 1} through {page.end + 1} of {page.total} total posts
       </em>
     </p>
 
@@ -28,71 +28,58 @@ const lastPage = page.url.next ? `/products/${totalPages}` : null;
     >
       {
         page.data && page.data.length > 0 ? (
-          page.data.map((product) => (
+          page.data.map((post) => (
             <li
               class="flex flex-col rounded-lg border-2 border-stone-800 text-center shadow-2xl"
-              key={product.frontmatter.slug}
+              key={post.frontmatter.slug}
             >
-              <a href={`/products/${product.frontmatter.slug}`}>
+              <a href={`/post/${post.frontmatter.slug}`}>
                 <img
                   class="h-56 w-full rounded-lg object-cover"
-                  src={product.frontmatter.image}
-                  alt={product.frontmatter.title}
+                  src={post.frontmatter.image}
+                  alt={post.frontmatter.title}
                   loading="lazy"
                 />
 
                 <div class="mt-2 space-x-2">
-                  {product.frontmatter.tags?.map((tag, index) => (
+                  {post.frontmatter.tags?.map((tag, index) => (
                     <span key={index} class="text-sm">
                       <a href={`/tags/${tag}`} class=" hover:underline">
                         {tag}
                       </a>
-                      {index < product.frontmatter.tags.length - 1 && (
+                      {index < post.frontmatter.tags.length - 1 && (
                         <span class="mx-1 ">|</span>
                       )}
                     </span>
                   ))}
                 </div>
               </a>
-              <a
-                href={`/products/${product.frontmatter.slug}`}
-                class="flex flex-col"
-              >
+              <a href={`/post/${post.frontmatter.slug}`} class="flex flex-col">
                 <p class="gradient-text my-2 px-3 font-bold text-lg">
-                  {product.frontmatter.title}
+                  {post.frontmatter.title}
                 </p>
                 <p class=" px-3 font-normal  " style="font-size: .8rem;">
-                  {product.frontmatter.excerpt}
+                  {post.frontmatter.excerpt}
                 </p>
                 <p class="my-2 font-light " style="font-size: .8rem;">
-                  {product.frontmatter.pubDate} | Posted{" "}
-                  {product.frontmatter.pubTime}
+                  {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
                 </p>
                 <p class="guide-decription my-2 " style="font-size: .7rem;">
-                  &#10711; {product.frontmatter.minutesRead}
+                  &#10711; {post.frontmatter.minutesRead}
                 </p>
               </a>
               <div class="my-3">
                 <a
-                  href={`/products/${product.frontmatter.slug}`}
+                  href={`/post/${post.frontmatter.slug}`}
                   class="text-md gradient-text mx-2 uppercase hover:text-gray-700 hover:underline"
                 >
-                  View
-                </a>
-                <span class="text-md mx-2 uppercase  ">|</span>
-                <a
-                  href={product.frontmatter.buyLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-md gradient-text mx-2 uppercase hover:text-gray-700 hover:underline"
-                >
-                  Order
+                  Read More
                 </a>
               </div>
             </li>
           ))
         ) : (
-          <li class="text-center text-white">No products available</li>
+          <li class="text-center text-white">No posts available</li>
         )
       }
     </ul>

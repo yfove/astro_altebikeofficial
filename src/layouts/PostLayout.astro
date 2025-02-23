@@ -22,6 +22,9 @@ const {
     author,
     credit,
     slug,
+    buyLink,
+    product,
+    tags,
   },
 } = Astro.props;
 
@@ -43,7 +46,7 @@ export const prerender = true;
         <a href="javascript:history.back()" class="back-button"
           >Back to Previous</a
         >
-        <a style="color: #818cf8">| {title}</a>
+        <a style="color: #white">| {title}</a>
         <article class="mdx">
           <div class="article-head">
             <h1
@@ -70,6 +73,18 @@ export const prerender = true;
             <slot class="mdx" />
           </div>
         </article>
+        {/* Conditionally render the buyLink */}
+        {
+          buyLink && (
+            <div class="mt-6">
+              <a href={buyLink} class="gradient-text hover:text-gray-700">
+                Buy the {product}
+              </a>
+            </div>
+          )
+        }
+        <br />
+        <br />
         <br />
         <a href="javascript:history.back()" class="back-button"
           >Back to Previous</a
@@ -102,7 +117,7 @@ export const prerender = true;
       }
 
       hr {
-        border-top: 1px solid #818cf8;
+        border-top: 1px solid ;
         margin: 0.6rem 0;
       }
 

@@ -7,40 +7,73 @@ const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
 ---
 
-<section class="hero w-width md:mr-0 ">
-  <div class="mx-auto grid max-w-screen-xl px-8 py-8 lg:grid-cols-12 lg:gap-8 lg:py-16 xl:gap-0 max-sm:text-center">
-    <div class="mr-auto place-self-center lg:col-span-7 ">
+<section class="hero w-width md:mr-0">
+  <div
+    class="mx-auto grid max-w-6xl px-8 py-8 max-sm:text-center lg:grid-cols-12 lg:gap-8 lg:py-16 xl:gap-0"
+  >
+    <div class="mr-auto place-self-center lg:col-span-7">
       <h1
-        class="gradient-text mb-4 max-w-2xl font-extrabold leading-none tracking-tighter text-4xl max-sm:text-7xl xl:text-6xl">
+        class="gradient-text mb-4 max-w-2xl font-extrabold leading-none tracking-tighter text-4xl max-sm:text-7xl xl:text-6xl"
+      >
         Welcome to Ebikenook
       </h1>
-      <p class="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
+      <p
+        class="mb-6 max-w-2xl font-light text-gray-500 md:text-lg lg:mb-8 lg:text-xl dark:text-gray-400"
+      >
         Explore the transformative potential of all-electric living through
         Ebikenook, your trusted source for eBike news and inspiration.
       </p>
-      <a href="/post/"
-        class="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 mr-3 inline-flex items-center justify-center rounded-lg px-5 py-3 text-center font-medium text-white text-base focus:ring-4">
+      <a
+        href="/post/"
+        class="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 mr-3 inline-flex items-center justify-center rounded-lg px-5 py-3 text-center font-medium text-white text-base focus:ring-4"
+      >
         Start Exploring
-        <svg class="ml-2 -mr-1 h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
+        <svg
+          class="-mr-1 ml-2 h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
             d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
             clip-rule="evenodd"></path>
         </svg>
       </a>
-      <a href="https://www.instagram.com/ebikenook/"
-        class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center font-medium text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-        <svg class="mr-2 -ml-1 h-5 w-5" fill="currentColor" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg">
-          <path fill="mediumslateblue"
-            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z">
+      <a
+        href="https://www.instagram.com/ebikenook/"
+        class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center font-medium text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+      >
+        <svg
+          class="-ml-1 mr-2 h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 23 23"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="mediumslateblue"
+            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
+          >
           </path>
         </svg>
         Instagram
       </a>
     </div>
-    <div class="lg:col-span-5 lg:mt-0 lg:flex max-sm:align-center max-sm:justify-center max-sm:flex">
-      <div id="astronaut" class="w-2/3 max-w-3xl self-start sm:self-auto sm:justify-self-start lg:w-10/12">
-        <Image class="object-cover h-full" src={astronautImage} widths={widths} sizes={sizes} loading="eager"
-          alt="an electric bike" />
+    <div
+      class="max-sm:align-center max-sm:flex max-sm:justify-center lg:col-span-5 lg:mt-0 lg:flex"
+    >
+      <div
+        id="astronaut"
+        class="w-2/3 max-w-3xl self-start sm:self-auto sm:justify-self-start lg:w-10/12"
+      >
+        <Image
+          class="h-full object-cover"
+          src={astronautImage}
+          widths={widths}
+          sizes={sizes}
+          loading="eager"
+          alt="an electric bike"
+        />
       </div>
     </div>
   </div>

@@ -43,7 +43,7 @@ function Search({ searchList }) {
             value={query}
             onChange={handleOnSearch}
             class="m-4 mx-auto block rounded-lg border border-gray-800 
-                bg-black 
+                bg-neutral-900
                 p-2 pl-4
                 text-gray-400 text-sm
                 focus:border-gray-700
@@ -51,7 +51,7 @@ function Search({ searchList }) {
                 focus:ring-gray-700
                 max-sm:w-full
                 lg:w-1/2"
-            placeholder="&#x1F50E;&#xFE0E; Search for anything..."
+            placeholder=" Search for anything..."
           />
         </div>
       </div>
@@ -66,16 +66,40 @@ function Search({ searchList }) {
       <ul className="m-4 list-none">
         {posts &&
           posts.map((post) => (
-            <li className="py-2">
+            <li className="py-2" key={post.frontmatter.slug}>
               <a
-                className="text-indigo-400 underline-offset-2 text-lg hover:text-indigo-500 hover:underline"
+                className="text-gray-200 underline-offset-2 text-lg hover:text-gray-500 hover:underline"
                 href={`/post/${post.frontmatter.slug}`}
               >
-                {post.frontmatter.title}
+                <div className="mx-auto max-w-[50%] text-left">
+                  {" "}
+                  {/* 50% width, center, text left aligned */}
+                  <div className="flex items-center">
+                    {/* Add image */}
+                    {post.frontmatter.image && (
+                      <img
+                        src={post.frontmatter.image}
+                        alt={post.frontmatter.title}
+                        className="mr-4 h-16 w-16 object-cover"
+                      />
+                    )}
+                    <div>
+                      <h2 className="font-semibold">
+                        {post.frontmatter.title}
+                      </h2>{" "}
+                      {/* Title aligned to left */}
+                      <p className="text-gray-400 text-sm">
+                        {post.frontmatter.description}
+                      </p>{" "}
+                      {/* Description aligned to left */}
+                      <p className="text-gray-400 text-sm">
+                        Published {post.frontmatter.pubDate}
+                      </p>{" "}
+                      {/* Published date aligned to left */}
+                    </div>
+                  </div>
+                </div>
               </a>
-              <p className="text-gray-400 text-sm">
-                {post.frontmatter.description}
-              </p>
             </li>
           ))}
       </ul>

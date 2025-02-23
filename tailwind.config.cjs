@@ -7,6 +7,9 @@ module.exports = {
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
       },
+      fontSize: {
+        'xxs': '0.625rem', // Custom size (smaller than xs)
+      },
       colors: {
         primary: "var(--color-primary)",
         secondary: "var(--color-secondary)",

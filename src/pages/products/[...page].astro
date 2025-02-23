@@ -1,7 +1,7 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
-import Alltags from "~/components/alltags.astro";
-import SearchBar from "~/components/SearchBar.astro";
+import Alltags from "~/components/alltagsProduct.astro";
+import SearchBar from "~/components/SearchBarProduct.astro";
 import PaginatedComponent from "~/components/PaginatedComponent.astro";
 
 export async function getStaticPaths({ paginate }) {
@@ -32,9 +32,9 @@ const { page } = Astro.props;
 
     <div class="heading text-gray-100">
       <a href="/post">
-        <h2>Browse</h2>
+        <!-- <h2>Browse</h2> -->
       </a>
-      <hr style="width:100%;" />
+      <!-- <hr style="width:100%;" /> -->
     </div>
 
     <!-- Use the PaginatedPosts component here -->

@@ -1,0 +1,9 @@
+---
+import Seacher from "./Searcher";
+const allPosts = await Astro.glob("../pages/products/*.{md,mdx}");
+const products = allPosts.filter(
+  (products) => !products.frontmatter.draft && products.frontmatter.slug
+);
+---
+
+<Seacher client:load searchList={products} />
