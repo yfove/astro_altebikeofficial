@@ -1,49 +1,67 @@
 ---
-const allPosts = await Astro.glob("../pages/post/**/*.mdx");
-const tags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+const allPosts = await Astro.glob("../pages/**/**/*.mdx");
+const tags = [
+  ...new Set(allPosts.flatMap((post) => post.frontmatter.tags || [])),
+];
+const maxVisibleTags = 4;
+
 ---
 
-<div class="wrapper pt-2 ">
-  <div class="alltags p-2">
-    <div class="heading">
-      <!-- <a href="/featured"> <h2>Categories</h2></a> -->
-      <!-- <hr style="width:100%;" /> -->
-    </div>
-    <div class="tags max-md:items-center max-md:justify-center flex">
-      <p class="tag ">
-        <a href={`/post/`} class="gradient-text font-bold">
-          All
+<div class="tags flex flex-wrap justify-center gap-2 my-4 mx-auto ">
+  <!-- Display first maxVisibleTags tags -->
+  {
+    tags.sort((a, b) => a.localeCompare(b)) .slice(0, maxVisibleTags).map((tag) => (
+      <p
+        key={tag}
+        class="tag border-2 rounded-lg border-fuchsia-600 bg-black px-4 py-1 font-bold text-white text-sm hover:text-gray-100"
+      >
+        <a href={`/tags/${tag}`} class="font-sans font-bold gradient-text">
+          {tag}
         </a>
       </p>
-      {
-        tags.map((tag) => (
-          <p class="tag ">
-            <a href={`/tags/${tag}`} class="gradient-text font-bold">
-              {tag}
-            </a>
-          </p>
-        ))
-      }
-    </div>
-  </div>
+    ))
+  }
+
+  <!-- If there are more than maxVisibleTags tags, show the 'More' button -->
+  {
+    tags.length > maxVisibleTags && (
+      <div class="relative z-10">
+        <!-- 'More' button styled as a tag -->
+        <button
+          id="dropdownToggle"
+          class="tag cursor-pointer border-2 border-fuchsia-800 rounded-lg bg-secondary px-4 py-1 font-bold gradient-text text-sm hover:text-gray-100"
+        >
+          Browse more topics...
+        </button>
+
+        <!-- Dropdown content with remaining tags -->
+        <div
+  id="dropdownContent"
+  class="dropdown-content absolute z-10 mt-1 hidden w-full  border-2 rounded-lg border-fuchsia-900 bg-black p-2 shadow-lg max-h-96 overflow-y-auto"
+>
+  {tags.slice(maxVisibleTags).map((tag) => (
+    <p
+      key={tag}
+      class="tag border-2 border-fuchsia-900 bg-secondary p-2 my-2 rounded-lg font-bold gradient-text text-sm hover:text-gray-100"
+    >
+      <a href={`/tags/${tag}`} class="font-sans font-bold">
+        {tag}
+      </a>
+    </p>
+  ))}
 </div>
 
-<style>
-  a {
-    /* color: #00539f; */
+      </div>
+    )
   }
+</div>
 
-  .tags {
-    flex-wrap: wrap;
-  }
+<script>
+  // Toggle visibility of dropdown when 'More' button is clicked
+  const dropdownToggle = document.getElementById("dropdownToggle");
+  const dropdownContent = document.getElementById("dropdownContent");
 
-  .tag {
-    margin: 0.25em;
-    border: solid 2px #2a2a2d;
-    border-radius: 0.5em;
-    padding: 0.1rem 0.5em;
-    font-size: 1.15em;
-    background-color: var(--color-secondary);
-    color: #818cf8;
-  }
-</style>
+  dropdownToggle.addEventListener("click", () => {
+    dropdownContent.classList.toggle("hidden");
+  });
+</script>

@@ -1,0 +1,66 @@
+---
+// This will receive the `post` prop passed by the parent and an optional `imageClass` prop
+const { post, imageClass = "" } = Astro.props;
+---
+
+<li class="flex flex-col rounded-lg border-2 border-stone-400 text-center">
+  <a href={"/post/" + post.frontmatter.slug} class="flex flex-col">
+    <img
+      class={`w-full object-cover ${imageClass || "h-64"}`}
+      src={post.frontmatter.image}
+      alt={post.frontmatter.title}
+    />
+  </a>
+  <div class="mt-2 space-x-2">
+    {
+      post.frontmatter.tags &&
+        post.frontmatter.tags.map((tag, index) => (
+          <span key={index} class="text-sm">
+            <a href={`/tags/${tag}`} class="text-stone-400 hover:underline">
+              {tag}
+            </a>
+            {index < post.frontmatter.tags.length - 1 && (
+              <span class="mx-1 text-gray-400">|</span>
+            )}
+          </span>
+        ))
+    }
+  </div>
+  <a href={"/post/" + post.frontmatter.slug} class="flex flex-col">
+    <p class="my-2 px-3 font-bold text-gray-950 text-xl">
+      {post.frontmatter.title}
+    </p>
+    {
+      /* <p
+        class="guide-decription my-2 text-gray-950"
+        style="font-size: .8rem;"
+      >
+        {post.frontmatter.description}
+      </p> */
+    }
+    <p class="px-3 text-gray-900">{post.frontmatter.excerpt}</p>
+    <p class="my-2 font-light text-gray-950" style="font-size: .8rem;">
+      {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
+    </p>
+    <p class="guide-decription my-2 text-gray-900" style="font-size: .7rem;">
+      &#10711; {post.frontmatter.minutesRead}
+    </p>
+  </a>
+  <div class="my-3">
+    <a
+      href={"/post/" + post.frontmatter.slug}
+      class="text-md mx-2 font-serif italic text-amber-600 hover:text-gray-700 hover:underline"
+    >
+      Read
+    </a>
+    <span class="text-md mx-2 font-serif italic text-gray-600">or</span>
+    <a
+      href={post.frontmatter.buyLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-md mx-2 font-serif italic text-amber-600 hover:text-gray-700 hover:underline"
+    >
+      Buy
+    </a>
+  </div>
+</li>

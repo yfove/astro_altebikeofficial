@@ -1,0 +1,43 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import Alltags from "~/components/alltags.astro";
+import SearchBar from "~/components/SearchBar.astro";
+import PaginatedComponent from "~/components/PaginatedComponent.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const post = await Astro.glob("./*.mdx");
+
+  const sortedPosts = post.sort((a, b) => {
+    const aDate = new Date(a.frontmatter.pubDate);
+    const bDate = new Date(b.frontmatter.pubDate);
+
+    return bDate - aDate;
+  });
+
+  return paginate(sortedPosts, { pageSize: 6, page: 1 });
+}
+
+const { page } = Astro.props;
+---
+
+<BlogLayout
+  title="E-Vault"
+  description="Think of The E-Vault as your go-to destination for the hottest new e-bike product releases. Stay up-to-date on the latest electric bikes and gear that are making waves in the industry. From cutting-edge models to must-have accessories, we’ve got all the exciting updates you need to stay ahead in the e-bike world."
+>
+  <section class="mx-auto max-w-6xl">
+    <div class="tags">
+      <SearchBar />
+      <Alltags />
+    </div>
+
+    <div class="heading text-gray-100">
+      <a href="/post">
+        <h2>Browse</h2>
+      </a>
+      <hr style="width:100%;" />
+    </div>
+
+    <!-- Use the PaginatedPosts component here -->
+    <PaginatedComponent page={page} posts={page.data} />
+  </section>
+</BlogLayout>

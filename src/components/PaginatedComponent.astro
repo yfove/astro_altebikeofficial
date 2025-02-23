@@ -1,0 +1,117 @@
+---
+import { Pagination } from "accessible-astro-components";
+
+export interface Props {
+  page: any;
+  products: any;
+}
+
+const { page } = Astro.props;
+
+const totalPages = Math.ceil(page.total / page.size);
+const firstPage = page.url.prev ? "/products" : null;
+const previousPage = page.url.prev || null;
+const nextPage = page.url.next || null;
+const lastPage = page.url.next ? `/products/${totalPages}` : null;
+---
+
+<section class="text-white">
+  <div class="blog m-0">
+    <p class="text-sm">
+      <em>
+        Product {page.start + 1} through {page.end + 1} of {page.total} total products
+      </em>
+    </p>
+
+    <ul
+      class="my-3 grid gap-5 sm:grid-cols-[repeat(auto-fill,minmax(380px,1fr))]"
+    >
+      {
+        page.data && page.data.length > 0 ? (
+          page.data.map((product) => (
+            <li
+              class="flex flex-col border-2 border-stone-400 text-center"
+              key={product.frontmatter.slug}
+            >
+              <a href={`/products/${product.frontmatter.slug}`}>
+                <img
+                  class="h-64 w-full object-cover"
+                  src={product.frontmatter.image}
+                  alt={product.frontmatter.title}
+                  loading="lazy"
+                />
+
+                <div class="mt-2 space-x-2">
+                  {product.frontmatter.tags?.map((tag, index) => (
+                    <span key={index} class="text-sm">
+                      <a
+                        href={`/tags/${tag}`}
+                        class="text-stone-400 hover:underline"
+                      >
+                        {tag}
+                      </a>
+                      {index < product.frontmatter.tags.length - 1 && (
+                        <span class="mx-1 text-gray-400">|</span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </a>
+              <a
+                href={`/products/${product.frontmatter.slug}`}
+                class="flex flex-col"
+              >
+                <p class="gradient-text my-2 px-3 font-bold text-xl">
+                  {product.frontmatter.title}
+                </p>
+                <p class="px-3 text-white">{product.frontmatter.excerpt}</p>
+                <p class="my-2 font-light text-white" style="font-size: .8rem;">
+                  {product.frontmatter.pubDate} | Posted{" "}
+                  {product.frontmatter.pubTime}
+                </p>
+                <p
+                  class="guide-decription my-2 text-white"
+                  style="font-size: .7rem;"
+                >
+                  &#10711; {product.frontmatter.minutesRead}
+                </p>
+              </a>
+              <div class="my-3">
+                <a
+                  href={`/products/${product.frontmatter.slug}`}
+                  class="text-md gradient-text mx-2 font-serif italic hover:text-gray-700 hover:underline"
+                >
+                  View
+                </a>
+                <span class="text-md mx-2 font-serif italic text-gray-600">
+                  or
+                </span>
+                <a
+                  href={product.frontmatter.buyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-md gradient-text mx-2 font-serif italic hover:text-gray-700 hover:underline"
+                >
+                  Buy
+                </a>
+              </div>
+            </li>
+          ))
+        ) : (
+          <li class="text-center text-white">No products available</li>
+        )
+      }
+    </ul>
+  </div>
+
+  <div class="mt-12 grid place-content-center">
+    <Pagination
+      firstPage={firstPage}
+      previousPage={previousPage}
+      nextPage={nextPage}
+      lastPage={lastPage}
+      currentPage={page.currentPage}
+      totalPages={totalPages}
+    />
+  </div>
+</section>
