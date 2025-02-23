@@ -15,17 +15,21 @@ const nextPage = page.url.next || null;
 const lastPage = page.url.next ? `/posts/${totalPages}` : null;
 ---
 
-<section class="py-12 text-gray-400">
-  <div class="blog m-0">
-    <p class="text-sm">
+<section class="m-5 py-12 text-gray-400">
+  <div class="heading text-left text-gray-400">
+    <a href="/post">
+      <h2>Archive</h2>
+    </a>
+    <hr style="width:100%;" />
+  </div>
+  <div class="blog">
+    <p class="my-3 text-sm">
       <em>
         post {page.start + 1} through {page.end + 1} of {page.total} total posts
       </em>
     </p>
 
-    <ul
-      class="m-3 grid gap-5 sm:grid-cols-[repeat(auto-fill,minmax(340px,1fr))]"
-    >
+    <ul class="grid gap-5 sm:grid-cols-[repeat(auto-fill,minmax(340px,1fr))]">
       {
         page.data && page.data.length > 0 ? (
           page.data.map((post) => (
@@ -55,27 +59,25 @@ const lastPage = page.url.next ? `/posts/${totalPages}` : null;
                 </div>
               </a>
               <a href={`/post/${post.frontmatter.slug}`} class="flex flex-col">
-                <p class="gradient-text my-2 px-3 font-bold text-lg">
+                <p class="gradient-text my-2 px-3 text-left font-bold text-lg">
                   {post.frontmatter.title}
                 </p>
-                <p class=" px-3 font-normal  " style="font-size: .8rem;">
+                <p
+                  class=" px-3 text-left font-normal "
+                  style="font-size: .8rem;"
+                >
                   {post.frontmatter.excerpt}
                 </p>
-                <p class="my-2 font-light " style="font-size: .8rem;">
+                <p class="p-3 text-left font-light " style="font-size: .8rem;">
                   {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
                 </p>
-                <p class="guide-decription my-2 " style="font-size: .7rem;">
+                <p
+                  class="guide-decription m-3 text-right"
+                  style="font-size: .7rem;"
+                >
                   &#10711; {post.frontmatter.minutesRead}
                 </p>
               </a>
-              <div class="my-3">
-                <a
-                  href={`/post/${post.frontmatter.slug}`}
-                  class="text-md gradient-text mx-2 uppercase hover:text-gray-700 hover:underline"
-                >
-                  Read More
-                </a>
-              </div>
             </li>
           ))
         ) : (

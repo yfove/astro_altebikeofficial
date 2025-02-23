@@ -1,0 +1,35 @@
+---
+import Cardcontent from "~/components/_cardcontent.astro";
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+---
+
+<div class="mx-5">
+  <div class="heading text-left text-gray-400">
+    <a href="/post">
+      <h2>Explore</h2>
+    </a>
+    <hr style="width:100%;" />
+  </div>
+
+  <div
+    class="wrapper horizontalbar m-5 mx-auto grid max-w-6xl list-none grid-cols-1 gap-8 text-gray-100 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+  >
+    <!-- Loop with images -->
+    {
+      posts
+        .sort((a, b) => {
+          const aDate = new Date(a.frontmatter.pubDate);
+          const bDate = new Date(b.frontmatter.pubDate);
+          return bDate - aDate;
+        })
+        .slice(1, 3)
+        .map((post) => (
+          <Cardcontent
+            post={post}
+            key={post.frontmatter.slug}
+            imageClass="h-64"
+          />
+        ))
+    }
+  </div>
+</div>

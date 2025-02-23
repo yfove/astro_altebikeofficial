@@ -1,7 +1,9 @@
 ---
-import Seacher from './Searcher';
-const allPosts = await Astro.glob('../pages/**/*.{md,mdx}');
-const posts = allPosts.filter((post) => !post.frontmatter.draft && post.frontmatter.slug);
+import Seacher from "./Searcher";
+const allPosts = await Astro.glob("../pages/post/*.{md,mdx}");
+const posts = allPosts.filter(
+  (post) => !post.frontmatter.draft && post.frontmatter.slug
+);
 ---
 
 <Seacher client:load searchList={posts} />

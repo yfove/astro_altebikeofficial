@@ -15,17 +15,15 @@ const nextPage = page.url.next || null;
 const lastPage = page.url.next ? `/products/${totalPages}` : null;
 ---
 
-<section class="py-12 text-gray-400">
-  <div class="blog m-0">
-    <p class="text-sm">
+<section class="m-5 py-12 text-gray-400">
+  <div class="blog">
+    <p class="my-3 text-sm">
       <em>
         Product {page.start + 1} through {page.end + 1} of {page.total} total products
       </em>
     </p>
 
-    <ul
-      class="m-3 grid gap-5 sm:grid-cols-[repeat(auto-fill,minmax(340px,1fr))]"
-    >
+    <ul class="grid gap-5 sm:grid-cols-[repeat(auto-fill,minmax(340px,1fr))]">
       {
         page.data && page.data.length > 0 ? (
           page.data.map((product) => (

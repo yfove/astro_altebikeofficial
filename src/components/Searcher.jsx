@@ -43,7 +43,7 @@ function Search({ searchList }) {
             value={query}
             onChange={handleOnSearch}
             class="m-4 mx-auto block rounded-lg border border-gray-800 
-                bg-neutral-900
+                bg-zinc-950
                 p-2 pl-4
                 text-gray-400 text-sm
                 focus:border-gray-700
@@ -51,13 +51,13 @@ function Search({ searchList }) {
                 focus:ring-gray-700
                 max-sm:w-full
                 lg:w-1/2"
-            placeholder=" Search for anything..."
+            placeholder=" &#x1F50E;&#xFE0E; Search for anything..."
           />
         </div>
       </div>
 
       {query.length > 1 && (
-        <div className="m-4 text-gray-400">
+        <div className="m-4 text-center text-gray-400">
           Found {posts.length} {posts.length === 1 ? "result" : "results"} for '
           {query}'
         </div>
@@ -69,7 +69,11 @@ function Search({ searchList }) {
             <li className="py-2" key={post.frontmatter.slug}>
               <a
                 className="text-gray-200 underline-offset-2 text-lg hover:text-gray-500 hover:underline"
-                href={`/post/${post.frontmatter.slug}`}
+                href={`/${
+                  post.frontmatter.type && post.frontmatter.slug
+                    ? `${post.frontmatter.type}/${post.frontmatter.slug}`
+                    : `post/${post.frontmatter.slug}`
+                }`}
               >
                 <div className="mx-auto max-w-[50%] text-left">
                   {" "}

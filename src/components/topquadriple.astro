@@ -1,0 +1,50 @@
+---
+import Cardcontent from "~/components/_cardcontent.astro";
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+---
+
+<div class="text-gray-400">
+  <div class="heading mx-5 text-left text-gray-400">
+    <a href="/post">
+      <h2>Explore</h2>
+    </a>
+    <hr style="width:100%;" />
+  </div>
+
+  <div
+    class="horizontalbar m-5 grid list-none grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8 text-gray-100"
+  >
+    <!-- Loop with images -->
+    {
+      posts
+        .filter(
+          (post) =>
+            post.frontmatter.tags.includes("Trends") ||
+            post.frontmatter.tags.includes("Exploration")
+        )
+        .slice(0, 4)
+        .map((post) => (
+          <li key={post.frontmatter.slug} class="w-full">
+            <a href={"/post/" + post.frontmatter.slug} class="block">
+              <img
+                class="h-40 w-full rounded-lg object-cover"
+                src={post.frontmatter.image}
+                alt={post.frontmatter.title}
+              />
+              <p class="my-2 font-bold text-xl">{post.frontmatter.title}</p>
+              <p class="guide-decription my-2 text-sm">
+                {post.frontmatter.description}
+              </p>
+              <p class="text-gray-400">{post.frontmatter.excerpt}</p>
+              <p class="my-2 font-light text-sm">
+                {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
+              </p>
+              <p class="guide-decription float-right my-2 text-gray-500 text-xs">
+                &#10711; {post.frontmatter.minutesRead}
+              </p>
+            </a>
+          </li>
+        ))
+    }
+  </div>
+</div>

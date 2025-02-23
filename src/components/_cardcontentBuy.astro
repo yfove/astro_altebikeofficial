@@ -6,7 +6,7 @@ const { post, imageClass = "" } = Astro.props;
 <li class="flex flex-col rounded-lg border-0 border-stone-400 text-center">
   <a href={"/post/" + post.frontmatter.slug} class="flex flex-col">
     <img
-      class={`w-full object-cover rounded-lg ${imageClass || "h-64"}`}
+      class={`w-full object-cover ${imageClass || "h-64"}`}
       src={post.frontmatter.image}
       alt={post.frontmatter.title}
     />
@@ -49,9 +49,18 @@ const { post, imageClass = "" } = Astro.props;
   <div class="my-3">
     <a
       href={"/post/" + post.frontmatter.slug}
-      class="text-md gradient-text mx-2 hover:text-gray-700 hover:underline"
+      class="text-md gradient-text mx-2 font-serif italic hover:text-gray-700 hover:underline"
     >
       Read More
+    </a>
+    <span class="text-md mx-2 font-serif italic text-gray-600">or</span>
+    <a
+      href={post.frontmatter.buyLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-md mx-2 font-serif italic text-indigo-600 hover:text-gray-700 hover:underline"
+    >
+      Buy
     </a>
   </div>
 </li>
