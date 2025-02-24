@@ -3,15 +3,15 @@
 const { post, imageClass = "" } = Astro.props;
 ---
 
-<li class="flex flex-col rounded-lg border-0 border-stone-400 text-center">
-  <a href={"/post/" + post.frontmatter.slug} class="flex flex-col">
+<li class="flex flex-col rounded-lg border-0 border-stone-400 text-left">
+  <a href={"/products/" + post.frontmatter.slug} class="flex flex-col">
     <img
-      class={`w-full object-cover ${imageClass || "h-64"}`}
+      class={`w-full object-cover rounded-b-xl ${imageClass || "h-64"}`}
       src={post.frontmatter.image}
       alt={post.frontmatter.title}
     />
   </a>
-  <div class="mt-2 space-x-2">
+  <!-- <div class="mt-2 space-x-2">
     {
       post.frontmatter.tags &&
         post.frontmatter.tags.map((tag, index) => (
@@ -25,9 +25,9 @@ const { post, imageClass = "" } = Astro.props;
           </span>
         ))
     }
-  </div>
-  <a href={"/post/" + post.frontmatter.slug} class="flex flex-col">
-    <p class="text-gray-450 my-2 px-3 font-bold text-xl">
+  </div> -->
+  <a href={"/products/" + post.frontmatter.slug} class="flex flex-col">
+    <p class="text-gray-450 my-2 font-bold text-lg/tight">
       {post.frontmatter.title}
     </p>
     {
@@ -38,27 +38,27 @@ const { post, imageClass = "" } = Astro.props;
         {post.frontmatter.description}
       </p> */
     }
-    <p class="px-3 text-gray-400">{post.frontmatter.excerpt}</p>
+    <p class="text-gray-400">{post.frontmatter.excerpt}</p>
     <p class="text-gray-450 my-2 font-light" style="font-size: .8rem;">
       {post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}
     </p>
-    <p class="guide-decription my-2 text-gray-400" style="font-size: .7rem;">
+    <!-- <p class="guide-decription my-2 text-gray-400" style="font-size: .7rem;">
       &#10711; {post.frontmatter.minutesRead}
-    </p>
+    </p> -->
   </a>
-  <div class="my-3">
+  <div class="my-3 text-center">
     <a
       href={"/post/" + post.frontmatter.slug}
-      class="text-md gradient-text mx-2 font-serif italic hover:text-gray-700 hover:underline"
+      class="text-md gradient-text mx-2 italic hover:text-gray-700 hover:underline"
     >
-      Read More
+      Read
     </a>
-    <span class="text-md mx-2 font-serif italic text-gray-600">or</span>
+    <span class="text-md mx-2 text-gray-600">|</span>
     <a
       href={post.frontmatter.buyLink}
       target="_blank"
       rel="noopener noreferrer"
-      class="text-md mx-2 font-serif italic text-indigo-600 hover:text-gray-700 hover:underline"
+      class="text-md gradient-text mx-2 hover:text-gray-700 hover:underline"
     >
       Buy
     </a>

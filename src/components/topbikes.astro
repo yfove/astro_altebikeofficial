@@ -1,0 +1,45 @@
+---
+import Cardcontent from "~/components/_cardcontentbuy.astro";
+const posts = await Astro.glob("../pages/products/**/*.mdx");
+---
+
+<div class="mx-auto my-12 max-w-6xl">
+  <div class="heading text-left">
+    <a href="/products">
+      <h2>E-Vault Collection</h2>
+    </a>
+    <hr style="border-top: 1px solid #4e59bb;" />
+  </div>
+
+  <div
+    class="horizontalbar m-5 mx-auto grid list-none grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-8 text-gray-100"
+  >
+    <!-- Loop with images -->
+    {
+      posts
+        .sort((a, b) => {
+          const aDate = new Date(a.frontmatter.pubDate);
+          const bDate = new Date(b.frontmatter.pubDate);
+          return bDate - aDate;
+        })
+        .slice(0, 3)
+        .map((post) => (
+          <Cardcontent
+            post={post}
+            key={post.frontmatter.slug}
+            imageClass="h-64"
+          />
+        ))
+    }
+  </div>
+
+  <!-- See More Large Text Link -->
+  <div class="mt-8 text-center">
+    <a
+      href="/products"
+      class="gradient-text font-bold transition duration-300 text-2xl"
+    >
+      See More Bikes
+    </a>
+  </div>
+</div>

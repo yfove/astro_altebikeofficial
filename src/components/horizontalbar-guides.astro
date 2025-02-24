@@ -14,21 +14,21 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
     <div class="horizontalbar">
       <!-- Loop with images -->
       {
-      guides
-      .reverse()
-      .slice(0, 5)
-      .map((guide) => (
-      // <li key={guide.frontmatter.slug}>
-      <li>
-        <a href={"/guides/" + guide.frontmatter.slug}>
-          <p class="guide-title">{guide.frontmatter.title}</p>
-          <p class="guide-decription" style="font-size: .8rem;">
-            {guide.frontmatter.description}
-          </p>
-          <small>{guide.frontmatter.pubDate}</small>
-        </a>
-      </li>
-      ))
+        guides
+          .reverse()
+          .slice(0, 5)
+          .map((guide) => (
+            // <li key={guide.frontmatter.slug}>
+            <li>
+              <a href={"/guides/" + guide.frontmatter.slug}>
+                <p class="guide-title">{guide.frontmatter.title}</p>
+                <p class="guide-decription" style="font-size: .8rem;">
+                  {guide.frontmatter.description}
+                </p>
+                <small>{guide.frontmatter.pubDate}</small>
+              </a>
+            </li>
+          ))
       }
     </div>
   </div>
@@ -44,7 +44,6 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
   .heading h2 {
     align-items: center;
     justify-content: center;
-    color: var(--color-primary);
   }
 
   .heading hr {
@@ -59,7 +58,6 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
 
     /* background-color: black; */
     max-width: 1152px;
-    color: var(--color-primary);
   }
 
   .horizontalbar li {

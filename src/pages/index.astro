@@ -11,7 +11,10 @@ import Hero from "~/components/hero.astro";
 import Contentcta from "~/components/contentcta.astro";
 import Topnews from "~/components/topnews.astro";
 import Topguides from "~/components/topguides.astro";
+import TopBikes from "~/components/topbikes.astro";
 import AdHorizontal from "~/components/adhorizontal.astro";
+import Topbikes from "~/components/topbikes.astro";
+import Adhorizontal from "~/components/adhorizontal.astro";
 
 const { generator, site } = Astro;
 const image = new URL("social.jpg", site);
@@ -54,10 +57,12 @@ const description = "Welcome to EbikeOfficial";
     <div class="bg-black px-2">
       <Topnews />
       <Horizontalbar />
+      <Topbikes />
+      <Adhorizontal />
       <Topguides />
       <Horizontalbar2 />
-      <Contentcta />
       <!-- <Splash class="h-min" /> -->
+      <Contentcta />
       <!-- <Intro /> -->
       <!-- <Features /> -->
       <!-- <Cta /> -->
