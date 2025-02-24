@@ -2,10 +2,9 @@
 // import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import BaseHead from "../../components/BaseHead.astro";
-import { Pagination } from "accessible-astro-components";
-import { Card } from "accessible-astro-components";
 import Alltags from "~/components/alltags.astro";
 import SearchBar from "~/components/SearchBar.astro";
+import Cardcontent from "~/components/_cardcontent.astro";
 
 export async function getStaticPaths() {
   const allPosts = await Astro.glob("../../pages/**/**/*.mdx");
@@ -36,8 +35,6 @@ const filteredPosts = posts.filter((post) =>
 );
 ---
 
-<head> </head>
-
 <BaseHead
   title={tag}
   description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
@@ -45,70 +42,21 @@ const filteredPosts = posts.filter((post) =>
 
 <BlogLayout
   title={tag}
-  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking."
+  description={`Discover more news on ${tag}. Our featured articles cover all the latest developments, trends, and innovations in the eBike industry.`}
 >
-  <div class=""><Alltags /></div>
-  <div><SearchBar /></div>
-  <div class="layout">
-    <div class="title-heading"></div>
-
-    <div class="tag-grid grid-container">
-      {
-        filteredPosts.map((post) => (
-          <li>
-            <Card
-              url={"/post/" + post.frontmatter.slug}
-              img={post.frontmatter.image}
-              title={post.frontmatter.title}
-              footer={
-                post.frontmatter.pubDate + " | " + post.frontmatter.minutesRead
-              }
-            >
-              <small>{post.frontmatter.description}</small>
-              <div class="flex gap-x-2">
-                {post.frontmatter.tags &&
-                  post.frontmatter.tags.map((tag: string) => (
-                    <span class="gradient-text font-bold">{tag}</span>
-                  ))}
-              </div>
-            </Card>
-          </li>
-        ))
-      }
-    </div>
+  <SearchBar />
+  <Alltags />
+  <div
+    class="wrapper horizontalbar mx-5 my-10 grid grid-cols-1 gap-8 text-gray-100 sm:grid-cols-3"
+  >
+    {
+      filteredPosts.map((post) => (
+        <Cardcontent
+          post={post}
+          key={post.frontmatter.slug}
+          imageClass="h-64"
+        />
+      ))
+    }
   </div>
 </BlogLayout>
-
-<style lang="scss" is:global>
-  .tag-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    text-decoration: none;
-    grid-gap: 2rem;
-    list-style: none;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    /* background-color: black; */
-    max-width: 1152px;
-    color: var(--color-primary);
-    padding: 1rem;
-  }
-
-  .card .card__image {
-    height: 13rem;
-  }
-
-  .card .card__content:last-child {
-    margin-top: auto;
-    padding: 0.2rem;
-    padding-top: 0.5rem;
-  }
-
-  // this changes hover effecet as well
-  li > .card {
-    background: black;
-    color: #818cf8;
-    border-radius: 0.3rem;
-  }
-</style>

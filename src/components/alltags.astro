@@ -1,5 +1,5 @@
 ---
-const allPosts = await Astro.glob("../pages/**/**/*.mdx");
+const allPosts = await Astro.glob("../pages/post/*.mdx");
 const tags = [
   ...new Set(allPosts.flatMap((post) => post.frontmatter.tags || [])),
 ];

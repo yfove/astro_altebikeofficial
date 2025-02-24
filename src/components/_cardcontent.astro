@@ -26,7 +26,14 @@ const { post, imageClass = "" } = Astro.props;
         ))
     }
   </div>
-  <a href={"/post/" + post.frontmatter.slug} class="flex flex-col">
+  <a
+    href={`/${
+      post.frontmatter.type && post.frontmatter.slug
+        ? `${post.frontmatter.type}/${post.frontmatter.slug}`
+        : `post/${post.frontmatter.slug}`
+    }`}
+    class="flex flex-col"
+  >
     <p class="text-gray-450 my-2 px-3 font-bold text-xl">
       {post.frontmatter.title}
     </p>

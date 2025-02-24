@@ -39,7 +39,7 @@ const lastPage = page.url.next ? `/products/${totalPages}` : null;
                   loading="lazy"
                 />
 
-                <div class="mt-2 space-x-2">
+                <div class="mt-2 hidden space-x-2">
                   {product.frontmatter.tags?.map((tag, index) => (
                     <span key={index} class="text-sm">
                       <a href={`/tags/${tag}`} class=" hover:underline">
