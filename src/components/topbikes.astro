@@ -3,8 +3,8 @@ import Cardcontent from "~/components/_cardcontentBuy.astro";
 const posts = await Astro.glob("../pages/products/**/*.mdx");
 ---
 
-<div class="mx-auto my-12 max-w-6xl">
-  <div class="heading text-left">
+<section class="mx-5 my-14 max-w-6xl sm:mx-auto">
+  <div class="heading mb-5 text-left">
     <a href="/products">
       <h2>E-Vault Collection</h2>
     </a>
@@ -12,17 +12,16 @@ const posts = await Astro.glob("../pages/products/**/*.mdx");
   </div>
 
   <div
-    class="horizontalbar m-5 mx-auto grid list-none grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-8 text-gray-100"
+    class="horizontalbar mx-auto grid grid-cols-1 gap-5 text-gray-100 sm:grid-cols-2 lg:grid-cols-2"
   >
     <!-- Loop with images -->
     {
       posts
-        .sort((a, b) => {
-          const aDate = new Date(a.frontmatter.pubDate);
-          const bDate = new Date(b.frontmatter.pubDate);
-          return bDate - aDate;
-        })
-        .slice(0, 3)
+        .sort(
+          (a, b) =>
+            new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate)
+        ) // Sort by date
+        .slice(0, 2) // Get the first 2 posts
         .map((post) => (
           <Cardcontent
             post={post}
@@ -42,4 +41,4 @@ const posts = await Astro.glob("../pages/products/**/*.mdx");
       See More Bikes
     </a>
   </div>
-</div>
+</section>
