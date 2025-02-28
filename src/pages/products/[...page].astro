@@ -2,20 +2,12 @@
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Alltags from "~/components/alltagsProduct.astro";
 import SearchBar from "~/components/SearchBarProduct.astro";
-import PaginatedComponent from "~/components/PaginatedComponent.astro";
 import PaginatedDynamic from "~/components/PaginatedDynamic.tsx";
 
 export async function getStaticPaths({ paginate }) {
   const post = await Astro.glob("./*.mdx");
 
-  const sortedPosts = post.sort((a, b) => {
-    const aDate = new Date(a.frontmatter.pubDate);
-    const bDate = new Date(b.frontmatter.pubDate);
-
-    return bDate - aDate;
-  });
-
-  return paginate(sortedPosts, { pageSize: 6, page: 1 });
+  return paginate(post, { pageSize: 100 });
 }
 
 const { page } = Astro.props;
