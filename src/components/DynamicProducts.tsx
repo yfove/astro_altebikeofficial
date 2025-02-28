@@ -63,8 +63,8 @@ const DynamicProducts = ({ products }) => {
   const displayedProducts = filteredSortedProducts.slice(0, visibleProducts);
 
   return (
-    <section className="m-5 text-gray-400 sm:py-5">
-      <div className="filters blog bg-zinc-950 border border-gray-700 shadow-lg rounded-lg p-6 my-6">
+    <section className="sm:m-5 text-gray-400">
+      <div className="filters blog bg-zinc-950 border  border-gray-700 shadow-lg rounded-lg p-5 ">
         <div className="filter-header mb-4">
           <h3 className="text-xl font-semibold text-gray-400">The Electric Vault</h3>
           <p className="text-sm text-gray-400">Refine your search with these options</p>
@@ -130,11 +130,11 @@ const DynamicProducts = ({ products }) => {
         </div>
 
         {/* Centered "Load More" and "Load Less" Links */}
-        <div className="mt-4 flex justify-center space-x-4">
+        <div className="mt-4 flex justify-center space-x-4 ">
           {displayedProducts.length < filteredSortedProducts.length && (
             <span
               onClick={handleLoadMore}
-              className="cursor-pointer text-purple-500 text-lg hover:text-purple-700 transition-all"
+              className="cursor-pointer text-purple-500 font-bold text-xl hover:text-purple-700 transition-all"
             >
               Load More
             </span>
@@ -143,7 +143,7 @@ const DynamicProducts = ({ products }) => {
           {displayedProducts.length > 6 && (
             <span
               onClick={handleLoadLess}
-              className="cursor-pointer text-purple-500 text-lg hover:text-purple-700 transition-all"
+              className="cursor-pointer text-purple-500 font-bold text-xl hover:text-purple-700 transition-all"
             >
               Load Less
             </span>

@@ -43,3 +43,9 @@ th {
   background-color: black;
 }
 
+
+body {
+  height: 100%;
+  color: white;
+  background: black;
+}

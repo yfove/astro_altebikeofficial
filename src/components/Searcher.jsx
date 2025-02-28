@@ -42,14 +42,10 @@ function Search({ searchList }) {
             id="search"
             value={query}
             onChange={handleOnSearch}
-            class="m-4 mx-5 block rounded-lg border border-gray-800 bg-zinc-950 
-         p-2 pl-4 text-gray-400
-         text-sm focus:border-gray-700
-         focus:outline-none
-         focus:ring-gray-700
-         max-sm:w-full
-         sm:mx-auto
-         lg:w-1/2"
+            class="m-5 mx-5 block rounded-lg border border-gray-800 bg-zinc-950 
+      p-2 pl-4 text-gray-400 text-sm 
+       focus:border-gray-700 focus:outline-none focus:ring-gray-700 
+       max-sm:w-full sm:mx-auto lg:w-1/2"
             placeholder=" &#x1F50E;&#xFE0E; Search for anything..."
           />
         </div>

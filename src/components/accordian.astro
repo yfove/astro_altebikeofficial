@@ -3,7 +3,7 @@ import { Accordion, AccordionItem } from "accessible-astro-components";
 ---
 
 <accordian>
-  <div class="accordian-container">
+  <div class="accordian-container mx-5 max-w-5xl sm:mx-auto">
     <Accordion>
       <AccordionItem header="Comprehensive Guides and Tutorials">
         <p>
@@ -139,24 +139,11 @@ import { Accordion, AccordionItem } from "accessible-astro-components";
 
   <style>
     .accordian-container {
-      max-width: 1000px; /* Set the same max-width as the blog container */
-      margin: 0 auto; /* Center the accordions horizontally */
       margin-top: 20px;
-      optional: Add padding to match the blog container;
       /* background-color: #4e59bb; */
       background-color: #15181f;
       border-radius: 0.4rem;
       border: 2px solid #818cf8;
-    }
-
-    @media (max-width: 1000px) {
-      .accordian-container {
-        margin: 20px; /* Adjust the margin for mobile screens */
-      }
-
-      .accordion article {
-        margin: 0;
-      }
     }
   </style>
 </accordian>
