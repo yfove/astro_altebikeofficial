@@ -2,8 +2,7 @@
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import Alltags from "~/components/alltagsProduct.astro";
 import SearchBar from "~/components/SearchBarProduct.astro";
-import PaginatedDynamic from "~/components/PaginatedDynamic.tsx";
-
+import DynamicProducts from "~/components/DynamicProducts.tsx";
 export async function getStaticPaths({ paginate }) {
   const post = await Astro.glob("./*.mdx");
 
@@ -32,6 +31,6 @@ const { page } = Astro.props;
     <!-- Use the PaginatedPosts component here -->
     <!-- <PaginatedComponent page={page} posts={page.data} /> -->
 
-    <PaginatedDynamic client:only="react" page={page} products={page.data} />
+    <DynamicProducts client:only="react" page={page} products={page.data} />
   </section>
 </BlogLayout>

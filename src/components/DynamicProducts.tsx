@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import ProductList from "~/components/_ProductList"; // Assuming you have ProductList component
 
-const PaginatedDynamic = ({ products }) => {
+const DynamicProducts = ({ products }) => {
   const [sortOrder, setSortOrder] = useState("asc");
   const [selectedBrand, setSelectedBrand] = useState("");
   const [priceSortOrder, setPriceSortOrder] = useState("asc"); // Sort by price state
@@ -35,17 +35,8 @@ const PaginatedDynamic = ({ products }) => {
       );
     }
 
-    // Sort products alphabetically
-    const sortedAlphabetically = [...filtered].sort((a, b) => {
-      if (sortOrder === "asc") {
-        return a.frontmatter?.title?.localeCompare(b.frontmatter?.title);
-      } else {
-        return b.frontmatter?.title?.localeCompare(a.frontmatter?.title);
-      }
-    });
-
-    // Now, sort by price (after alphabetical sorting)
-    const sortedByPrice = [...sortedAlphabetically].sort((a, b) => {
+    // Now, sort by price (if no need for alphabetical sorting)
+    const sortedByPrice = [...filtered].sort((a, b) => {
       const priceA = a.frontmatter?.price || 0;
       const priceB = b.frontmatter?.price || 0;
 
@@ -57,7 +48,7 @@ const PaginatedDynamic = ({ products }) => {
     });
 
     return sortedByPrice;
-  }, [products, selectedBrand, sortOrder, priceSortOrder, searchQuery]);
+  }, [products, selectedBrand, priceSortOrder, searchQuery]);
 
   // Function to handle clicking the "Load More" link
   const handleLoadMore = () => {
@@ -80,7 +71,7 @@ const PaginatedDynamic = ({ products }) => {
         </div>
 
         {/* Filters Container: Left-Aligned */}
-        <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+        <div className="flex flex-col sm:flex-row gap-5 sm:gap-5">
           {/* Brand Filter */}
           <div className="filter-item w-full sm:w-auto flex flex-col">
             <label htmlFor="brandFilter" className="text-sm font-medium text-gray-400 mb-2">Brand</label>
@@ -88,7 +79,7 @@ const PaginatedDynamic = ({ products }) => {
               id="brandFilter"
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className="rounded-md border border-gray-600 p-3 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="rounded-md border border-gray-600 p-2 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             >
               <option value="">All Brands</option>
               {brands.map((brand, index) => (
@@ -99,19 +90,7 @@ const PaginatedDynamic = ({ products }) => {
             </select>
           </div>
 
-          {/* Sort Alphabetically Filter */}
-          <div className="filter-item w-full sm:w-auto flex flex-col">
-            <label htmlFor="sortOrder" className="text-sm font-medium text-gray-400 mb-2">Sort Alphabetically</label>
-            <select
-              id="sortOrder"
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              className="rounded-md border border-gray-600 p-3 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="asc">A to Z</option>
-              <option value="desc">Z to A</option>
-            </select>
-          </div>
+     
 
           {/* Sort by Price Filter */}
           <div className="filter-item w-full sm:w-auto flex flex-col">
@@ -120,7 +99,7 @@ const PaginatedDynamic = ({ products }) => {
               id="priceSortOrder"
               value={priceSortOrder}
               onChange={(e) => setPriceSortOrder(e.target.value)}
-              className="rounded-md border border-gray-600 p-3 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="rounded-md border border-gray-600 p-2 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             >
               <option value="asc">Low to High</option>
               <option value="desc">High to Low</option>
@@ -135,7 +114,7 @@ const PaginatedDynamic = ({ products }) => {
               id="searchQuery"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="rounded-md border border-gray-600 p-3 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="rounded-md border border-gray-600 p-2 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="Search products..."
             />
           </div>
@@ -175,4 +154,4 @@ const PaginatedDynamic = ({ products }) => {
   );
 };
 
-export default PaginatedDynamic;
+export default DynamicProducts;
