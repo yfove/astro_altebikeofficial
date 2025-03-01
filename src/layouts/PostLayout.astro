@@ -84,8 +84,11 @@ export const prerender = true;
         <!-- Conditionally render the buyLink -->
         {
           buyLink && (
-            <div class="mt-6">
-              <a href={buyLink} class="text-gradient hover:text-gray-700">
+            <div class="pb-16">
+              <a
+                href={buyLink}
+                class="gradient-text text-normal font-bold hover:text-gray-700 "
+              >
                 Buy the {product}
               </a>
             </div>
