@@ -139,6 +139,8 @@ const DynamicProducts = ({ products }) => {
                 <option key={index} value={suspension}>
                   {suspension === "dual"
                     ? "Dual Suspension"
+                    : suspension === "rigid"
+                    ? "Rigid Suspension"
                     : "Front Suspension"}
                 </option>
               ))}
