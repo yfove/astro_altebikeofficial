@@ -6,6 +6,7 @@ const DynamicProducts = ({ products }) => {
   const [selectedBrand, setSelectedBrand] = useState("");
   const [priceSortOrder, setPriceSortOrder] = useState("asc"); // Sort by price state
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [selectedSuspension, setSelectedSuspension] = useState(""); // state for suspension filter
   const [visibleProducts, setVisibleProducts] = useState(6); // Set initial number of products to 6
 
   // Get unique brands for filtering
@@ -13,6 +14,13 @@ const DynamicProducts = ({ products }) => {
     return [
       ...new Set(products.map((product) => product.frontmatter?.brand)),
     ].filter((brand) => brand);
+  }, [products]);
+
+  // Memorize the suspension types
+  const suspensions = useMemo(() => {
+    return [
+      ...new Set(products.map((product) => product.frontmatter?.suspension)),
+    ].filter((suspension) => suspension);
   }, [products]);
 
   // Memoize the filtered and sorted products
@@ -23,6 +31,13 @@ const DynamicProducts = ({ products }) => {
     if (selectedBrand) {
       filtered = filtered.filter(
         (product) => product.frontmatter?.brand === selectedBrand
+      );
+    }
+
+    // Filter by suspension type
+    if (selectedSuspension) {
+      filtered = filtered.filter(
+        (product) => product.frontmatter?.suspension === selectedSuspension
       );
     }
 
@@ -48,7 +63,13 @@ const DynamicProducts = ({ products }) => {
     });
 
     return sortedByPrice;
-  }, [products, selectedBrand, priceSortOrder, searchQuery]);
+  }, [
+    products,
+    selectedBrand,
+    selectedSuspension,
+    priceSortOrder,
+    searchQuery,
+  ]);
 
   // Function to handle clicking the "Load More" link
   const handleLoadMore = () => {
@@ -63,23 +84,32 @@ const DynamicProducts = ({ products }) => {
   const displayedProducts = filteredSortedProducts.slice(0, visibleProducts);
 
   return (
-    <section className="sm:m-5 text-gray-400">
-      <div className="filters blog bg-zinc-950 border  border-gray-700 shadow-lg rounded-lg p-5 ">
+    <section className="text-gray-400 sm:m-5">
+      <div className="filters blog rounded-lg border  border-gray-700 bg-zinc-950 p-5 shadow-lg ">
         <div className="filter-header mb-4">
-          <h3 className="text-xl font-semibold text-gray-400">The Electric Vault</h3>
-          <p className="text-sm text-gray-400">Refine your search with these options</p>
+          <h3 className="font-semibold text-gray-400 text-xl">
+            The Electric Vault
+          </h3>
+          <p className="text-gray-400 text-sm">
+            Refine your search with these options
+          </p>
         </div>
 
         {/* Filters Container: Left-Aligned */}
-        <div className="flex flex-col sm:flex-row gap-5 sm:gap-5">
+        <div className="flex flex-col gap-5 sm:flex-row sm:gap-5">
           {/* Brand Filter */}
-          <div className="filter-item w-full sm:w-auto flex flex-col">
-            <label htmlFor="brandFilter" className="text-sm font-medium text-gray-400 mb-2">Brand</label>
+          <div className="filter-item flex w-full flex-col sm:w-auto">
+            <label
+              htmlFor="brandFilter"
+              className="mb-2 font-medium text-gray-400 text-sm"
+            >
+              Brand
+            </label>
             <select
               id="brandFilter"
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className="rounded-md border border-gray-600 p-2 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="rounded-md border border-gray-600 bg-zinc-950 p-2 text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
             >
               <option value="">All Brands</option>
               {brands.map((brand, index) => (
@@ -90,16 +120,44 @@ const DynamicProducts = ({ products }) => {
             </select>
           </div>
 
-     
+          {/* Suspension Filter */}
+          <div className="filter-item flex w-full flex-col sm:w-auto">
+            <label
+              htmlFor="suspensionFilter"
+              className="mb-2 font-medium text-gray-400 text-sm"
+            >
+              Suspension Type
+            </label>
+            <select
+              id="suspensionFilter"
+              value={selectedSuspension}
+              onChange={(e) => setSelectedSuspension(e.target.value)}
+              className="rounded-md border border-gray-600 bg-zinc-950 p-2 text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="">All Suspensions</option>
+              {suspensions.map((suspension, index) => (
+                <option key={index} value={suspension}>
+                  {suspension === "dual"
+                    ? "Dual Suspension"
+                    : "Front Suspension"}
+                </option>
+              ))}
+            </select>
+          </div>
 
           {/* Sort by Price Filter */}
-          <div className="filter-item w-full sm:w-auto flex flex-col">
-            <label htmlFor="priceSortOrder" className="text-sm font-medium text-gray-400 mb-2">Sort by Price</label>
+          <div className="filter-item flex w-full flex-col sm:w-auto">
+            <label
+              htmlFor="priceSortOrder"
+              className="mb-2 font-medium text-gray-400 text-sm"
+            >
+              Sort by Price
+            </label>
             <select
               id="priceSortOrder"
               value={priceSortOrder}
               onChange={(e) => setPriceSortOrder(e.target.value)}
-              className="rounded-md border border-gray-600 p-2 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="rounded-md border border-gray-600 bg-zinc-950 p-2 text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
             >
               <option value="asc">Low to High</option>
               <option value="desc">High to Low</option>
@@ -107,20 +165,25 @@ const DynamicProducts = ({ products }) => {
           </div>
 
           {/* Search Filter */}
-          <div className="filter-item w-full sm:w-auto flex flex-col">
-            <label htmlFor="searchQuery" className="text-sm font-medium text-gray-400 mb-2">Search</label>
+          <div className="filter-item flex w-full flex-col sm:w-auto">
+            <label
+              htmlFor="searchQuery"
+              className="mb-2 font-medium text-gray-400 text-sm"
+            >
+              Search
+            </label>
             <input
               type="text"
               id="searchQuery"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="rounded-md border border-gray-600 p-2 text-gray-400 bg-zinc-950 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              className="rounded-md border border-gray-600 bg-zinc-950 p-2 text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
               placeholder="Search products..."
             />
           </div>
         </div>
 
-        <p className="text-left text-sm text-gray-400 mt-4">
+        <p className="mt-4 text-left text-gray-400 text-sm">
           <em>{filteredSortedProducts.length} products found</em>
         </p>
 
@@ -134,7 +197,7 @@ const DynamicProducts = ({ products }) => {
           {displayedProducts.length < filteredSortedProducts.length && (
             <span
               onClick={handleLoadMore}
-              className="cursor-pointer text-purple-500 font-bold text-xl hover:text-purple-700 transition-all"
+              className="cursor-pointer font-bold text-purple-500 transition-all text-xl hover:text-purple-700"
             >
               Load More
             </span>
@@ -143,7 +206,7 @@ const DynamicProducts = ({ products }) => {
           {displayedProducts.length > 6 && (
             <span
               onClick={handleLoadLess}
-              className="cursor-pointer text-purple-500 font-bold text-xl hover:text-purple-700 transition-all"
+              className="cursor-pointer font-bold text-purple-500 transition-all text-xl hover:text-purple-700"
             >
               Load Less
             </span>
