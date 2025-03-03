@@ -1,9 +1,16 @@
 ---
 import { Icon } from "astro-icon";
+const allPosts = await Astro.glob("../pages/post/**/*.mdx"); // Adjust the path if necessary
+const tags = [
+  ...new Set(allPosts.flatMap((post) => post.frontmatter.tags || [])),
+];
+
+// Limit to the first 12 tags
+const limitedTags = tags.slice(0, 12);
 ---
 
 <nav
-  class="dark:border-black-700 sticky top-0 z-50 border-zinc-950 px-3 text-white dark:bg-zinc-950"
+  class="dark:border-black-700 sticky top-0 border-zinc-950 px-3 text-white dark:bg-zinc-950"
 >
   <div
     class="container mx-auto flex max-w-6xl flex-wrap items-center justify-between"
@@ -11,10 +18,10 @@ import { Icon } from "astro-icon";
     <!-- Logo -->
     <div class="flex w-full items-center justify-between md:w-auto">
       <Icon name="ebikenook" class="h-10" />
+      <a href="/" class="flex-1 px-2 py-3 font-semibold text-white">ebikenook</a
+      >
 
-      <a href="/" class="flex-1 px-2 py-3 font-bold text-white">ebikenook</a>
-
-      <!-- mobile menu icon -->
+      <!-- Mobile menu icon -->
       <div class="flex items-center md:hidden">
         <button type="button" class="mobile-menu-button">
           <svg
@@ -34,64 +41,47 @@ import { Icon } from "astro-icon";
       </div>
     </div>
 
+    <!-- Desktop Navigation -->
     <div
-      class="navigation-menu hidden flex-col items-center justify-start pb-3 font-bold text-3xl sm:text-sm md:flex md:flex-row md:space-x-1 md:pb-0"
+      class="navigation-menu hidden flex-col items-center justify-start pb-3 font-semibold text-3xl sm:text-sm md:flex md:flex-row md:space-x-1 md:pb-0"
     >
       <a href="/" class="block px-3 py-2 text-zinc-600">Home</a>
       <a href="/products" class="block px-3 py-2">E-Vault</a>
       <a href="/post" class="block px-3 py-2">Electric Pulse</a>
-
-      <!-- Dropdown menu -->
-      <div class="relative text-white">
-        <button
-          type="button"
-          class="dropdown-toggle flex items-center gap-2 rounded px-3 py-2 hover:bg-zinc-800"
-        >
-          <span class="pointer-events-none select-none">Collection</span>
-          <svg
-            class="pointer-events-none h-3 w-3"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
-          </svg>
-        </button>
-        <div
-          class="dropdown-menu absolute hidden w-60 rounded-b-lg bg-zinc-950 pb-2 text-white"
-        >
-          <a href="/tags/Trends" class="block px-6 py-2 hover:bg-zinc-800"
-            >Trends</a
-          >
-          <a href="/tags/Urbanism" class="block px-6 py-2 hover:bg-zinc-800"
-            >Urbanism</a
-          >
-          <a href="/tags/Exploration" class="block px-6 py-2 hover:bg-zinc-800"
-            >Exploration</a
-          >
-          <a href="/tags/Health" class="block px-6 py-2 hover:bg-zinc-800"
-            >Health</a
-          >
-          <a
-            href="/tags/Micromobility"
-            class="block px-6 py-2 hover:bg-zinc-800">Micromobility</a
-          >
-        </div>
-      </div>
       <a href="/guides" class="block px-3 py-2">Guides</a>
-
       <a href="https://gearwelt.com/" target="_blank" class="block px-3 py-2"
         >GearWelt</a
+      >
+
+      <!-- Plus Icon (Visible in both mobile and non-mobile) -->
+      <button id="open-menu" class="font-semibold text-white text-xl md:ml-6"
+        >+</button
       >
     </div>
   </div>
 </nav>
+
+<!-- Side Menu (Hidden by default, appears when "+" is clicked) -->
+<div
+  id="side-menu"
+  class="fixed right-0 top-0 h-full w-0 max-w-[14.2857vw] bg-zinc-950 transition-all duration-300 ease-in-out"
+>
+  <div class="mt-16 flex justify-end p-4">
+    <button id="close-menu" class="hidden font-bold text-white text-4xl"
+      >&times;</button
+    >
+  </div>
+  <div class="flex flex-col space-y-6 px-6 text-white text-xl">
+    <!-- Displaying tags in the side menu -->
+    {
+      limitedTags.map((tag) => (
+        <a href={`/tags/${tag}`} class="block border-b border-zinc-700 py-3">
+          {tag}
+        </a>
+      ))
+    }
+  </div>
+</div>
 
 <style>
   .navigation-menu a {
@@ -110,32 +100,86 @@ import { Icon } from "astro-icon";
     background-size: 100% 0.1em;
     color: #818cf8;
   }
+
+  /* Side Menu Open/Close */
+  #side-menu {
+    @apply w-0;
+  }
+
+  #side-menu.open {
+    @apply w-full;
+  }
+
+  /* Mobile Specific Styling for the side menu */
+  @media (max-width: 768px) {
+    #side-menu.open {
+      @apply max-w-full;
+    }
+
+    /* Align navigation menu items to the right on mobile */
+    .navigation-menu {
+      justify-content: flex-end; /* Align items to the right */
+      width: 100%; /* Ensure the navigation menu takes full width on mobile */
+    }
+
+    /* Stack the links vertically and align them to the right */
+    .navigation-menu a {
+      text-align: right;
+      width: 100%;
+      padding-right: 16px; /* Add some padding to the right */
+      border-bottom: 2px solid #ccc; /* Add a horizontal line under each link */
+    }
+
+    /* Optional: Style the border line color for better visibility */
+    .navigation-menu a:hover {
+      border-bottom-color: #6366f1; /* Change the border color on hover */
+    }
+  }
 </style>
 
 <script>
-  // Select all dropdown toggle buttons
+  // Mobile menu toggle
+  const mobileMenuButton = document.querySelector(".mobile-menu-button");
+  const mobileMenu = document.querySelector(".navigation-menu");
+  mobileMenuButton.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Open the side menu
+  document.getElementById("open-menu").addEventListener("click", () => {
+    const sideMenu = document.getElementById("side-menu");
+    const navigationMenu = document.querySelector(".navigation-menu");
+
+    sideMenu.classList.add("open");
+    document.getElementById("close-menu").classList.remove("hidden"); // Show close button
+
+    // Toggle the navigation menu visibility to make room for the side menu
+    navigationMenu.classList.toggle("open");
+  });
+
+  // Close the side menu
+  document.getElementById("close-menu").addEventListener("click", () => {
+    const sideMenu = document.getElementById("side-menu");
+    const navigationMenu = document.querySelector(".navigation-menu");
+
+    sideMenu.classList.remove("open");
+    document.getElementById("close-menu").classList.add("hidden"); // Hide close button
+
+    // Close the navigation menu to reset the layout
+    navigationMenu.classList.remove("open");
+  });
+
+  // Dropdown functionality
   const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
 
   dropdownToggles.forEach((toggle) => {
     toggle.addEventListener("click", () => {
-      // Find the next sibling element which is the dropdown menu
       const dropdownMenu = toggle.nextElementSibling;
-
-      // Toggle the 'hidden' class to show or hide the dropdown menu
-      if (dropdownMenu.classList.contains("hidden")) {
-        // Hide any open dropdown menus before showing the new one
-        document.querySelectorAll(".dropdown-menu").forEach((menu) => {
-          menu.classList.add("hidden");
-        });
-
-        dropdownMenu.classList.remove("hidden");
-      } else {
-        dropdownMenu.classList.add("hidden");
-      }
+      dropdownMenu.classList.toggle("hidden");
     });
   });
 
-  // Clicking outside of an open dropdown menu closes it
+  // Close dropdown if clicked outside
   window.addEventListener("click", function (e) {
     if (!e.target.matches(".dropdown-toggle")) {
       document.querySelectorAll(".dropdown-menu").forEach((menu) => {
@@ -144,14 +188,5 @@ import { Icon } from "astro-icon";
         }
       });
     }
-  });
-
-  // Mobile menu toggle
-
-  const mobileMenuButton = document.querySelector(".mobile-menu-button");
-  const mobileMenu = document.querySelector(".navigation-menu");
-
-  mobileMenuButton.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
   });
 </script>
