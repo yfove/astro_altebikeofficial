@@ -92,7 +92,7 @@ const { page } = Astro.props;
               .map((post) => (
                 <div
                   key={post.frontmatter.slug}
-                  class="flex rounded-lg bg-black p-4"
+                  class="flex rounded-lg border border-stone-800 p-4"
                 >
                   <a href={"/post/" + post.frontmatter.slug} class="flex">
                     <img
