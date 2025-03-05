@@ -1,31 +1,31 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon";
-import astronautImage from "~/assets/cake.webp";
+import astronautImage from "~/assets/cake2.webp";
 
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
 ---
 
-<section class="hero w-full bg-zinc-950">
+<section class="her w-full bg-zinc-950">
   <div
-    class="mx-auto grid max-w-6xl px-8 py-8 lg:grid-cols-12 lg:gap-8 lg:px-16 lg:py-16"
+    class="mx-auto grid max-w-6xl px-8 py-8 max-sm:text-center lg:grid-cols-12 lg:gap-8 lg:py-16 xl:gap-0"
   >
-    <div class="text-center md:text-left lg:col-span-7">
+    <div class="mr-auto place-self-center lg:col-span-7">
       <h1
         class="gradient-text mb-4 max-w-2xl font-extrabold leading-none tracking-tighter text-8xl sm:text-6xl"
       >
         Welcome to Ebikenook
       </h1>
       <p
-        class="mb-6 max-w-2xl font-normal text-gray-500 text-lg sm:text-xl dark:text-gray-400"
+        class="font-base mb-6 max-w-2xl text-gray-500 text-lg sm:text-xl dark:text-gray-400"
       >
         Explore the transformative potential of all-electric living through
         Ebikenook, your trusted source for eBike news and inspiration.
       </p>
       <a
         href="/post/"
-        class="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 mr-3 inline-flex items-center justify-center rounded-lg px-5 py-3 text-white text-base focus:ring-4"
+        class="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 mr-3 inline-flex items-center justify-center rounded-lg px-5 py-3 text-center font-medium text-white text-base focus:ring-4"
       >
         Start Exploring
         <svg
@@ -42,7 +42,7 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
       </a>
       <a
         href="https://www.instagram.com/ebikenook/"
-        class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+        class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center font-medium text-gray-900 text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-800"
       >
         <svg
           class="-ml-1 mr-2 h-5 w-5"
@@ -53,15 +53,21 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
           <path
             fill="mediumslateblue"
             d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
-          ></path>
+          >
+          </path>
         </svg>
         Instagram
       </a>
     </div>
-    <div class="flex justify-center lg:col-span-5 lg:mt-0">
-      <div id="astronaut" class="w-full max-w-3xl md:w-10/12">
+    <div
+      class="max-sm:align-center max-sm:flex max-sm:justify-center lg:col-span-5 lg:mt-0 lg:flex"
+    >
+      <div
+        id="astronaut"
+        class="flex max-w-md items-center justify-center self-center sm:self-auto sm:justify-self-start"
+      >
         <Image
-          class="h-auto w-full object-contain md:max-w-[400px] lg:max-w-none"
+          class="h-auto w-4/5 object-cover"
           src={astronautImage}
           widths={widths}
           sizes={sizes}
@@ -74,11 +80,11 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
 </section>
 
 <style>
-  /* Keyframes for astronaut float animation */
   @keyframes float {
     0% {
       transform: translate3d(0, 0, 0);
     }
+
     100% {
       transform: translate3d(0, 30px, 0);
     }
@@ -88,20 +94,19 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
     0% {
       transform: translate3d(0, 0, 0);
     }
+
     100% {
       transform: translate3d(0, 30px, 0);
     }
   }
 
-  /* Animation applied to the astronaut */
   #astronaut {
     animation: float linear 2.5s infinite alternate;
   }
 
-  /* Reduce animation for users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     #astronaut {
-      animation: none;
+      /* @apply animate-none; */
     }
   }
 </style>
