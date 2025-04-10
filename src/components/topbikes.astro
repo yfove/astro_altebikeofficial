@@ -21,7 +21,7 @@ const posts = await Astro.glob("../pages/products/**/*.mdx");
           (a, b) =>
             new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate)
         ) // Sort by date
-        .slice(0, 2) // Get the first 2 posts
+        .slice(0, 4) // Get the first 2 posts
         .map((post) => (
           <Cardcontent
             post={post}
