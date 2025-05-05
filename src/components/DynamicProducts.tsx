@@ -7,7 +7,7 @@ const DynamicProducts = ({ products }) => {
   const [priceSortOrder, setPriceSortOrder] = useState("asc"); // Sort by price state
   const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const [selectedSuspension, setSelectedSuspension] = useState(""); // state for suspension filter
-  const [visibleProducts, setVisibleProducts] = useState(6); // Set initial number of products to 6
+  const [visibleProducts, setVisibleProducts] = useState(9); // Set initial number of products to 6
 
   // Get unique brands for filtering
   const brands = useMemo(() => {
