@@ -205,7 +205,7 @@ const DynamicProducts = ({ products }) => {
             </span>
           )}
 
-          {displayedProducts.length > 6 && (
+          {displayedProducts.length > 9 && (
             <span
               onClick={handleLoadLess}
               className="cursor-pointer font-bold text-purple-500 transition-all text-xl hover:text-purple-700"
