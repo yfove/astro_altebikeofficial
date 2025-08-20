@@ -4,98 +4,95 @@ const guides = await Astro.glob("../pages/guides/**/*.mdx");
 ---
 
 <aside class="sidebar ml-8">
-  <div class="social-media">
-    <!-- <h3>Follow Us</h3> -->
-    <ul style="display:list-item;">
-      <a
-        href="https://linktr.ee/ebikeofficial"
-        target="_blank"
-        class="mb-2 inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center font-medium text-gray-900 text-white text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <svg
-          class="-ml-1 mr-2 h-5 w-5"
-          fill="currentColor"
-          viewBox="0 0 23 23"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            fill="mediumslateblue"
-            d="M11 21v-4.26c-.47.17-.97.26-1.5.26C7 17 5 15 5 12.5c0-1.27.5-2.41 1.36-3.23C6.13 8.73 6 8.13 6 7.5 6 5 8 3 10.5 3c1.56 0 2.94.8 3.75 2h.25a5.5 5.5 0 0 1 5.5 5.5 5.5 5.5 0 0 1-5.5 5.5c-.5 0-1-.07-1.5-.21V21h-2z"
-          ></path></svg
-        >
-        Linktree
-      </a>
-      <a
-        href="https://instagram.com/ebikenook"
-        target="_blank"
-        class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-center font-medium text-gray-900 text-white text-base hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
-        <svg
-          class="-ml-1 mr-2 h-5 w-5"
-          fill="currentColor"
-          viewBox="0 0 23 23"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            fill="mediumslateblue"
-            d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"
-          ></path></svg
-        >
-        Instagram
-      </a>
+  <!-- Social Media -->
+  <section class="social-media">
+    <h3 class="mb-3 text-lg font-semibold text-white">Follow Us</h3>
+    <ul class="space-y-2">
+      <li>
+        <a href="https://instagram.com/ebikenook" target="_blank" rel="noopener noreferrer"
+          class="flex items-center rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-white hover:bg-gradient-to-r hover:from-purple-600 hover:via-pink-500 hover:to-yellow-400 transition">
+          <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" role="img" focusable="false">
+            <path fill="mediumslateblue"
+              d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+          </svg>
+          Instagram
+        </a>
+      </li>
+      <li>
+        <a href="https://twitter.com/ebikenook" target="_blank" rel="noopener noreferrer"
+          class="flex items-center rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-white hover:bg-gradient-to-r hover:from-blue-400 hover:via-blue-500 hover:to-blue-600 transition">
+          <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" role="img" focusable="false">
+            <path fill="mediumslateblue"
+              d="M23 3a10.9 10.9 0 01-3.14.86A4.48 4.48 0 0022.4 1.6a9.14 9.14 0 01-2.9 1.1A4.52 4.52 0 0016.67.4c-2.6 0-4.7 2.25-4.7 5.02 0 .39.05.78.13 1.15A12.94 12.94 0 013 2.3a5.03 5.03 0 00-.64 2.52c0 1.74.84 3.28 2.12 4.17a4.48 4.48 0 01-2.13-.6v.06c0 2.43 1.75 4.46 4.07 4.91a4.61 4.61 0 01-2.1.08c.59 1.8 2.3 3.12 4.3 3.16A9 9 0 012 19.5a12.75 12.75 0 006.92 2.03c8.3 0 12.83-7 12.83-13.06 0-.2 0-.42-.02-.62A9.18 9.18 0 0023 3z" />
+          </svg>
+          Twitter
+        </a>
+      </li>
+      <li>
+        <a href="https://gearwelt.com" target="_blank" rel="noopener noreferrer"
+          class="flex items-center rounded-lg border border-gray-700 bg-gray-900 px-4 py-2 text-white hover:bg-gradient-to-r hover:from-green-400 hover:via-green-500 hover:to-green-600 transition">
+          <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" role="img" focusable="false">
+            <path fill="mediumslateblue"
+              d="M12 2a10 10 0 11-9.95 9.57A9.98 9.98 0 0112 2zm0 18a7.99 7.99 0 006.49-3.38l-9.11-9.11A7.99 7.99 0 005.52 14.5a8 8 0 006.48 5.5z" />
+          </svg>
+          Gearwelt
+        </a>
+      </li>
     </ul>
-  </div>
+  </section>
   <div class="recent-posts">
     <h3 class="gradient-text pb-3 font-bold text-lg">Recent Posts</h3>
     <!-- loop with images -->
     <ul class="pb-6">
       {
-        posts
-          .sort((a, b) => {
-            const aDate = new Date(a.frontmatter.pubDate);
-            const bDate = new Date(b.frontmatter.pubDate);
-            return bDate - aDate;
-          })
-          .slice(0, 5)
-          .map((post) => (
-            <li class="py-2">
-              <a href={"/post/" + post.frontmatter.slug}>
-                <img
-                  src={post.frontmatter.image}
-                  alt={post.frontmatter.title}
-                />
-                <small class="font-bold">{post.frontmatter.title}</small>
-                <br />
-                <small class="text-gray-400">
-                  {post.frontmatter.pubDate} {post.frontmatter.pubTime}
-                </small>
-                <small class="gradient-text ">{post.frontmatter.author}</small>
-              </a>
-            </li>
-          ))
+      posts
+      .sort((a, b) => {
+      const aDate = new Date(a.frontmatter.pubDate);
+      const bDate = new Date(b.frontmatter.pubDate);
+      return bDate - aDate;
+      })
+      .slice(0, 5)
+      .map((post) => (
+      <li class="py-2">
+        <a href={"/post/" + post.frontmatter.slug}>
+          <img src={post.frontmatter.image} alt={post.frontmatter.title} />
+          <small class="font-bold">{post.frontmatter.title}</small>
+          <br />
+          <small class="text-gray-400">
+            {post.frontmatter.pubDate} {post.frontmatter.pubTime}
+          </small>
+          <small class="gradient-text ">{post.frontmatter.author}</small>
+        </a>
+      </li>
+      ))
       }
     </ul>
     <!-- loop shows all subsequent  posts -->
 
     <ul>
       {
-        posts
-          .sort((a, b) => {
-            const aDate = new Date(a.frontmatter.pubDate);
-            const bDate = new Date(b.frontmatter.pubDate);
-            return bDate - aDate;
-          })
-          .slice(5)
-          .map((post) => (
-            <li class="pb-3">
-              <a href={"/post/" + post.frontmatter.slug}>
-                <small class="font-bold">{post.frontmatter.title}</small>
-                <p class="font-light">{post.frontmatter.description}</p>
-                <small class="text-gray-400">
-                  {post.frontmatter.pubDate}
-                </small>{" "}
-                {/* <p>{post.frontmatter.description}</p> */}
-              </a>
-            </li>
-          ))
+      posts
+      .sort((a, b) => {
+      const aDate = new Date(a.frontmatter.pubDate);
+      const bDate = new Date(b.frontmatter.pubDate);
+      return bDate - aDate;
+      })
+      .slice(5)
+      .map((post) => (
+      <li class="pb-3">
+        <a href={"/post/" + post.frontmatter.slug}>
+          <small class="font-bold">{post.frontmatter.title}</small>
+          <p class="font-light">{post.frontmatter.description}</p>
+          <small class="text-gray-400">
+            {post.frontmatter.pubDate}
+          </small>{" "}
+          {/* <p>{post.frontmatter.description}</p> */}
+        </a>
+      </li>
+      ))
       }
     </ul>
   </div>

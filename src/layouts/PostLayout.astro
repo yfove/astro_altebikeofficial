@@ -12,114 +12,128 @@ import PostViews from "~/components/PostViews.astro";
 
 const { minutesRead } = Astro.props.frontmatter;
 const {
-  frontmatter: {
-    title,
-    description,
-    pubDate,
-    pubTime,
-    image,
-    author,
-    credit,
-    slug,
-    buyLink,
-    product,
-    tags,
-  },
+frontmatter: {
+title,
+description,
+pubDate,
+pubTime,
+image,
+author,
+credit,
+slug,
+buyLink,
+product,
+tags,
+},
 } = Astro.props;
 
 export const prerender = true;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/logo.png" type="image/svg+xml" />
-  </head>
+<html lang="en" class="scroll-smooth">
 
-  <body class="h-min bg-black text-white">
-    <Header />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/logo.png" type="image/svg+xml" />
+  <title>{title} | Your Blog</title>
+</head>
 
-    <div class="mx-5 flex min-h-screen max-w-5xl pt-10 sm:mx-auto">
-      <!-- Main Content -->
-      <main class="flex-3 space-y-4 font-normal tracking-wider text-gray-300">
-        <!-- Back to Previous -->
-        <a href="javascript:history.back()" class="gradient-text"
-          >Back to Previous</a
-        >
-        <a class="text-white">| {title}</a>
+<body class="bg-black text-gray-200 font-sans">
+  <Header />
 
-        <article class="mdx space-y-6">
-          <div class="article-head space-y-2">
-            <h1 class="gradient-text font-extrabold tracking-tighter text-4xl">
-              {title}
-            </h1>
+  <div class="container mx-auto px-6 py-12 max-w-5xl flex flex-col lg:flex-row gap-12">
+    <main class="flex-1 prose prose-invert max-w-none">
+      <nav aria-label="Breadcrumb" class="mb-4 text-sm text-gray-400 flex flex-wrap gap-2">
+        <a href="/" class="gradient-text hover:underline">Home</a>
+        <span>/</span>
+        <!-- <a href="/posts" class="gradient-text hover:underline">Blog</a>
+        <span>/</span> -->
+        <span aria-current="page" class="text-gray-500 truncate max-w-xs">{title}</span>
+      </nav>
 
-            <!-- Author and Time Information -->
-            <div class="flex w-full justify-between text-gray-400 text-sm">
-              <div class="flex items-center space-x-2">
-                <span class="mr-2">&#x270E;</span>
-                <span>{author}</span>
-              </div>
-              <div class="flex items-center space-x-2">
-                <span>&#10711;</span>
-                <span>{minutesRead}</span>
-                <PostViews slug={slug} />
-              </div>
-            </div>
+      <nav class="mb-6 text-sm font-medium">
+        <a href="javascript:history.back()" class="gradient-text underline hover:opacity-80 transition">
+          ← Back
+        </a>
+      </nav>
+
+      <article>
+        <h1 class="gradient-text text-4xl font-extrabold mb-6 leading-tight">{title}</h1>
+
+        <div class="flex flex-wrap items-center text-gray-400 text-sm space-x-8 mb-8">
+          <div class="flex items-center space-x-2" title="Author">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2" aria-hidden="true" role="img" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zM12 14c-3 0-6 1.5-6 4.5V20h12v-1.5c0-3-3-4.5-6-4.5z" />
+            </svg>
+            <span>{author}</span>
           </div>
 
-          <div class="article-body space-y-4">
-            {image && <img class="h-auto w-full" src={image} alt="" />}
-            <small class="gradient-text block py-1">
-              Published on: {pubTime} • {pubDate && <time>{pubDate}</time>}
-              {credit}
-            </small>
-
-            <hr class="" />
-            <slot class="mdx" />
+          <div class="flex items-center space-x-2" title="Reading Time">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2" aria-hidden="true" role="img" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{minutesRead} min read</span>
           </div>
-        </article>
 
-        <!-- Conditionally render the buyLink -->
-        {
-          buyLink && (
-            <div class="pb-16">
-              <a
-                href={buyLink}
-                class="gradient-text text-normal font-bold hover:text-gray-700 "
-              >
-                Buy the {product}
-              </a>
-            </div>
-          )
-        }
-
-        <div class="space-x-4">
-          <a href="javascript:history.back()" class="gradient-text"
-            >Back to Previous</a
-          >
-          <span>|</span>
-          <a href="/" class="gradient-text">Back to Home</a>
+          <PostViews slug={slug} />
         </div>
-      </main>
 
-      <!-- Sidebar -->
-      <div class="sidebar-container hidden lg:flex lg:w-1/4">
-        <Sidebar />
-      </div>
-    </div>
+        {image && (
+        <figure class="mb-8">
+          <img src={image} alt={title} class="rounded-lg shadow-lg w-full object-cover max-h-96" />
+          {credit && (
+          <figcaption class="text-xs text-gray-500 mt-2 italic">
+            {credit}
+          </figcaption>
+          )}
+        </figure>
+        )}
 
-    <!-- Accordion Component -->
-    <Accordian />
+        <time dateTime={pubDate} class="block mb-8 text-xs text-gray-500">
+          Published on {pubTime} • {pubDate}
+        </time>
 
-    <!-- Call to Action Component -->
-    <Cta />
+        <section class="prose prose-invert max-w-none">
+          <slot />
+        </section>
 
-    <!-- Horizontal Bars -->
-    <Horizontalbar2 />
-    <Horizontalbar />
-  </body>
+        {buyLink && (
+        <div class="mt-12">
+          <a href={buyLink}
+            class="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-black px-6 py-3 font-semibold shadow-lg hover:brightness-110 transition"
+            target="_blank" rel="noopener noreferrer">
+            Buy the {product}
+          </a>
+        </div>
+        )}
+      </article>
+
+      <nav class="mt-12 flex gap-4 text-sm font-medium">
+        <a href="javascript:history.back()" class="gradient-text underline hover:opacity-80 transition">
+          ← Back
+        </a>
+        <span class="text-gray-600">|</span>
+        <a href="/" class="gradient-text underline hover:opacity-80 transition">
+          Home
+        </a>
+      </nav>
+    </main>
+
+    <aside class="hidden lg:block w-80 sticky top-24 self-start">
+      <Sidebar />
+    </aside>
+  </div>
+
+  <Accordian />
+  <Cta />
+  <Horizontalbar2 />
+  <Horizontalbar />
 
   <Footer />
+</body>
+
 </html>

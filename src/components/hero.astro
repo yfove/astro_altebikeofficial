@@ -1,41 +1,30 @@
----
-import { Image } from "astro:assets";
-import astronautImage from "~/assets/cake2.webp";
+<section class="relative w-full bg-zinc-950 text-white border-b border-zinc-800">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 h-[20vh] min-h-[150px] flex items-center justify-between gap-6">
 
-const widths = [450, 800];
-const sizes = "(min-width: 640px) 42vw, 67vw";
----
-
-<section class="w-full bg-zinc-950 text-white">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8">
-
-    <!-- Left content -->
-    <div class="lg:col-span-7 flex flex-col justify-center items-start text-left">
-      <h1 class="gradient-text text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6">
-        Welcome to Ebikenook
+    <!-- Left: Headline & CTA (centered vertically) -->
+    <div class="flex flex-col justify-center w-full lg:w-3/4 text-center lg:text-left">
+      <h1 class="gradient-text text-xl sm:text-2xl lg:text-3xl font-extrabold leading-snug tracking-tight mb-1">
+        Fuel Your All Electric Lifestyle
       </h1>
 
-      <p class="text-gray-400 text-base sm:text-lg mb-8 max-w-2xl">
-        Explore the transformative potential of all-electric living through Ebikenook, your trusted source for eBike
-        news and inspiration.
+      <p class="text-gray-400 text-xs sm:text-sm mb-3 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+        Discover the future of all-electric living through daily insights, gear reviews, and eBike news.
       </p>
 
-      <div class="flex flex-wrap gap-4">
-        <!-- Explore Button -->
+      <div class="flex flex-wrap justify-center lg:justify-start gap-3">
         <a href="/post/"
-          class="inline-flex items-center justify-center rounded-lg bg-primary-700 px-5 py-3 text-base font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+          class="inline-flex items-center rounded-md bg-primary-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary-800 transition focus:ring-2 focus:ring-primary-500">
           Start Exploring
-          <svg class="ml-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+          <svg class="ml-1.5 h-3 w-3" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd"
               d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
               clip-rule="evenodd" />
           </svg>
         </a>
 
-        <!-- Instagram Button -->
-        <a href="https://www.instagram.com/ebikenook/"
-          class="inline-flex items-center justify-center rounded-lg border border-gray-500 px-5 py-3 text-base font-medium text-white hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-          <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 23 23">
+        <a href="https://www.instagram.com/ebikenook/" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center rounded-md border border-gray-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-gray-800 transition">
+          <svg class="mr-1.5 h-3 w-3" fill="currentColor" viewBox="0 0 23 23">
             <path fill="mediumslateblue"
               d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
           </svg>
@@ -44,34 +33,12 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
       </div>
     </div>
 
-    <!-- Right image -->
-    <div class="lg:col-span-5 flex justify-center items-center">
-      <div id="astronaut" class="w-full max-w-sm">
-        <Image class="w-full h-auto object-cover" src={astronautImage} widths={widths} sizes={sizes} loading="eager"
-          alt="an electric bike" />
+    <!-- Right: Transparent Image -->
+    <div class="hidden lg:flex lg:w-1/4 items-center justify-center h-full">
+      <div class="w-[120px] h-auto opacity-50">
+        <img src="/assets/cake2.webp" alt="An electric bike" class="w-full h-auto object-contain" />
       </div>
     </div>
+
   </div>
 </section>
-
-<style>
-  @keyframes float {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-
-    100% {
-      transform: translate3d(0, 30px, 0);
-    }
-  }
-
-  #astronaut {
-    animation: float linear 2.5s infinite alternate;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    #astronaut {
-      animation: none;
-    }
-  }
-</style>
