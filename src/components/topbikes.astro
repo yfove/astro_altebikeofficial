@@ -11,33 +11,24 @@ const posts = await Astro.glob("../pages/products/**/*.mdx");
     <hr style="border-top: 1px solid #4e59bb;" />
   </div>
 
-  <div
-    class="horizontalbar mx-auto grid grid-cols-1 gap-5 text-gray-100 sm:grid-cols-2 lg:grid-cols-2"
-  >
+  <div class="horizontalbar mx-auto grid grid-cols-1 gap-5 text-gray-100 sm:grid-cols-2 lg:grid-cols-2">
     <!-- Loop with images -->
     {
-      posts
-        .sort(
-          (a, b) =>
-            new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate)
-        ) // Sort by date
-        .slice(0, 4) // Get the first 2 posts
-        .map((post) => (
-          <Cardcontent
-            post={post}
-            key={post.frontmatter.slug}
-            imageClass="h-64"
-          />
-        ))
+    posts
+    .sort(
+    (a, b) =>
+    new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate)
+    ) // Sort by date
+    .slice(0, 6) // Get the first 2 posts
+    .map((post) => (
+    <Cardcontent post={post} key={post.frontmatter.slug} imageClass="h-64" />
+    ))
     }
   </div>
 
   <!-- See More Large Text Link -->
   <div class="mt-8 text-center">
-    <a
-      href="/products"
-      class="gradient-text font-bold transition duration-300 text-2xl"
-    >
+    <a href="/products" class="gradient-text font-bold transition duration-300 text-2xl">
       See More Bikes
     </a>
   </div>
