@@ -1,8 +1,6 @@
 import Fuse from "fuse.js";
 import { useState } from "react";
 
-// Configs fuse.js
-// https://fusejs.io/api/options.html
 const options = {
   keys: ["frontmatter.title", "frontmatter.description", "frontmatter.slug"],
   includeMatches: true,
@@ -11,96 +9,65 @@ const options = {
 };
 
 function Search({ searchList }) {
-  // User's input
   const [query, setQuery] = useState("");
 
   const fuse = new Fuse(searchList, options);
 
-  // Set a limit to the posts: 5
   const posts = fuse
     .search(query)
     .map((result) => result.item)
     .slice(0, 5);
 
-  function handleOnSearch({ target = {} }) {
-    const { value } = target;
-    setQuery(value);
+  function handleOnSearch(e) {
+    setQuery(e.target.value);
   }
 
   return (
-    <div class="">
-      <label
-        htmlFor="search"
-        className="sr-only mb-2 font-medium text-gray-900 text-sm dark:text-white"
-      >
+    <div className="w-full max-w-md mx-auto">
+      <label htmlFor="search" className="sr-only">
         Search
       </label>
-      <div className="relative ">
-        <div class="max-md:flex max-md:justify-center">
-          <input
-            type="text"
-            id="search"
-            value={query}
-            onChange={handleOnSearch}
-            class="m-5 mx-5 block rounded-lg border border-gray-800 bg-zinc-950 
-      p-2 pl-4 text-gray-400 text-sm 
-       focus:border-gray-700 focus:outline-none focus:ring-gray-700 
-       max-sm:w-full sm:mx-auto lg:w-1/2"
-            placeholder=" &#x1F50E;&#xFE0E; Search for anything..."
-          />
-        </div>
-      </div>
+      <input
+        type="text"
+        id="search"
+        value={query}
+        onChange={handleOnSearch}
+        placeholder="🔍 Search for anything..."
+        className="w-full rounded-md border border-gray-800 bg-zinc-950 px-4 py-2 text-gray-400 text-sm placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-700 focus:border-gray-700"
+      />
 
       {query.length > 1 && (
-        <div className="m-4 text-center text-gray-400">
-          Found {posts.length} {posts.length === 1 ? "result" : "results"} for '
-          {query}'
+        <div className="mt-3 mb-2 text-center text-gray-400 text-xs">
+          Found {posts.length} {posts.length === 1 ? "result" : "results"} for '{query}'
         </div>
       )}
 
-      <ul className="m-4 list-none">
-        {posts &&
-          posts.map((post) => (
-            <li className="py-2" key={post.frontmatter.slug}>
-              <a
-                className="text-gray-200 underline-offset-2 text-lg hover:text-gray-500 hover:underline"
-                href={`/${
-                  post.frontmatter.type && post.frontmatter.slug
-                    ? `${post.frontmatter.type}/${post.frontmatter.slug}`
-                    : `post/${post.frontmatter.slug}`
-                }`}
-              >
-                <div className="mx-auto text-left sm:max-w-[50%]">
-                  {" "}
-                  {/* 50% width, center, text left aligned */}
-                  <div className="flex items-center">
-                    {/* Add image */}
-                    {post.frontmatter.image && (
-                      <img
-                        src={post.frontmatter.image}
-                        alt={post.frontmatter.title}
-                        className="mr-4 h-16 w-16 object-cover"
-                      />
-                    )}
-                    <div>
-                      <h2 className="font-semibold">
-                        {post.frontmatter.title}
-                      </h2>{" "}
-                      {/* Title aligned to left */}
-                      <p className="text-gray-400 text-sm">
-                        {post.frontmatter.description}
-                      </p>{" "}
-                      {/* Description aligned to left */}
-                      <p className="text-gray-400 text-sm">
-                        Published {post.frontmatter.pubDate}
-                      </p>{" "}
-                      {/* Published date aligned to left */}
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          ))}
+      <ul className="list-none space-y-3">
+        {posts.map((post) => (
+          <li key={post.frontmatter.slug}>
+            <a
+              href={`/${
+                post.frontmatter.type && post.frontmatter.slug
+                  ? `${post.frontmatter.type}/${post.frontmatter.slug}`
+                  : `post/${post.frontmatter.slug}`
+              }`}
+              className="flex items-center gap-3 text-gray-200 hover:text-gray-400"
+            >
+              {post.frontmatter.image && (
+                <img
+                  src={post.frontmatter.image}
+                  alt={post.frontmatter.title}
+                  className="h-12 w-12 flex-shrink-0 rounded-md object-cover"
+                />
+              )}
+              <div>
+                <h2 className="text-sm font-semibold">{post.frontmatter.title}</h2>
+                <p className="text-xs text-gray-500 line-clamp-2">{post.frontmatter.description}</p>
+                <p className="text-xs text-gray-600 mt-0.5">Published {post.frontmatter.pubDate}</p>
+              </div>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   );

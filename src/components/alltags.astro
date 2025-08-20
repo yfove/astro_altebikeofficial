@@ -1,58 +1,49 @@
 ---
 const allPosts = await Astro.glob("../pages/post/*.mdx");
 const tags = [
-  ...new Set(allPosts.flatMap((post) => post.frontmatter.tags || [])),
+...new Set(allPosts.flatMap((post) => post.frontmatter.tags || [])),
 ];
-const maxVisibleTags = 3;
+const maxVisibleTags = 20;
 
 ---
 
 <div class="tags flex flex-wrap justify-center gap-2 my-4 mx-auto ">
   <!-- Display first maxVisibleTags tags -->
   {
-    tags.sort((a, b) => a.localeCompare(b)) .slice(0, maxVisibleTags).map((tag) => (
-      <p
-        key={tag}
-        class="tag border-2 rounded-lg border-fuchsia-900 px-4 py-1  text-white text-sm hover:text-gray-100"
-      >
-        <a href={`/tags/${tag}`} class="font-sans font-normal gradient-text">
-          {tag}
-        </a>
-      </p>
-    ))
+  tags.sort((a, b) => a.localeCompare(b)) .slice(0, maxVisibleTags).map((tag) => (
+  <p key={tag} class="tag border-2 rounded-lg border-fuchsia-900 px-4 py-1  text-white text-sm hover:text-gray-100">
+    <a href={`/tags/${tag}`} class="font-sans font-normal gradient-text">
+      {tag}
+    </a>
+  </p>
+  ))
   }
 
   <!-- If there are more than maxVisibleTags tags, show the 'More' button -->
   {
-    tags.length > maxVisibleTags && (
-      <div class="relative z-10">
-        <!-- 'More' button styled as a tag -->
-        <button
-          id="dropdownToggle"
-          class="tag cursor-pointer rounded-lg border-2 border-fuchsia-800  bg-secondary px-4 py-1 font-bold gradient-text text-sm hover:text-gray-100"
-        >
-          Browse more topics...
-        </button>
+  tags.length > maxVisibleTags && (
+  <div class="relative z-10">
+    <!-- 'More' button styled as a tag -->
+    <button id="dropdownToggle"
+      class="tag cursor-pointer rounded-lg border-2 border-fuchsia-800  bg-secondary px-4 py-1 font-bold gradient-text text-sm hover:text-gray-100">
+      Browse more topics...
+    </button>
 
-        <!-- Dropdown content with remaining tags -->
-        <div
-  id="dropdownContent"
-  class="dropdown-content absolute z-10 mt-1 hidden w-full  border-2 rounded-lg border-fuchsia-900 bg-black p-2 shadow-lg max-h-96 overflow-y-auto"
->
-  {tags.slice(maxVisibleTags).map((tag) => (
-    <p
-      key={tag}
-      class="tag border-2 border-fuchsia-900 bg-secondary p-2 my-2 rounded-lg font-bold gradient-text text-sm hover:text-gray-100"
-    >
-      <a href={`/tags/${tag}`} class="font-sans font-bold">
-        {tag}
-      </a>
-    </p>
-  ))}
-</div>
+    <!-- Dropdown content with remaining tags -->
+    <div id="dropdownContent"
+      class="dropdown-content absolute z-10 mt-1 hidden w-full  border-2 rounded-lg border-fuchsia-900 bg-black p-2 shadow-lg max-h-96 overflow-y-auto">
+      {tags.slice(maxVisibleTags).map((tag) => (
+      <p key={tag}
+        class="tag border-2 border-fuchsia-900 bg-secondary p-2 my-2 rounded-lg font-bold gradient-text text-sm hover:text-gray-100">
+        <a href={`/tags/${tag}`} class="font-sans font-bold">
+          {tag}
+        </a>
+      </p>
+      ))}
+    </div>
 
-      </div>
-    )
+  </div>
+  )
   }
 </div>
 

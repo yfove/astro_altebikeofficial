@@ -7,136 +7,172 @@ import TopDouble from "~/components/topdouble.astro";
 import TopQuadriple from "~/components/topquadriple.astro";
 import PaginatedComponent from "~/components/PaginatedComponentPosts.astro";
 import AdHorizontal from "~/components/adhorizontal.astro";
-import Adhorizontal from "~/components/adhorizontal.astro";
 
 export async function getStaticPaths({ paginate }) {
-  const post = await Astro.glob("./*.mdx");
+const post = await Astro.glob("./*.mdx");
 
-  const sortedPosts = post.sort((a, b) => {
-    const aDate = new Date(a.frontmatter.pubDate);
-    const bDate = new Date(b.frontmatter.pubDate);
+const sortedPosts = post.sort((a, b) => {
+const aDate = new Date(a.frontmatter.pubDate);
+const bDate = new Date(b.frontmatter.pubDate);
+return bDate - aDate;
+});
 
-    return bDate - aDate;
-  });
-
-  return paginate(sortedPosts, { pageSize: 6, page: 1 });
+return paginate(sortedPosts, { pageSize: 6, page: 1 });
 }
 
 const { page } = Astro.props;
 ---
 
-<BlogLayout
-  title="Electric Pulse"
-  description="Stay informed with articles that highlight the latest developments, trends, and regulations in the eBike world—ensuring riders are prepared for the changes shaping their rides and the future of sustainable transportation."
->
-  <section>
-    <div class="tags">
-      <SearchBar />
-      <Alltags />
-    </div>
+<BlogLayout title="Electric Pulse"
+  description="Stay informed with articles highlighting the latest developments, trends, and regulations in the eBike world—ensuring riders are prepared for the changes shaping their rides and the future of sustainable transportation.">
+  <section class="max-w-7xl mx-auto px-6 py-10 space-y-12">
+    <!-- Top: Search & Tags sidebar + Main headline -->
+    <div class="flex flex-col lg:flex-row gap-10">
+      <aside
+        class="w-full lg:w-1/4 lg:sticky lg:top-20 self-start space-y-8 p-6 rounded-lg border border-zinc-800 shadow-md bg-zinc-950 text-white">
+        {/* Search Section */}
+        <div>
+          <h2 class="mb-3 text-lg font-bold border-b border-fuchsia-700 pb-2">Search Articles</h2>
+          <SearchBar />
+        </div>
 
-    <div class="3-across">
-      <div class="grid h-fit grid-cols-2 max-md:grid-cols-1">
-        <!-- Block #1 -->
-        <div class="p-5">
-          <!-- Content for Block #1 -->
-          <!-- Loop with images for Block #1 -->
-          {
-            page.data
-              .filter(
-                (post) =>
-                  post.frontmatter.tags &&
-                  post.frontmatter.tags.includes("Trends")
-              )
-              .slice(0, 1)
-              .map((post) => (
-                <div key={post.frontmatter.slug} class="mb-8">
-                  <a href={"/post/" + post.frontmatter.slug}>
-                    <img
-                      class="rounded-lg"
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                    />
-                    <p class="my-2 font-bold text-xl">
-                      {post.frontmatter.title}
-                    </p>
-                    <p class="guide-decription my-2 text-sm">
-                      {post.frontmatter.description}
-                    </p>
-                    <p class="text-gray-400">{post.frontmatter.excerpt}</p>
-                    <p class="my-2 font-light text-sm">
-                      {post.frontmatter.pubDate} | Posted
-                      {post.frontmatter.pubTime}
-                    </p>
-                    <p class="guide-decription float-right my-2 text-gray-500 text-xs">
-                      &#10711; {post.frontmatter.minutesRead}
-                      <PostViews slug={post.frontmatter.slug} />
-                    </p>
-                  </a>
+        {/* Tags Section */}
+        <div>
+          <h2 class="mb-3 text-lg font-bold border-b border-fuchsia-700 pb-2">Explore Topics</h2>
+          <Alltags />
+        </div>
+
+        {/* Trending Posts Section */}
+        <div>
+          <h2 class="mb-3 text-lg font-bold border-b border-fuchsia-700 pb-2">Trending Now</h2>
+
+          {page.data
+          .filter(post => post.frontmatter.tags?.includes("Trends"))
+          .slice(0, 3)
+          .map(post => (
+          <article key={post.frontmatter.slug}
+            class="group rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 mb-4">
+            <a href={`/post/${post.frontmatter.slug}`} class="block relative">
+              <div class="aspect-w-16 aspect-h-9 overflow-hidden rounded-md">
+                <img src={post.frontmatter.image} alt={post.frontmatter.title}
+                  class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy" />
+              </div>
+
+              <div
+                class="p-3 bg-gradient-to-t from-zinc-900 via-transparent absolute bottom-0 left-0 right-0 text-white">
+                <h3 class="text-lg font-semibold leading-tight mb-1 line-clamp-2">
+                  {post.frontmatter.title}
+                </h3>
+                <p class="text-xs text-gray-400 mb-1 line-clamp-2">
+                  {post.frontmatter.description}
+                </p>
+                <div class="flex justify-between text-xs font-light opacity-75">
+                  <time>{post.frontmatter.pubDate}</time>
+                  <span>
+                    &#10711; {post.frontmatter.minutesRead} min read
+                    <PostViews slug={post.frontmatter.slug} />
+                  </span>
                 </div>
-              ))
+              </div>
+            </a>
+          </article>
+          ))}
+        </div>
+
+        {/* Newsletter Signup */}
+        <div class="p-4 bg-zinc-900 rounded text-center text-sm">
+          <p class="mb-2 font-semibold">Follow Us on Instagram</p>
+          <p class="mb-4">
+            Get the latest eBike updates, tips, and community vibes on{" "}
+            <strong>@ebikenook</strong>.
+          </p>
+          <a href="https://www.instagram.com/ebikenook" target="_blank" rel="noopener noreferrer"
+            class="inline-block rounded bg-white px-3 py-1 text-fuchsia-900 font-bold hover:bg-gray-200 transition">
+            Follow @ebikenook
+          </a>
+        </div>
+      </aside>
+
+
+
+
+      <main class="lg:w-3/4 space-y-10">
+        <!-- Featured post large card -->
+        {
+        page.data
+        .filter(post => post.frontmatter.tags?.includes("Trends"))
+        .slice(0, 1)
+        .map(post => (
+        <article key={post.frontmatter.slug}
+          class="relative group rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+          <a href={`/post/${post.frontmatter.slug}`} class="block">
+            <div class="aspect-w-16 aspect-h-9">
+              <img src={post.frontmatter.image} alt={post.frontmatter.title}
+                class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                loading="lazy" />
+            </div>
+            <div class="p-6 bg-gradient-to-t from-zinc-900 via-transparent absolute bottom-0 left-0 right-0 text-white">
+              <h2 class="text-3xl font-extrabold leading-tight mb-2">
+                {post.frontmatter.title}
+              </h2>
+              <p class="text-sm text-gray-300 mb-2">
+                {post.frontmatter.description}
+              </p>
+              <div class="flex justify-between text-xs font-light opacity-75">
+                <time>{post.frontmatter.pubDate}</time>
+                <span>
+                  &#10711; {post.frontmatter.minutesRead} min read
+                  <PostViews slug={post.frontmatter.slug} />
+                </span>
+              </div>
+            </div>
+          </a>
+        </article>
+        ))
+        }
+
+        <!-- Secondary posts grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {
+          page.data
+          .filter(post =>
+          post.frontmatter.tags?.some(tag => ["Trends", "Urbanism"].includes(tag))
+          )
+          .slice(1, 5)
+          .map(post => (
+          <article key={post.frontmatter.slug}
+            class="flex flex-col rounded-lg border border-zinc-800 hover:border-primary-600 transition-colors duration-300 overflow-hidden shadow-sm">
+            <a href={`/post/${post.frontmatter.slug}`} class="flex flex-col flex-grow">
+              <div class="aspect-w-16 aspect-h-9">
+                <img src={post.frontmatter.image} alt={post.frontmatter.title} class="object-cover w-full h-full"
+                  loading="lazy" />
+              </div>
+              <div class="p-4 flex flex-col flex-grow">
+                <h3 class="text-lg font-semibold mb-1">{post.frontmatter.title}</h3>
+                <p class="text-gray-400 text-sm mb-3 line-clamp-3">{post.frontmatter.excerpt}</p>
+                <div class="mt-auto flex justify-between text-xs font-light text-gray-500">
+                  <time>{post.frontmatter.pubDate}</time>
+                  <span>
+                    &#10711; {post.frontmatter.minutesRead} min
+                    <PostViews slug={post.frontmatter.slug} />
+                  </span>
+                </div>
+              </div>
+            </a>
+          </article>
+          ))
           }
         </div>
 
-        <!-- Block #2 -->
-        <div class="grid grid-rows-3 gap-4 p-5">
-          <!-- Loop with images for Block #2 -->
-          {
-            page.data
-              .filter(
-                (post) =>
-                  post.frontmatter.tags.includes("Trends") ||
-                  post.frontmatter.tags.includes("Urbanism")
-              )
-              .slice(0, 3)
-              .map((post) => (
-                <div
-                  key={post.frontmatter.slug}
-                  class="flex rounded-lg border border-stone-800 p-4"
-                >
-                  <a href={"/post/" + post.frontmatter.slug} class="flex">
-                    <img
-                      class="mr-4 size-24 rounded-lg object-cover"
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                    />
-                    <div class="flex flex-col justify-between">
-                      <div>
-                        <p class="text-md font-bold">
-                          {post.frontmatter.title}
-                        </p>
-                        {/* <p class="guide-decription text-sm">
-                    {post.frontmatter.description}
-                  </p> */}
-                        <p class="text-sm/[9px] text-gray-400">
-                          {post.frontmatter.excerpt}
-                        </p>
-                      </div>
-                      <div class="flex items-center justify-between">
-                        <p class="font-light text-xs">
-                          {post.frontmatter.pubDate} | Posted{" "}
-                          {post.frontmatter.pubTime}
-                        </p>
-                        <p class="guide-decription text-gray-500 text-xs">
-                          &#10711; {post.frontmatter.minutesRead}{" "}
-                          <PostViews slug={post.frontmatter.slug} />
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              ))
-          }
-        </div>
-      </div>
+        <AdHorizontal />
+
+        <TopDouble />
+
+        <TopQuadriple />
+
+        <PaginatedComponent page={page} posts={page.data} />
+      </main>
     </div>
-
-    <TopDouble />
-
-    <TopQuadriple />
-
-    <Adhorizontal />
-
-    <PaginatedComponent page={page} posts={page.data} />
   </section>
 </BlogLayout>

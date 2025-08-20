@@ -11,65 +11,70 @@ const { title, description, author, date, url } = Astro.props;
 ---
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="/logo.png" type="image/svg+xml" />
 
-    <Header />
-  </head>
-  <body>
-    <div class="layout">
-      <div class="title-heading mx-3">
-        <h1 class="gradient-text text-xlg font-extrabold tracking-tighter">
-          {title}
-        </h1>
-        <hr style="border-top: 2.5px solid #4e59bb; width: 72%; " />
-        <p class="w-3/4 pt-2 text-gray-400">{description}</p>
-        <br />
-      </div>
-      <slot />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" href="/logo.png" type="image/svg+xml" />
+
+  <Header />
+</head>
+
+<body>
+  <div class="layout">
+    <div class="title-heading mx-3">
+      <h1 class="gradient-text text-xlg font-extrabold tracking-tighter">
+        {title}
+      </h1>
+      <hr style="border-top: 2.5px solid #4e59bb; width: 72%; " />
+      <p class="w-3/4 pt-2 text-gray-400">{description}</p>
+      <br />
     </div>
-    <Footer />
-    <style>
-      <style > body {
-        margin: 0;
-        width: 100%;
+    <slot />
+  </div>
+  <Footer />
+  <style>
+    <style>body {
+      margin: 0;
+      width: 100%;
+    }
+
+    .layout {
+      max-width: 1152px;
+      margin: 0 auto;
+    }
+
+    .layout h1 {
+      font-size: 3rem;
+      @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+      /* text-align: center; */
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 1000px) {
+      .layout {
+        padding: 0.5rem;
+        /* Reduce padding for smaller screens */
       }
 
-      .layout {
-        max-width: 1152px;
+      .title-heading h1 {
+        font-size: 4rem;
+        /* Adjust the font size for smaller screens */
+        text-align: center;
         margin: 0 auto;
       }
 
-      .layout h1 {
-        font-size: 3rem;
-        @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
-        /* text-align: center; */
+      .layout hr {
+        margin: 0 auto;
       }
 
-      /* Media query for smaller screens */
-      @media (max-width: 1000px) {
-        .layout {
-          padding: 0.5rem; /* Reduce padding for smaller screens */
-        }
-
-        .title-heading h1 {
-          font-size: 4rem; /* Adjust the font size for smaller screens */
-          text-align: center;
-          margin: 0 auto;
-        }
-
-        .layout hr {
-          margin: 0 auto;
-        }
-
-        .title-heading p {
-          text-align: center;
-          margin: 0 auto;
-          display: none;
-        }
+      .title-heading p {
+        text-align: center;
+        margin: 0 auto;
+        display: none;
       }
-    </style>
-  </body>
+    }
+  </style>
+</body>
+
 </html>

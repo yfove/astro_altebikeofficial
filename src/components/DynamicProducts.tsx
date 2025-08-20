@@ -60,11 +60,7 @@ const DynamicProducts = ({ products }) => {
       {/* ✅ Breadcrumb */}
       <div className="mx-auto mb-6 max-w-7xl text-gray-400 text-sm">
         <nav className="flex space-x-2" aria-label="Breadcrumb">
-          <a href="/" className="hover:underline">
-            Home
-          </a>
-          <span>/</span>
-          <span className="text-gray-500">Products</span>
+          <span className="text-gray-500">Products Collection</span>
         </nav>
       </div>
 
