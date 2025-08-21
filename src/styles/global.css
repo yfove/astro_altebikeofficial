@@ -45,6 +45,8 @@ th {
 
 
 body {
+  margin: 0;
+  /* <-- Important */
   height: 100%;
   color: white;
   background: black;

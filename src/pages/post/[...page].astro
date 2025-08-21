@@ -25,24 +25,29 @@ const { page } = Astro.props;
 
 <BlogLayout title="Electric Pulse"
   description="Stay informed with articles highlighting the latest developments, trends, and regulations in the eBike world—ensuring riders are prepared for the changes shaping their rides and the future of sustainable transportation.">
-  <section class="max-w-7xl mx-auto px-6 py-10 space-y-12">
-    <!-- Top: Search & Tags sidebar + Main headline -->
-    <div class="flex flex-col lg:flex-row gap-10">
+
+  <!-- Mobile-tight section wrapper -->
+  <section class="max-w-[100vw] mx-auto px-1 sm:px-4 py-4 sm:py-8 space-y-6 sm:space-y-10">
+
+    <div class="flex flex-col lg:flex-row gap-4 sm:gap-8">
+
+      <!-- Sidebar -->
       <aside
-        class="w-full lg:w-1/4 lg:sticky lg:top-20 self-start space-y-8 p-6 rounded-lg border border-zinc-800 shadow-md bg-zinc-950 text-white">
-        {/* Search Section */}
+        class="w-full lg:w-1/4 lg:sticky lg:top-20 self-start space-y-4 sm:space-y-6 p-3 sm:p-4 rounded-lg border border-zinc-800 shadow-md bg-zinc-950 text-white">
+
+        <!-- Search -->
         <div>
           <h2 class="mb-3 text-lg font-bold border-b border-fuchsia-700 pb-2">Search Articles</h2>
           <SearchBar />
         </div>
 
-        {/* Tags Section */}
+        <!-- Tags -->
         <div>
           <h2 class="mb-3 text-lg font-bold border-b border-fuchsia-700 pb-2">Explore Topics</h2>
           <Alltags />
         </div>
 
-        {/* Trending Posts Section */}
+        <!-- Trending -->
         <div>
           <h2 class="mb-3 text-lg font-bold border-b border-fuchsia-700 pb-2">Trending Now</h2>
 
@@ -58,7 +63,6 @@ const { page } = Astro.props;
                   class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
                   loading="lazy" />
               </div>
-
               <div
                 class="p-3 bg-gradient-to-t from-zinc-900 via-transparent absolute bottom-0 left-0 right-0 text-white">
                 <h3 class="text-lg font-semibold leading-tight mb-1 line-clamp-2">
@@ -80,8 +84,8 @@ const { page } = Astro.props;
           ))}
         </div>
 
-        {/* Newsletter Signup */}
-        <div class="p-4 bg-zinc-900 rounded text-center text-sm">
+        <!-- Newsletter -->
+        <div class="p-3 sm:p-4 bg-zinc-900 rounded text-center text-sm">
           <p class="mb-2 font-semibold">Follow Us on Instagram</p>
           <p class="mb-4">
             Get the latest eBike updates, tips, and community vibes on{" "}
@@ -94,11 +98,10 @@ const { page } = Astro.props;
         </div>
       </aside>
 
+      <!-- Main Content -->
+      <main class="lg:w-3/4 space-y-6 sm:space-y-8">
 
-
-
-      <main class="lg:w-3/4 space-y-10">
-        <!-- Featured post large card -->
+        <!-- Featured Post -->
         {
         page.data
         .filter(post => post.frontmatter.tags?.includes("Trends"))
@@ -112,8 +115,9 @@ const { page } = Astro.props;
                 class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-300"
                 loading="lazy" />
             </div>
-            <div class="p-6 bg-gradient-to-t from-zinc-900 via-transparent absolute bottom-0 left-0 right-0 text-white">
-              <h2 class="text-3xl font-extrabold leading-tight mb-2">
+            <div
+              class="p-4 sm:p-6 bg-gradient-to-t from-zinc-900 via-transparent absolute bottom-0 left-0 right-0 text-white">
+              <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight mb-2">
                 {post.frontmatter.title}
               </h2>
               <p class="text-sm text-gray-300 mb-2">
@@ -132,8 +136,8 @@ const { page } = Astro.props;
         ))
         }
 
-        <!-- Secondary posts grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <!-- Secondary Posts -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {
           page.data
           .filter(post =>
@@ -161,17 +165,15 @@ const { page } = Astro.props;
               </div>
             </a>
           </article>
-          ))
-          }
+          ))}
         </div>
 
+        <!-- Ads / Extra Content -->
         <AdHorizontal />
-
         <TopDouble />
-
         <TopQuadriple />
-
         <PaginatedComponent page={page} posts={page.data} />
+
       </main>
     </div>
   </section>
