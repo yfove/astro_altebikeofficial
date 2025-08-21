@@ -1,0 +1,74 @@
+---
+const posts = await Astro.glob("../pages/post/**/*.mdx");
+---
+
+<div class="wrapper max-w-6xl mx-auto text-white px-4">
+    <div class="recent-posts pt-12">
+        <div class="heading mb-6">
+            <a href="/post">
+                <h2 class="text-2xl font-semibold hover:underline">Latest</h2>
+            </a>
+            <hr class="border-t border-indigo-600 mt-1" />
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 max-w-[1152px] mx-auto items-stretch">
+
+            <!-- Left: Featured Post -->
+            <ul class="list-none">
+                {
+                posts
+                .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
+                .slice(0, 1)
+                .map(post => (
+                <li key={post.frontmatter.slug}>
+                    <a href={"/post/" + post.frontmatter.slug}
+                        class="group block bg-black rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                        <img class="w-full h-[360px] object-cover mb-4" src={post.frontmatter.image}
+                            alt={post.frontmatter.title} />
+                        <div class="px-4 pb-4">
+                            <p class="font-bold text-xl mb-2 group-hover:text-indigo-400 transition">
+                                {post.frontmatter.title}</p>
+                            <p class="text-gray-400 text-sm mb-2">{post.frontmatter.description}</p>
+                            <p class="text-gray-500 text-xs mb-2">{post.frontmatter.excerpt}</p>
+                            <div class="flex justify-between text-gray-500 text-xs">
+                                <span>{post.frontmatter.pubDate} | Posted {post.frontmatter.pubTime}</span>
+                                <span>&#10711; {post.frontmatter.minutesRead} min read</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                ))
+                }
+            </ul>
+
+            <!-- Right: 3 Smaller Posts stacked -->
+            <ul class="list-none flex flex-col justify-between gap-4">
+                {
+                posts
+                .sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate))
+                .slice(1, 4)
+                .map(post => (
+                <li key={post.frontmatter.slug}>
+                    <a href={"/post/" + post.frontmatter.slug}
+                        class="group flex flex-col bg-black rounded-lg overflow-hidden shadow hover:shadow-md transition">
+                        <img class="w-full h-[100px] object-cover" src={post.frontmatter.image}
+                            alt={post.frontmatter.title} />
+                        <div class="px-3 py-2">
+                            <p class="font-semibold text-sm group-hover:text-indigo-400 transition line-clamp-2">
+                                {post.frontmatter.title}
+                            </p>
+                            <p class="text-gray-400 text-xs mt-1 line-clamp-2">{post.frontmatter.description}</p>
+                            <div class="flex justify-between text-gray-500 text-[10px] mt-2">
+                                <span>{post.frontmatter.pubDate}</span>
+                                <span>&#10711; {post.frontmatter.minutesRead} min</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                ))
+                }
+            </ul>
+
+        </div>
+    </div>
+</div>

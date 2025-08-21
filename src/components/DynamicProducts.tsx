@@ -7,7 +7,7 @@ const DynamicProducts = ({ products }) => {
   const [priceSortOrder, setPriceSortOrder] = useState("asc");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSuspension, setSelectedSuspension] = useState("");
-  const [visibleProducts, setVisibleProducts] = useState(9);
+  const [visibleProducts, setVisibleProducts] = useState(10);
 
   const brands = useMemo(() => {
     return [...new Set(products.map((p) => p.frontmatter?.brand))].filter(
@@ -213,10 +213,10 @@ const DynamicProducts = ({ products }) => {
                 Load More
               </button>
             )}
-            {visibleProducts > 9 && (
+            {visibleProducts > 10 && (
               <button
                 onClick={() =>
-                  setVisibleProducts((prev) => Math.max(prev - 6, 9))
+                  setVisibleProducts((prev) => Math.max(prev - 6, 10))
                 }
                 className="font-semibold text-purple-500 hover:text-purple-700"
               >
