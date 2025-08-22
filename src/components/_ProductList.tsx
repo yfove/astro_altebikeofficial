@@ -20,10 +20,15 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products }) => {
+  const sortedProducts = [...products].sort((a, b) => {
+    const dateA = new Date(a.frontmatter.pubDate);
+    const dateB = new Date(b.frontmatter.pubDate);
+    return dateB.getTime() - dateA.getTime(); // Newest first
+  });
   return (
     <ul className="grid gap-5 sm:grid-cols-[repeat(auto-fill,minmax(340px,1fr))]">
       {products.length > 0 ? (
-        products.map((product) => {
+        sortedProducts.map((product) => {
           const { frontmatter } = product;
           if (!frontmatter || !frontmatter.slug || !frontmatter.title) {
             return null;
@@ -54,7 +59,10 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                   ))}
                 </div>
               </a>
-              <a href={`/products/${frontmatter.slug}`} className="flex flex-col">
+              <a
+                href={`/products/${frontmatter.slug}`}
+                className="flex flex-col"
+              >
                 <p className="gradient-text my-2 px-3 font-bold text-lg">
                   {frontmatter.title}
                 </p>
@@ -64,7 +72,10 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                 <p className="my-2 font-light" style={{ fontSize: ".8rem" }}>
                   {frontmatter.pubDate} | Posted {frontmatter.pubTime}
                 </p>
-                <p className="guide-description my-2" style={{ fontSize: ".7rem" }}>
+                <p
+                  className="guide-description my-2"
+                  style={{ fontSize: ".7rem" }}
+                >
                   &#10711; {frontmatter.minutesRead}
                 </p>
               </a>
