@@ -1,0 +1,130 @@
+---
+import { Astro } from "astro";
+
+// Load all posts
+const allPosts = await Astro.glob("../pages/post/**/*.mdx");
+
+// Extract unique tags from posts
+const allTags = new Set(
+allPosts.flatMap(post => post.frontmatter.tags?.map(tag => tag.toLowerCase()) || [])
+);
+
+// Electric Pulse categories — include only if tags exist
+const electricPulseTags = [
+"Exclusive",
+"Exploration",
+"Health",
+"Micromobility",
+"Trends",
+"Urbanism"
+].filter(tag => allTags.has(tag.toLowerCase()));
+
+// More categories — only if present
+const moreCategories = ["Electric", "Off‑Road", "Tech", "Racing", "Safety", "Travel"].filter(
+tag => allTags.has(tag.toLowerCase())
+);
+---
+<aside id="side-menu"
+    class="fixed left-0 top-0 z-20 h-full w-0 max-w-[280px] bg-zinc-900 transition-all duration-300 ease-in-out overflow-hidden flex flex-col"
+    aria-label="Sidebar menu">
+    <div class="flex items-center justify-between px-4 py-4 border-b border-zinc-700">
+        <h2 class="text-lg font-bold">Menu</h2>
+        <button id="close-menu" class="font-bold text-white text-3xl leading-none">&times;</button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+
+        <!-- Electric Pulse Section -->
+        {electricPulseTags.length > 0 && (
+        <details class="group [&_summary::-webkit-details-marker]:hidden" open>
+            <summary
+                class="flex items-center justify-between cursor-pointer px-3 py-2 text-sm font-semibold uppercase tracking-wider text-zinc-400 hover:bg-zinc-800 rounded">
+                Electric Pulse
+                <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </summary>
+            <ul class="mt-2 space-y-2 pl-3">
+                {electricPulseTags.map(tag => (
+                <li>
+                    <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-" )}`}
+                        class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">
+                        {tag}
+                    </a>
+                </li>
+                ))}
+            </ul>
+        </details>
+        )}
+
+        <!-- Vault Section -->
+        <details class="group [&_summary::-webkit-details-marker]:hidden" open>
+            <summary
+                class="flex items-center justify-between cursor-pointer px-3 py-2 text-sm font-semibold uppercase tracking-wider text-zinc-400 hover:bg-zinc-800 rounded">
+                E-Vault
+                <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </summary>
+            <ul class="mt-2 space-y-2 pl-3">
+                <li><a href="/products"
+                        class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Ebikes</a></li>
+                <li><a href="https://gearwelt.com" target="_blank"
+                        class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Gear</a></li>
+                <li><span class="block rounded px-3 py-2 text-white opacity-60">Wildlands (coming soon)</span></li>
+
+            </ul>
+        </details>
+
+        <!-- More Categories -->
+        {moreCategories.length > 0 && (
+        <details class="group [&_summary::-webkit-details-marker]:hidden">
+            <summary
+                class="flex items-center justify-between cursor-pointer px-3 py-2 text-sm font-semibold uppercase tracking-wider text-zinc-400 hover:bg-zinc-800 rounded">
+                More Categories
+                <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </summary>
+            <ul class="mt-2 space-y-2 pl-3">
+                {moreCategories.map(tag => (
+                <li>
+                    <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-" )}`}
+                        class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">
+                        {tag}
+                    </a>
+                </li>
+                ))}
+            </ul>
+        </details>
+        )}
+
+        <!-- Other Links -->
+        <section>
+            <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-zinc-400">Other Links</h3>
+            <ul class="space-y-2">
+                <li>
+                    <p href="/about" class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">About
+                        Us</a>
+                </li>
+                <li>
+                    <p href="" class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Contact</a>
+                </li>
+            </ul>
+        </section>
+    </div>
+</aside>
+
+<script>
+    const openMenuBtn = document.getElementById("open-menu");
+    const sideMenu = document.getElementById("side-menu");
+    const closeMenuBtn = document.getElementById("close-menu");
+
+    closeMenuBtn?.addEventListener("click", () => {
+        sideMenu.classList.replace("w-72", "w-0");
+        closeMenuBtn.classList.add("hidden");
+    });
+</script>

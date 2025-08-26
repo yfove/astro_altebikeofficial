@@ -32,7 +32,7 @@ function Search({ searchList }) {
         id="search"
         value={query}
         onChange={handleOnSearch}
-        placeholder="🔍 Search for anything..."
+        placeholder="Search for anything..."
         className="w-full rounded-md border border-gray-800 bg-zinc-950 px-4 py-2 text-gray-400 text-sm placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-700 focus:border-gray-700"
       />
 

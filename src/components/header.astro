@@ -1,138 +1,248 @@
 ---
 import { Icon } from "astro-icon";
-import ThemeSwitcher from "~/components/theme-switcher.astro";
-import type { NavItem } from "~/types";
-
-const navItems: Array<NavItem> = [
-  { title: "Featured Articles", url: "/featured/" },
-  { title: "Guides & Tutorials", url: "/guides" },
-];
+const allPosts = await Astro.glob("../pages/post/**/*.mdx"); // Adjust path if needed
+const tags = [...new Set(allPosts.flatMap((post) => post.frontmatter.tags || []))];
+const limitedTags = tags.slice(0, 12);
 ---
 
-<header
-  id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
->
-  <a class="flex items-center gap-3 hover:!text-default" href="#">
-    <h1 class="sr-only">ebikenook</h1>
-    <!-- <Icon name="logomark" class="h-10" /> -->
-    <!-- <Icon name="wordmark" class="hidden h-4 sm:block" /> -->
-    <h1 style="font-weight:bold; letter-spacing: 2px">ebikenook</h1>
-  </a>
-  <div>
-    <div class="flex items-center gap-6">
-      <nav class="hidden sm:block">
-        <ul class="flex items-center gap-6">
-          {
-            navItems.map(({ title, url }) => (
-              <li>
-                <a class="text-sm" href={url}>
-                  {title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <button
-        id="open-nav-button"
-        type="button"
-        class="btn sm:hidden"
-        aria-label="Navigation"
-      >
-        <!-- <Icon pack="mdi" name="menu" class="h-8" /> -->
+<nav class="sticky top-0 z-20 bg-black px-3 text-white border-b border-zinc-800" role="navigation"
+  aria-label="Primary Navigation">
+  <div class="container mx-auto flex max-w-6xl flex-wrap items-center justify-between">
+    <!-- Logo & Mobile Menu Button -->
+    <div class="flex w-full items-center justify-between md:w-auto">
+      <Icon name="ebikenook" class="h-10" />
+      <a href="/" class="flex-1 px-2 py-3 font-semibold text-white">ebikenook</a>
+      <button class="mobile-menu-button md:hidden" aria-label="Toggle menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="h-6 w-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+        </svg>
       </button>
-      <ThemeSwitcher />
     </div>
-    <div id="menu-modal" class="modal hidden" aria-hidden="true">
-      <div class="fixed inset-0 bg-default px-8 py-4 text-default">
-        <div class="space-y-4" role="dialog" aria-modal="true">
-          <header class="text-right">
-            <button
-              id="close-nav-button"
-              type="button"
-              class="btn"
-              aria-label="Close navigation"
-            >
-              <!-- <Icon pack="mdi" name="close" class="h-8" /> -->
-            </button>
-          </header>
-          <div class="flex justify-center">
-            <!-- <Icon name="logomark" class="h-16" /> -->
-          </div>
-          <nav>
-            <ul class="flex flex-col">
-              {
-                navItems.map(({ title, url }) => (
-                  <li>
-                    <a class="block py-4 text-center text-xl" href={url}>
-                      {title}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </nav>
-        </div>
+
+    <!-- Desktop Nav -->
+    <ul class="navigation-menu hidden md:flex md:flex-row md:space-x-4 font-semibold text-sm" role="menubar">
+      <li role="none"><a href="/" role="menuitem" class="px-3 py-2 hover:text-purple-400">Home</a></li>
+
+      <li class="relative group" role="none" tabindex="0" aria-haspopup="true" aria-expanded="false">
+        <button class="flex items-center px-3 py-2 hover:text-purple-400 focus:outline-none" aria-haspopup="true"
+          aria-expanded="false" role="menuitem">
+          News
+          <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <ul
+          class="absolute left-0 top-full hidden group-hover:block group-focus:block bg-zinc-900 border border-zinc-700 min-w-[200px] shadow-lg"
+          role="menu" aria-label="News submenu">
+          <li role="none"><a href="/news/latest" role="menuitem"
+              class="block px-4 py-2 hover:bg-purple-700 hover:text-white">Latest</a></li>
+          <li role="none"><a href="/news/events" role="menuitem"
+              class="block px-4 py-2 hover:bg-purple-700 hover:text-white">Events</a></li>
+        </ul>
+      </li>
+
+      <li class="relative group" role="none" tabindex="0" aria-haspopup="true" aria-expanded="false">
+        <button class="flex items-center px-3 py-2 hover:text-purple-400 focus:outline-none" aria-haspopup="true"
+          aria-expanded="false" role="menuitem">
+          Reviews
+          <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+        <ul
+          class="absolute left-0 top-full hidden group-hover:block group-focus:block bg-zinc-900 border border-zinc-700 min-w-[200px] shadow-lg"
+          role="menu" aria-label="Reviews submenu">
+          <li role="none"><a href="/reviews/products" role="menuitem"
+              class="block px-4 py-2 hover:bg-purple-700 hover:text-white">Product Reviews</a></li>
+          <li role="none"><a href="/reviews/users" role="menuitem"
+              class="block px-4 py-2 hover:bg-purple-700 hover:text-white">User Reviews</a></li>
+        </ul>
+      </li>
+
+      <li><a href="/features" role="menuitem" class="px-3 py-2 hover:text-purple-400">Features</a></li>
+      <li><a href="/makes" role="menuitem" class="px-3 py-2 hover:text-purple-400">Makes</a></li>
+      <li><a href="/models" role="menuitem" class="px-3 py-2 hover:text-purple-400">Models</a></li>
+      <li><a href="/photos" role="menuitem" class="px-3 py-2 hover:text-purple-400">Photos</a></li>
+      <li><a href="/videos" role="menuitem" class="px-3 py-2 hover:text-purple-400">Videos</a></li>
+
+      <li>
+        <button id="open-side-menu" class="px-3 py-2 font-semibold hover:text-purple-400 focus:outline-none"
+          aria-haspopup="true" aria-expanded="false">Theme</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Side Menu -->
+<aside id="side-menu"
+  class="fixed right-0 top-0 z-30 h-full w-0 max-w-[280px] overflow-hidden bg-zinc-950 text-white transition-all duration-300 ease-in-out"
+  aria-hidden="true" aria-label="Side navigation">
+  <div class="flex items-center justify-between border-b border-zinc-800 p-4">
+    <h2 class="text-xl font-bold">Menu</h2>
+    <button id="close-side-menu" class="text-4xl font-bold focus:outline-none" aria-label="Close Menu">&times;</button>
+  </div>
+
+  <nav class="flex flex-col space-y-3 p-6 text-lg" role="menu">
+    <a href="/news" role="menuitem" class="block border-b border-zinc-800 py-2 hover:text-purple-400">News</a>
+    <a href="/reviews" role="menuitem" class="block border-b border-zinc-800 py-2 hover:text-purple-400">Reviews</a>
+    <a href="/features" role="menuitem" class="block border-b border-zinc-800 py-2 hover:text-purple-400">Features</a>
+    <a href="/makes" role="menuitem" class="block border-b border-zinc-800 py-2 hover:text-purple-400">Makes</a>
+    <a href="/models" role="menuitem" class="block border-b border-zinc-800 py-2 hover:text-purple-400">Models</a>
+    <a href="/photos" role="menuitem" class="block border-b border-zinc-800 py-2 hover:text-purple-400">Photos</a>
+    <a href="/videos" role="menuitem" class="block border-b border-zinc-800 py-2 hover:text-purple-400">Videos</a>
+
+    <div class="mt-6 border-t border-zinc-800 pt-4">
+      <p class="mb-2 font-semibold">Theme</p>
+      <div class="flex space-x-3">
+        <button type="button" id="theme-light"
+          class="rounded bg-zinc-700 px-3 py-1 hover:bg-purple-700 focus:outline-none">Light</button>
+        <button type="button" id="theme-dark"
+          class="rounded bg-zinc-700 px-3 py-1 hover:bg-purple-700 focus:outline-none">Dark</button>
+        <button type="button" id="theme-auto"
+          class="rounded bg-zinc-700 px-3 py-1 hover:bg-purple-700 focus:outline-none">Auto</button>
       </div>
     </div>
-  </div>
-</header>
+  </nav>
+</aside>
+
+<style>
+  /* Dropdown menus appear on hover/focus */
+  .group:hover>ul,
+  .group:focus-within>ul {
+    display: block;
+  }
+
+  .navigation-menu ul {
+    display: none;
+  }
+
+  /* Mobile navigation */
+  @media (max-width: 767px) {
+    .navigation-menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: #111;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 50;
+    }
+
+    .navigation-menu.show {
+      display: flex;
+    }
+
+    .navigation-menu>li {
+      border-bottom: 1px solid #222;
+    }
+
+    .navigation-menu ul {
+      position: static !important;
+      box-shadow: none !important;
+      background: #222 !important;
+      border: none !important;
+      display: none;
+      flex-direction: column;
+    }
+
+    .navigation-menu li.open>ul {
+      display: flex !important;
+    }
+  }
+
+  /* Side Menu open state */
+  #side-menu.open {
+    width: 280px;
+  }
+</style>
 
 <script>
-  import MicroModal from "micromodal";
-  import invariant from "tiny-invariant";
+  // Mobile menu toggle
+  const mobileMenuBtn = document.querySelector(".mobile-menu-button");
+  const navMenu = document.querySelector(".navigation-menu");
 
-  const menuModalId = "menu-modal";
-
-  const header = document.querySelector("#page-header") as HTMLElement;
-  const page = document.documentElement;
-  const menu = document.querySelector(`#${menuModalId} ul`);
-  const openNavButton = document.querySelector("#open-nav-button");
-  const closeNavButton = document.querySelector("#close-nav-button");
-
-  invariant(header, "header should not be null");
-  invariant(menu, "menu should not be null");
-  invariant(openNavButton, "openNavButton should not be null");
-  invariant(closeNavButton, "closeNavButton should not be null");
-
-  const openMenu = () => {
-    MicroModal.show(menuModalId, { disableScroll: true });
-  };
-
-  const closeMenu = () => {
-    MicroModal.close(menuModalId);
-  };
-
-  openNavButton.addEventListener("click", openMenu);
-  closeNavButton.addEventListener("click", closeMenu);
-
-  document.addEventListener("scroll", () => {
-    const d = page.clientHeight - page.scrollTop - header.offsetHeight;
-    header.classList.toggle("fixed-header", d < 0);
+  mobileMenuBtn.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
   });
 
-  menu.addEventListener("click", (event) => {
-    if ((event.target as HTMLElement).tagName === "A") {
-      closeMenu();
+  // Side menu open/close
+  const openSideMenuBtn = document.getElementById("open-side-menu");
+  const sideMenu = document.getElementById("side-menu");
+  const closeSideMenuBtn = document.getElementById("close-side-menu");
+
+  openSideMenuBtn.addEventListener("click", () => {
+    sideMenu.classList.add("open");
+    sideMenu.setAttribute("aria-hidden", "false");
+    openSideMenuBtn.setAttribute("aria-expanded", "true");
+  });
+
+  closeSideMenuBtn.addEventListener("click", () => {
+    sideMenu.classList.remove("open");
+    sideMenu.setAttribute("aria-hidden", "true");
+    openSideMenuBtn.setAttribute("aria-expanded", "false");
+  });
+
+  // Theme toggle logic
+  const themeLightBtn = document.getElementById("theme-light");
+  const themeDarkBtn = document.getElementById("theme-dark");
+  const themeAutoBtn = document.getElementById("theme-auto");
+
+  function setTheme(theme) {
+    if (theme === "auto") {
+      localStorage.removeItem("theme");
+      document.documentElement.removeAttribute("data-theme");
+    } else {
+      localStorage.setItem("theme", theme);
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  }
+
+  themeLightBtn.addEventListener("click", () => setTheme("light"));
+  themeDarkBtn.addEventListener("click", () => setTheme("dark"));
+  themeAutoBtn.addEventListener("click", () => setTheme("auto"));
+
+  // Load stored theme on page load
+  const storedTheme = localStorage.getItem("theme");
+  if (storedTheme) {
+    document.documentElement.setAttribute("data-theme", storedTheme);
+  } else {
+    // Optionally implement auto theme based on prefers-color-scheme
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  }
+
+  // Accessibility: update aria-expanded for dropdown menus on focus/blur
+  const dropdownButtons = document.querySelectorAll('.group > button');
+
+  dropdownButtons.forEach((btn) => {
+    btn.addEventListener('focus', () => btn.setAttribute('aria-expanded', 'true'));
+    btn.addEventListener('blur', () => btn.setAttribute('aria-expanded', 'false'));
+  });
+
+  // Close side menu if clicked outside or Escape pressed
+  document.addEventListener('click', (e) => {
+    if (
+      sideMenu.classList.contains('open') &&
+      !sideMenu.contains(e.target) &&
+      e.target !== openSideMenuBtn
+    ) {
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+      openSideMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sideMenu.classList.contains('open')) {
+      sideMenu.classList.remove('open');
+      sideMenu.setAttribute('aria-hidden', 'true');
+      openSideMenuBtn.setAttribute('aria-expanded', 'false');
+      openSideMenuBtn.focus();
     }
   });
 </script>
-
-<noscript>
-  <style>
-    #open-nav-button {
-      display: none;
-    }
-  </style>
-</noscript>
-
-<style>
-  .fixed-header {
-    @apply fixed top-0 bottom-auto;
-    @apply border-default bg-default text-default;
-  }
-  .modal.is-open {
-    @apply block;
-  }
-</style>
