@@ -23,6 +23,8 @@ const electricPulseTags = [
 const moreCategories = ["Electric", "Off‑Road", "Tech", "Racing", "Safety", "Travel"].filter(
 tag => allTags.has(tag.toLowerCase())
 );
+
+
 ---
 <aside id="side-menu"
     class="fixed left-0 top-0 z-20 h-full w-0 max-w-[280px] bg-zinc-900 transition-all duration-300 ease-in-out overflow-hidden flex flex-col"
@@ -47,11 +49,10 @@ tag => allTags.has(tag.toLowerCase())
             <ul class="mt-2 space-y-2 pl-3">
                 <li><a href="/products"
                         class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Ebikes</a></li>
-                <li><a href="https://gearwelt.com" target="_blank"
-                        class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Gear</a></li>
                 <li><a href="/guides" target="_blank"
                         class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Guides</a></li>
                 <li><span class="block rounded px-3 py-2 text-white opacity-60">Wildlands (coming soon)</span></li>
+
 
             </ul>
         </details>
@@ -69,6 +70,8 @@ tag => allTags.has(tag.toLowerCase())
                 </svg>
             </summary>
             <ul class="mt-2 space-y-2 pl-3">
+                <li><a href="/post" class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">All</a>
+                </li>
                 {electricPulseTags.map(tag => (
                 <li>
                     <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-" )}`}
@@ -106,6 +109,24 @@ tag => allTags.has(tag.toLowerCase())
         </details>
         )}
 
+        <!-- Gear Section -->
+        <details class="group [&_summary::-webkit-details-marker]:hidden" open>
+            <summary
+                class="flex items-center justify-between cursor-pointer px-3 py-2 text-sm font-semibold uppercase tracking-wider text-zinc-400 hover:bg-zinc-800 rounded">
+                Gear
+                <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </summary>
+            <ul class="mt-2 space-y-2 pl-3">
+
+                <li><a href="https://gearwelt.com" target="_blank"
+                        class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Gearwelt.com</a></li>
+
+            </ul>
+        </details>
+
         <!-- Other Links -->
         <section>
             <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-zinc-400">Other Links</h3>
@@ -114,9 +135,7 @@ tag => allTags.has(tag.toLowerCase())
                     <p href="/about" class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">About
                         Us</a>
                 </li>
-                <li>
-                    <p href="" class="block rounded px-3 py-2 text-white hover:bg-zinc-700 transition">Contact</a>
-                </li>
+
             </ul>
         </section>
     </div>

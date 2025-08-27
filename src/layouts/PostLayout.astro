@@ -9,6 +9,8 @@ import Cta from "../components/cta.astro";
 import Horizontalbar from "~/components/horizontalbar-guides.astro";
 import Horizontalbar2 from "~/components/horizontalbar.astro";
 import PostViews from "~/components/PostViews.astro";
+import Related from "../components/RelatedProducts.astro"; // Import the new component
+
 
 const { minutesRead } = Astro.props.frontmatter;
 const {
@@ -29,6 +31,22 @@ price,
 } = Astro.props;
 
 export const prerender = true;
+
+// Use Astro.glob to fetch all the posts
+const contentItems = await Astro.glob("../pages/{post,products}/**/*.mdx");
+
+// Ensure there are tags and get the first one
+const firstTag = tags && tags.length > 0 ? tags[0] : null;
+
+// Ensure there are tags
+const relatedPosts = contentItems
+.filter(
+(post) =>
+post.frontmatter.slug !== slug && // Exclude the current post
+post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matches
+)
+.sort(() => Math.random() - 0.5) // Shuffle the posts randomly
+.slice(0, 2); // Display only 2 posts
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -126,6 +144,8 @@ export const prerender = true;
           Home
         </a>
       </nav>
+      <Related tags={tags} relatedPosts={relatedPosts} />
+
     </main>
 
     <aside class="hidden lg:block w-80 sticky top-24 self-start">

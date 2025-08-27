@@ -1,0 +1,63 @@
+---
+const { tags, relatedPosts } = Astro.props;
+---
+
+{relatedPosts.length > 0 && (
+<section class="max-w-5xl mx-auto my-10 px-4">
+    {tags.length > 0 && (
+    <h2 class="mb-6 font-semibold uppercase text-gray-800 text-sm tracking-wide">
+        See more from{" "}
+        {tags.slice(0, -1).map((tag, i) => (
+        <span key={i}>{tag}, </span>
+        ))}
+        {tags.length > 1 && "and "}
+        <span>{tags[tags.length - 1]}</span>
+    </h2>
+    )}
+
+    <ul class="list-none space-y-4">
+        {relatedPosts.map((post) => {
+        const {
+        title,
+        image,
+        description,
+        pubDate,
+        pubTime,
+        slug,
+        } = post.frontmatter;
+
+        // Dynamically set the URL based on whether it's a post or product
+        const isProduct = post.file.includes("/product/");
+        const href = isProduct ? `/product/${slug}` : `/post/${slug}`;
+
+        return (
+        <li key={slug} class="py-2">
+            <a href={href} class="text-white hover:text-magenta-500 hover:underline underline-offset-2 block">
+                <div class="flex items-center">
+                    {image ? (
+                    <img src={image} alt={title} class="mr-4 h-16 w-16 object-cover rounded" />
+                    ) : (
+                    <div
+                        class="mr-4 h-16 w-16 bg-gray-300 flex items-center justify-center text-sm text-gray-500 rounded">
+                        No image
+                    </div>
+                    )}
+                    <div>
+                        <h3 class="font-semibold text-gray-550 text-base">
+                            {title}
+                        </h3>
+                        {description && (
+                        <p class="text-gray-600 text-sm">{description}</p>
+                        )}
+                        <p class="text-gray-400 text-xs">
+                            Published {pubDate} at {pubTime}
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </li>
+        );
+        })}
+    </ul>
+</section>
+)}
