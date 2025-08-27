@@ -46,7 +46,7 @@ post.frontmatter.slug !== slug && // Exclude the current post
 post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matches
 )
 .sort(() => Math.random() - 0.5) // Shuffle the posts randomly
-.slice(0, 2); // Display only 2 posts
+.slice(0, 4); // Display only 4 posts
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -95,7 +95,7 @@ post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matc
               stroke="currentColor" stroke-width="2" aria-hidden="true" role="img" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span>{minutesRead} min read</span>
+            <span>{minutesRead} </span>
           </div>
 
           <PostViews slug={slug} />
@@ -112,11 +112,17 @@ post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matc
         </figure>
         )}
 
-        <time dateTime={pubDate} class="block mb-8 text-xs text-gray-500">
+        <time dateTime={pubDate} class="block mb-2 text-xs text-gray-500">
           Published on {pubTime} • {pubDate}
         </time>
 
-        <section class="prose prose-invert max-w-none">
+        {description && (
+        <p class="mb-4 text-gray-400 italic text-lg max-w-prose">
+          {description}
+        </p>
+        )}
+
+        <section class="blog-article prose prose-invert max-w-none">
           <slot />
         </section>
 

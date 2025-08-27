@@ -21,3 +21,17 @@ article h3,
 article h4 {
   margin: 16px 0px;
 }
+
+.prose .blog-article a {
+  @apply bg-clip-text text-transparent bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
+  font-weight: normal;
+  /* remove bold */
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.prose a:hover {
+  /* You can adjust hover effect, for example, slightly shift gradient or add brightness */
+  filter: brightness(1.1);
+  text-decoration: none;
+}

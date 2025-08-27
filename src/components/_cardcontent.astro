@@ -5,45 +5,32 @@ const { post, imageClass = "" } = Astro.props;
 
 <li class="flex flex-col rounded-lg border-0 border-stone-400 text-center">
   <a href={"/post/" + post.frontmatter.slug} class="flex flex-col">
-    <img
-      class={`w-full object-cover rounded-lg ${imageClass || "h-64"}`}
-      src={post.frontmatter.image}
-      alt={post.frontmatter.title}
-    />
+    <img class={`w-full object-cover rounded-lg ${imageClass || "h-64" }`} src={post.frontmatter.image}
+      alt={post.frontmatter.title} />
   </a>
   <div class="mt-2 space-x-2">
     {
-      post.frontmatter.tags &&
-        post.frontmatter.tags.map((tag, index) => (
-          <span key={index} class="text-sm">
-            <a href={`/tags/${tag}`} class="text-stone-400 hover:underline">
-              {tag}
-            </a>
-            {index < post.frontmatter.tags.length - 1 && (
-              <span class="mx-1 text-gray-400">|</span>
-            )}
-          </span>
-        ))
+    post.frontmatter.tags &&
+    post.frontmatter.tags.map((tag, index) => (
+    <span key={index} class="text-sm">
+      <a href={`/tags/${tag}`} class="text-stone-400 hover:underline">
+        {tag}
+      </a>
+      {index < post.frontmatter.tags.length - 1 && ( <span class="mx-1 text-gray-400">|</span>
+    )}
+    </span>
+    ))
     }
   </div>
-  <a
-    href={`/${
-      post.frontmatter.type && post.frontmatter.slug
-        ? `${post.frontmatter.type}/${post.frontmatter.slug}`
-        : `post/${post.frontmatter.slug}`
-    }`}
-    class="flex flex-col"
-  >
+  <a href={`/${ post.frontmatter.type && post.frontmatter.slug ? `${post.frontmatter.type}/${post.frontmatter.slug}` :
+    `post/${post.frontmatter.slug}` }`} class="flex flex-col">
     <p class="text-gray-450 my-2 px-3 font-bold text-xl">
       {post.frontmatter.title}
     </p>
     {
-      /* <p
-        class="guide-decription my-2 text-gray-950"
-        style="font-size: .8rem;"
-      >
-        {post.frontmatter.description}
-      </p> */
+    /* <p class="guide-decription my-2 text-gray-950" style="font-size: .8rem;">
+      {post.frontmatter.description}
+    </p> */
     }
     <p class="px-3 text-gray-400">{post.frontmatter.excerpt}</p>
     <p class="text-gray-450 my-2 font-light" style="font-size: .8rem;">
@@ -54,10 +41,7 @@ const { post, imageClass = "" } = Astro.props;
     </p>
   </a>
   <div class="my-3">
-    <a
-      href={"/post/" + post.frontmatter.slug}
-      class="text-md gradient-text mx-2 hover:text-gray-700 hover:underline"
-    >
+    <a href={"/post/" + post.frontmatter.slug} class="text-md gradient-text mx-2 hover:text-gray-700 hover:underline">
       Read More
     </a>
   </div>
