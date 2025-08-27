@@ -2,7 +2,7 @@
 const posts = await Astro.glob("../pages/post/**/*.mdx");
 ---
 
-<div class="wrapper max-w-6xl text-white">
+<div class="wrapper max-w-5xl text-white">
   <div class="recent-posts p-2 pt-12 max-sm:m-3">
     <div class="heading">
       <a href="/post">
@@ -13,50 +13,43 @@ const posts = await Astro.glob("../pages/post/**/*.mdx");
     <div class="horizontalbar">
       <!-- Loop with images -->
       {
-        posts
-          .sort((a, b) => {
-            const aDate = new Date(a.frontmatter.pubDate);
-            const bDate = new Date(b.frontmatter.pubDate);
-            return bDate - aDate;
-          })
-          .filter(
-            (post) =>
-              post.frontmatter.tags.includes("Urbanism") ||
-              post.frontmatter.tags.includes("Micromobility")
-          )
-          .slice(0, 4)
-          .map((post) => (
-            <li>
-              <a href={"/post/" + post.frontmatter.slug}>
-                <div class="post-container">
-                  <div class="image-container">
-                    <img
-                      class="rounded-lg"
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                    />
-                  </div>
-                  <div class="text-container">
-                    <p class="my-2 font-bold text-sm">
-                      {post.frontmatter.title}
-                    </p>
-                    <p class="guide-decription my-2" style="font-size: .8rem;">
-                      {post.frontmatter.description}
-                    </p>
-                    <p class="font-light" style="font-size: .8rem;">
-                      {post.frontmatter.pubDate}
-                    </p>
-                    <p
-                      class="guide-decription float-right text-gray-500"
-                      style="font-size: .7rem;"
-                    >
-                      &#10711; {post.frontmatter.minutesRead}
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </li>
-          ))
+      posts
+      .sort((a, b) => {
+      const aDate = new Date(a.frontmatter.pubDate);
+      const bDate = new Date(b.frontmatter.pubDate);
+      return bDate - aDate;
+      })
+      .filter(
+      (post) =>
+      post.frontmatter.tags.includes("Urbanism") ||
+      post.frontmatter.tags.includes("Micromobility")
+      )
+      .slice(0, 4)
+      .map((post) => (
+      <li>
+        <a href={"/post/" + post.frontmatter.slug}>
+          <div class="post-container">
+            <div class="image-container">
+              <img class="rounded-lg" src={post.frontmatter.image} alt={post.frontmatter.title} />
+            </div>
+            <div class="text-container">
+              <p class="my-2 font-bold text-sm">
+                {post.frontmatter.title}
+              </p>
+              <p class="guide-decription my-2" style="font-size: .8rem;">
+                {post.frontmatter.description}
+              </p>
+              <p class="font-light" style="font-size: .8rem;">
+                {post.frontmatter.pubDate}
+              </p>
+              <p class="guide-decription float-right text-gray-500" style="font-size: .7rem;">
+                &#10711; {post.frontmatter.minutesRead}
+              </p>
+            </div>
+          </div>
+        </a>
+      </li>
+      ))
       }
     </div>
   </div>
