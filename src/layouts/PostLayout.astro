@@ -116,13 +116,26 @@ post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matc
           Published on {pubTime} • {pubDate}
         </time>
 
+        {tags && tags.length > 0 && (
+        <div class="mb-6 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+          <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-" )}`} key={tag}
+            class="inline-block bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700 text-white text-xs font-medium px-3 py-1 rounded-full shadow-sm hover:brightness-90 transition">
+            {tag}
+          </a>
+          ))}
+        </div>
+        )}
+
+
+
         {description && (
         <p class="mb-4 text-gray-400 italic text-lg max-w-prose">
           {description}
         </p>
         )}
 
-        <section class="blog-article leading-[1.8] text-gray-200 max-w-3xl mx-auto ">
+        <section class="blog-article text-md leading-[1.8] text-gray-200 max-w-3xl mx-auto ">
           <slot />
         </section>
 
@@ -141,6 +154,24 @@ post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matc
 
       </article>
 
+      <div class="tags mt-8 pt-6 border-t border-gray-200">
+        <h2 class="mb-3 text-sm font-semibold text-gray-700 uppercase tracking-wide">
+          Explore Topics
+        </h2>
+        {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-3">
+          {tags.map((tag) => (
+          <a key={tag} href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-" )}`}
+            class="inline-block text-sm font-semibold text-gray-700 border border-gray-700 rounded-full px-4 py-1 hover:bg-gray-900 hover:text-white transition">
+            {tag}
+          </a>
+          ))}
+        </div>
+        )}
+      </div>
+
+
+
       <nav class="mt-12 flex gap-4 text-sm font-medium">
         <a href="javascript:history.back()" class="gradient-text underline hover:opacity-80 transition">
           ← Back
@@ -150,7 +181,15 @@ post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matc
           Home
         </a>
       </nav>
+
+
+
+
       <Related tags={tags} relatedPosts={relatedPosts} />
+
+
+
+
 
     </main>
 
