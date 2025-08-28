@@ -8,7 +8,6 @@ import Cardcontent from "~/components/_cardcontent.astro";
 export async function getStaticPaths() {
 const allPosts = await Astro.glob("../../pages/**/**/*.mdx");
 
-// Extract unique tags lowercased
 const allTags = allPosts.reduce((tags, post) => {
 post.frontmatter.tags.forEach((tag) => {
 const lowerTag = tag.toLowerCase();
@@ -37,16 +36,40 @@ post.frontmatter.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())
 const displayTag = tag.charAt(0).toUpperCase() + tag.slice(1);
 ---
 
-<BaseHead title={displayTag}
-  description="Our featured articles cover all the latest developments, trends, and innovations in the eBike industry. From cutting-edge technology to new product releases, we cover everything that enthusiasts, riders, manufacturers, and everyone interested in the future of sustainable transportation should be tracking." />
+<BaseHead title={`${displayTag} Articles`} description={`Discover the latest news, trends, and insights on
+  ${displayTag}. Explore in-depth articles covering the future of eBikes and sustainable transportation.`} />
 
-<BlogLayout title={displayTag} description={`Discover more news on ${displayTag}. Our featured articles cover all the
-  latest developments, trends, and innovations in the eBike industry.`}>
-  <SearchBar />
-  <Alltags />
-  <div class="wrapper horizontalbar mx-5 my-10 grid grid-cols-1 gap-8 text-gray-100 sm:grid-cols-3">
-    {filteredPosts.map((post) => (
-    <Cardcontent post={post} key={post.frontmatter.slug} imageClass="h-64" />
-    ))}
+<BlogLayout title={displayTag} description={`Explore all articles tagged with "${displayTag}" . Stay updated with the
+  newest developments.`}>
+  <div class="max-w-6xl mx-auto  sm:px-6 lg:px-8">
+    <header class="pt-10 pb-6">
+      <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+        Refining Your Search
+      </h1>
+      <p class="mt-2 text-base text-gray-600 dark:text-gray-300 max-w-prose">
+        We continuously improve how you find the content you care about. Use the tools below to explore
+        relevant articles, latest trends, and expert insights — all tailored to your interests.
+      </p>
+    </header>
+
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-10">
+      <SearchBar class="w-full sm:max-w-xs" />
+      <Alltags class="w-full sm:w-auto" />
+    </div>
+
+    <main>
+      {filteredPosts.length === 0 ? (
+      <p class="text-center text-gray-700 dark:text-gray-300 py-20">
+        No articles found for <strong>{displayTag}</strong>.
+      </p>
+      ) : (
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredPosts.map((post) => (
+        <Cardcontent post={post} key={post.frontmatter.slug} imageClass="h-56 sm:h-64"
+          class="rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300" />
+        ))}
+      </div>
+      )}
+    </main>
   </div>
 </BlogLayout>
