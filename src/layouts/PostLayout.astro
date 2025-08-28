@@ -118,14 +118,21 @@ post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matc
 
         {tags && tags.length > 0 && (
         <div class="mb-6 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-          <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-" )}`} key={tag}
-            class="inline-block bg-gradient-to-r from-purple-900 via-purple-800 to-purple-700 text-white text-xs font-medium px-3 py-1 rounded-full shadow-sm hover:brightness-90 transition">
+          {tags.map((tag) => {
+          const href = tag.toLowerCase() === "electric bike"
+          ? "/products"
+          : `/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`;
+
+          return (
+          <a key={tag} href={href}
+            class="inline-block text-xs font-medium text-gray-700 border border-gray-700 rounded-full px-3 py-1 hover:bg-gray-700 hover:text-white transition shadow-sm">
             {tag}
           </a>
-          ))}
+          );
+          })}
         </div>
         )}
+
 
 
 
@@ -153,19 +160,24 @@ post.frontmatter.tags.some((tag) => tags.includes(tag)) // Check if any tag matc
         )}
 
       </article>
-
-      <div class="tags mt-8 pt-6 border-t border-gray-200">
+      <div class="tags mt-8 pt-6 border-t border-gray-700">
         <h2 class="mb-3 text-sm font-semibold text-gray-700 uppercase tracking-wide">
-          Explore Topics
+          Explore All From Topics
         </h2>
         {tags && tags.length > 0 && (
         <div class="flex flex-wrap gap-3">
-          {tags.map((tag) => (
-          <a key={tag} href={`/tags/${tag.toLowerCase().replace(/\s+/g, "-" )}`}
+          {tags.map((tag) => {
+          const href = tag.toLowerCase() === "electric bike"
+          ? "/products"
+          : `/tags/${tag.toLowerCase().replace(/\s+/g, "-")}`;
+
+          return (
+          <a key={tag} href={href}
             class="inline-block text-sm font-semibold text-gray-700 border border-gray-700 rounded-full px-4 py-1 hover:bg-gray-900 hover:text-white transition">
             {tag}
           </a>
-          ))}
+          );
+          })}
         </div>
         )}
       </div>
