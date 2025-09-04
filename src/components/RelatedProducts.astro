@@ -27,8 +27,8 @@ const { tags, relatedPosts } = Astro.props;
         } = post.frontmatter;
 
         // Dynamically set the URL based on whether it's a post or product
-        const isProduct = post.file.includes("/product/");
-        const href = isProduct ? `/product/${slug}` : `/post/${slug}`;
+        const isProduct = post.file.includes("/products/");
+        const href = isProduct ? `/products/${slug}` : `/post/${slug}`;
 
         return (
         <li key={slug} class="py-2">
